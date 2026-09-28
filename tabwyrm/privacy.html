@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Privacy Policy — TabWyrm</title>
+    <meta
+      name="description"
+      content="What the TabWyrm Chrome extension stores, what it looks at and when, and why it sends nothing anywhere."
+    />
+    <link rel="icon" href="assets/img/icon-32.png" type="image/png" />
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body>
+    <header class="wrap top">
+      <a class="brand" href="./"
+        ><img src="assets/img/icon-128.png" alt="" width="32" height="32" />TabWyrm</a
+      >
+      <nav class="nav" aria-label="Site">
+        <a href="./">Home</a>
+        <a href="support.html">Support</a>
+        <a href="privacy.html" aria-current="page">Privacy</a>
+      </nav>
+    </header>
+
+    <main class="wrap prose">
+      <h1>Privacy Policy</h1>
+      <p class="updated">Effective 28 September 2026 · TabWyrm 1.0.0 and later</p>
+
+      <p>
+        TabWyrm is a free Chrome extension built by Vanta Technology ("we"). It replaces Chrome's
+        New Tab page with a dragon you raise, and can optionally show that dragon on the webpages
+        you visit. This policy describes exactly what the extension stores, what it looks at, and
+        when.
+      </p>
+
+      <h2>The short version</h2>
+      <ul>
+        <li>TabWyrm has no account, no servers, no analytics and no ads.</li>
+        <li>Your game is saved only in your browser. We never receive it.</li>
+        <li>
+          Two features look at information in your browser, on your device and only while they run:
+          <em>Feed Tabs</em> reads your open tabs, and <em>Roam the Web</em> reads the hostname of
+          the page it appears on. Neither keeps nor sends what it reads.
+        </li>
+        <li>TabWyrm makes no network requests of its own.</li>
+      </ul>
+
+      <h2>What TabWyrm stores on your device</h2>
+      <p>
+        TabWyrm keeps one save in Chrome's local extension storage
+        (<code>chrome.storage.local</code>) on this browser. It contains:
+      </p>
+      <ul>
+        <li>
+          <strong>Your dragon</strong>: its name, stage, evolution, level and experience, bond,
+          hunger and mood, when it was created and when you last petted it, and its seven DNA trait
+          scores.
+        </li>
+        <li>
+          <strong>Progress</strong>: the number of tabs eaten, today's date with today's experience
+          totals (for the daily limits), the time of the last daily reward, whether evolution is
+          ready, and when you last played.
+        </li>
+        <li>
+          <strong>Settings</strong>: whether Roam is on, where the dragon may appear, reduce motion
+          and sound.
+        </li>
+        <li>
+          <strong>A random identifier and the install time</strong>, created when TabWyrm first
+          runs, to keep the save consistent. They are not linked to you and never leave your
+          browser.
+        </li>
+        <li>
+          <strong>A few reserved fields</strong> that hold nothing about you and stay at fixed
+          default values in this version.
+        </li>
+      </ul>
+      <p>
+        The save is not synced or uploaded. Removing TabWyrm from Chrome deletes it permanently.
+      </p>
+
+      <h2>Feed Tabs and the "tabs" permission</h2>
+      <p>
+        When you open <em>Feed Tabs</em>, TabWyrm asks Chrome for your open tabs. For each tab it
+        receives Chrome's tab number, the title, the address (or the address it is still loading),
+        the window, whether the tab is pinned, active, playing sound or unloaded to save memory,
+        when it was last used, and the address of its icon (an icon is shown only when the page
+        embeds it). TabWyrm uses this only to list the tabs you could close and to protect the ones
+        it must not close (pinned, active, playing, recently used and browser pages). This data
+        stays in memory while the dialog is open and is discarded when it closes. It is never
+        stored, logged, turned into a history, or sent anywhere. TabWyrm never downloads site icons.
+      </p>
+      <p>
+        Only the tabs you select and confirm are closed. What remains afterwards is a count of tabs
+        eaten and your dragon's reward. Chrome describes the "tabs" permission as "Read your
+        browsing history"; this paragraph is the whole of TabWyrm's use of it.
+      </p>
+
+      <h2>Roam the Web and optional site access</h2>
+      <p>
+        Roam is off by default. If you choose <em>Enable Roam</em>, Chrome asks whether TabWyrm may
+        access websites. With your permission, TabWyrm draws your dragon in its own isolated layer
+        in a corner of the pages you visit. To pick a small reaction (for example, a prop on a video
+        site), it reads the page's hostname in memory. It does not read page text, forms, passwords,
+        messages, cookies or search queries, does not change the page's content, and does not store
+        hostnames or keep any record of the sites you visit. On the page it listens only for clicks
+        on the dragon itself and for the tab being hidden or shown, to pause its animation.
+      </p>
+      <p>
+        You can turn Roam off, or turn it off and remove site access, from the New Tab page at any
+        time ("Disable Roam" or "Disable &amp; remove site access"). Site access can also be changed
+        in Chrome at <code>chrome://extensions</code> → TabWyrm → Details.
+      </p>
+
+      <h2>Dragon Card</h2>
+      <p>
+        Dragon Cards are drawn on your device from your save. A card is written to your computer
+        only when you click <em>Save PNG</em>; it is never uploaded.
+      </p>
+
+      <h2>Network requests and third parties</h2>
+      <p>
+        TabWyrm makes no network requests of its own. Its dragon art ships inside the extension and
+        loads from the extension itself. There is no analytics, telemetry, crash reporting,
+        advertising or tracking code, no remote configuration, no cloud sync and no account system.
+        Because nothing is collected, nothing is sold, shared or transferred to anyone.
+      </p>
+
+      <h2>Chrome Web Store User Data Policy</h2>
+      <p>
+        The use of information received from Google APIs will adhere to the Chrome Web Store User
+        Data Policy, including the Limited Use requirements. TabWyrm uses the information described
+        above only to provide its features on your device, and never sells or transfers it.
+      </p>
+
+      <h2>Children</h2>
+      <p>
+        TabWyrm is not directed at children under 13 and collects no personal information from
+        anyone.
+      </p>
+
+      <h2>Changes to this policy</h2>
+      <p>
+        If TabWyrm's behaviour changes, this page and its effective date change before the new
+        version is published.
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        Questions about this policy: see the <a href="support.html">Support page</a> for how to
+        reach us.
+      </p>
+    </main>
+
+    <footer class="wrap footer">
+      <div class="links">
+        <a href="./">Home</a>
+        <a href="support.html">Support</a>
+        <a href="terms.html">Terms</a>
+      </div>
+      <div>© 2026 Vanta Technology · Chrome is a trademark of Google LLC.</div>
+    </footer>
+  </body>
+</html>

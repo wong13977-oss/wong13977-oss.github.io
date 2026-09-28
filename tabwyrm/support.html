@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Support — TabWyrm</title>
+    <meta
+      name="description"
+      content="Help for the TabWyrm Chrome extension: hatching, Feed Tabs, Roam the Web, site access, resetting and contact."
+    />
+    <link rel="icon" href="assets/img/icon-32.png" type="image/png" />
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body>
+    <header class="wrap top">
+      <a class="brand" href="./"
+        ><img src="assets/img/icon-128.png" alt="" width="32" height="32" />TabWyrm</a
+      >
+      <nav class="nav" aria-label="Site">
+        <a href="./">Home</a>
+        <a href="support.html" aria-current="page">Support</a>
+        <a href="privacy.html">Privacy</a>
+      </nav>
+    </header>
+
+    <main class="wrap prose">
+      <h1>Support</h1>
+      <p class="updated">TabWyrm 1.0.0</p>
+      <p>
+        TabWyrm replaces Chrome's New Tab page with a dragon you raise. Everything runs in your
+        browser; there is no account to sign in to.
+      </p>
+
+      <h2>Getting started</h2>
+      <h3>How do I hatch my dragon?</h3>
+      <p>
+        Open a new tab and tap the egg. After a few minutes, and another tap, it hatches. Then you
+        can name your dragon (<em>Rename</em>) and pet it from the New Tab page.
+      </p>
+      <h3>How does my dragon evolve?</h3>
+      <p>
+        Your dragon earns experience when you pet it and when it eats old tabs. Petting counts once
+        every five minutes, and both have a daily experience limit. At level 10 it becomes ready to
+        evolve and an <em>Evolve</em> button appears. Its DNA decides the form: petting builds
+        <em>Bond</em>, which leads to the Moon Dragon; feeding it tabs builds <em>Order</em> and
+        <em>Discipline</em>, which lead to the Crystal Dragon. Evolution is permanent.
+      </p>
+      <h3>Chrome asked whether to keep the new New Tab page</h3>
+      <p>
+        Chrome asks this whenever an extension replaces the New Tab page. Choose to keep it to keep
+        TabWyrm. If you change it back, Chrome may turn TabWyrm off; you can turn it on again at
+        <code>chrome://extensions</code>.
+      </p>
+
+      <h2>Feed Tabs</h2>
+      <h3>How does Feed Tabs work?</h3>
+      <p>
+        Once your dragon has hatched, choose <em>Feed tabs</em> on the New Tab page. TabWyrm lists
+        the tabs you have not used for at least 10 minutes. Tick the ones you no longer need, choose
+        <em>Continue</em>, check the list, then <em>Close &amp; Feed</em>. Only the tabs you confirm
+        are closed, and your dragon gets a snack.
+      </p>
+      <p>
+        These tabs are always protected and never offered: the tab you are on, pinned tabs, tabs
+        playing sound, tabs used in the last 10 minutes, and browser or extension pages. Unsaved
+        work in a closed tab may be lost, so only feed tabs you are done with.
+      </p>
+      <h3>Why does Chrome say TabWyrm can "Read your browsing history"?</h3>
+      <p>
+        That is Chrome's wording for the "tabs" permission, which Feed Tabs needs to show the titles
+        and addresses of your open tabs. TabWyrm reads them only while the Feed Tabs dialog is open,
+        keeps them in memory, and never stores or sends them. See the
+        <a href="privacy.html">Privacy Policy</a>.
+      </p>
+
+      <h2>Roam the Web</h2>
+      <h3>How do I turn Roam on?</h3>
+      <p>
+        On the New Tab page, choose <em>Let your dragon roam webpages</em>, read the note, then
+        <em>Enable Roam</em>. Chrome asks whether TabWyrm may access websites; Roam starts only if
+        you allow it. Your dragon then appears in a corner of the pages you visit. Some pages, such
+        as Chrome's own pages and the Chrome Web Store, never allow extensions.
+      </p>
+      <h3>How do I turn Roam off or remove site access?</h3>
+      <p>
+        On the New Tab page, choose <em>Disable Roam</em> to hide the dragon on websites, or
+        <em>Disable &amp; remove site access</em> to also give the website permission back to
+        Chrome. You can also manage it in Chrome: open <code>chrome://extensions</code>, choose
+        <em>Details</em> under TabWyrm, and change <em>Site access</em>.
+      </p>
+
+      <h2>Settings and data</h2>
+      <h3>Can I reduce animation?</h3>
+      <p>
+        Yes. Tick <em>Reduce motion</em> on the New Tab page. TabWyrm also follows your system's
+        reduced-motion setting.
+      </p>
+      <h3>How do I reset TabWyrm and start over?</h3>
+      <p>
+        Version 1.0.0 has no in-app reset. Remove TabWyrm at <code>chrome://extensions</code> and
+        add it again from the Chrome Web Store. Removing it permanently deletes your dragon and all
+        of its progress.
+      </p>
+      <h3>Can I move my dragon to another computer?</h3>
+      <p>
+        Not yet. The save lives in this browser's local extension storage; there is no account and
+        nothing is synced.
+      </p>
+      <h3>Is TabWyrm free?</h3>
+      <p>Yes. There is nothing to buy and no subscription.</p>
+
+      <h2>Report a problem</h2>
+      <p>
+        Please include your Chrome version (<code>chrome://version</code>), TabWyrm's version (on
+        <code>chrome://extensions</code>) and what you did before the problem appeared. Contact
+        details are listed on TabWyrm's Chrome Web Store page.
+      </p>
+    </main>
+
+    <footer class="wrap footer">
+      <div class="links">
+        <a href="./">Home</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+      </div>
+      <div>© 2026 Vanta Technology · Chrome is a trademark of Google LLC.</div>
+    </footer>
+  </body>
+</html>
