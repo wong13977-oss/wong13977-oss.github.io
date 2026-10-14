@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Shopee、Lazada、TikTok Shop 标题翻译与字数限制（马来语/印尼语/泰语）</title>
+    <meta name="description" content="Lazada 标题上限 255，TikTok Shop 25 到 255，Shopee 常用 120（非官方）。批量翻译成马来语、印尼语、泰语、越南语，保护品牌词，并检查马来西亚 CPETTR 2024 披露。">
+    <link rel="canonical" href="https://wong13977-oss.github.io/zh/shopee-lazada-listing-translation/">
+    <link rel="alternate" hreflang="en" href="https://wong13977-oss.github.io/marketplace-listing-translation/">
+    <link rel="alternate" hreflang="zh-CN" href="https://wong13977-oss.github.io/zh/shopee-lazada-listing-translation/">
+    <link rel="alternate" hreflang="x-default" href="https://wong13977-oss.github.io/marketplace-listing-translation/">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Shopee、Lazada、TikTok Shop 标题翻译与字数限制（马来语/印尼语/泰语）">
+    <meta property="og:description" content="Lazada 标题上限 255，TikTok Shop 25 到 255，Shopee 常用 120（非官方）。批量翻译成马来语、印尼语、泰语、越南语，保护品牌词，并检查马来西亚 CPETTR 2024 披露。">
+    <meta property="og:url" content="https://wong13977-oss.github.io/zh/shopee-lazada-listing-translation/">
+    <link rel="stylesheet" href="/styles.css">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"东南亚卖家怎么把 Shopee、Lazada、TikTok Shop 的商品标题翻译成当地语言，又不超字数限制？","description":"Lazada 标题上限 255，TikTok Shop 25 到 255，Shopee 常用 120（非官方）。批量翻译成马来语、印尼语、泰语、越南语，保护品牌词，并检查马来西亚 CPETTR 2024 披露。","inLanguage":"zh-CN","dateModified":"2026-10-14","mainEntityOfPage":"https://wong13977-oss.github.io/zh/shopee-lazada-listing-translation/","author":{"@type":"Person","name":"Wong Xian Qi","url":"https://apify.com/messnomore"},"about":{"@type":"SoftwareApplication","name":"SEA Listing Localizer & CPETTR Checker","url":"https://apify.com/messnomore/sea-listing-localizer","applicationCategory":"DeveloperApplication","operatingSystem":"Web"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Shopee 商品标题最多多少个字符？","acceptedAnswer":{"@type":"Answer","text":"据该工具文档，Shopee 没有公布官方上限，工具采用卖家后台常见的 120 个字符（描述 3,000 个字符）。请核对你类目后台显示的数字，不同的话填进 titleMaxLength（10 到 255）。"}},{"@type":"Question","name":"Lazada 商品标题的字数上限是多少？","acceptedAnswer":{"@type":"Answer","text":"工具对 Lazada 采用标题 255、描述 25,000 个字符，数字来自 Lazada Open Platform 的 CreateProduct API。这个上限不能调高。"}},{"@type":"Question","name":"TikTok Shop 商品标题有最低字数要求吗？","acceptedAnswer":{"@type":"Answer","text":"有。工具采用的 TikTok Shop 标题范围是 25 到 255 个字符（来自 TikTok Shop Partner API），描述最多 10,000 个字符。标题不足 25 个字符时，结果的 notes 会提示补充商品信息。"}},{"@type":"Question","name":"马来西亚 CPETTR 2024 要求卖家披露哪些信息？","acceptedAnswer":{"@type":"Answer","text":"工具按 P.U.(A) 449/2024 的附表检查：卖家名称、邮箱和电话、营业地址、商品主要特征、价格和运费、付款方式、条款与条件、预计送达时间，以及马来语版本（第 4 条，2025 年 6 月宣布推迟执行）。这只是检查清单，不是法律意见。"}},{"@type":"Question","name":"批量翻译 Shopee、Lazada listing 要多少钱？","acceptedAnswer":{"@type":"Answer","text":"每条结果 0.02 美元（一个商品、一种语言），另加每次运行 0.01 美元；50 个商品翻成马来语和泰语共 100 条结果，合计 2.01 美元。Apify 的 Bronze、Silver 和 Gold 订阅用户有更低的价格。"}},{"@type":"Question","name":"这个工具会抓取 Shopee 的数据吗？是官方工具吗？","acceptedAnswer":{"@type":"Answer","text":"不抓取，只处理你提供的商品。它是独立的非官方工具，与 Shopee、Lazada、TikTok Shop 没有关联。"}}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"MessNoMore Data Tools","item":"https://wong13977-oss.github.io/zh/"},{"@type":"ListItem","position":2,"name":"Shopee、Lazada、TikTok Shop 标题翻译与字数限制（马来语/印尼语/泰语）","item":"https://wong13977-oss.github.io/zh/shopee-lazada-listing-translation/"}]}</script>
+</head>
+<body>
+<header class="site">
+    <a class="brand" href="/zh/">MessNoMore Data Tools</a>
+    <nav><a href="/">English</a> <a href="https://github.com/wong13977-oss/school-term-dates">免费数据</a> <a href="https://apify.com/messnomore">Apify Store</a></nav>
+</header>
+<main>
+<article>
+    <p class="crumbs"><a href="/zh/">MessNoMore Data Tools</a> › Shopee、Lazada、TikTok Shop 标题翻译与字数限制（马来语/印尼语/泰语）</p>
+    <h1>东南亚卖家怎么把 Shopee、Lazada、TikTok Shop 的商品标题翻译成当地语言，又不超字数限制？</h1>
+    <p class="meta">更新于 <time datetime="2026-10-14">2026-10-14</time> · 作者 Wong Xian Qi</p>
+    <p>做东南亚站点，标题字数要按平台分别处理：Lazada 标题上限 255 个字符，TikTok Shop 是 25 到 255 个字符，Shopee 据工具文档没有公布官方数字，工具用的 120 是卖家后台常见的数字，要以你类目后台显示的为准。翻译成马来语、印尼语、泰语或越南语时，品牌词、型号和规格（如 750ml）必须原样保留。非官方的 Apify Actor <a href="https://apify.com/messnomore/sea-listing-localizer" target="_blank" rel="noopener">SEA Listing Localizer &amp; CPETTR Checker</a> 可以用 JSON、CSV 或 API 批量翻译、按平台上限截断标题，并检查马来西亚 CPETTR 2024 要求的卖家信息有没有写全。</p>
+
+<h2>Shopee、Lazada、TikTok Shop 的标题和描述字数限制是多少？</h2>
+<table>
+<thead>
+<tr><th>平台</th><th>标题</th><th>描述</th><th>数字来源</th></tr>
+</thead>
+<tbody>
+<tr><td>Shopee</td><td>120</td><td>3,000</td><td>据工具文档官方未公布，取自卖家后台常见数字</td></tr>
+<tr><td>Lazada</td><td>255</td><td>25,000</td><td>Lazada Open Platform CreateProduct API</td></tr>
+<tr><td>TikTok Shop</td><td>25 到 255</td><td>10,000</td><td>TikTok Shop Partner API</td></tr>
+</tbody>
+</table>
+<p>Shopee 这个数字最容易出错：不同类目的后台显示可能不同，所以没设置上限时，每条 Shopee 结果都带 <code>titleLimitVerified: false</code>，提醒你自己核对。核对后把数字填进 <code>titleMaxLength</code>（可填 10 到 255），工具就改用你填的数字。Lazada 和 TikTok Shop 的上限不能调高；TikTok Shop 标题少于 25 个字符时，结果的 notes 会提示补充商品信息。字数按买家实际看到的字符计算，泰语符号和越南语声调都能正确计数。</p>
+
+<h2>标题直接机翻会出什么问题？品牌词和型号怎么保护？</h2>
+<p>标题把商品类型、关键规格和品牌挤在几个词里，逐字翻译很容易出错：</p>
+<ul>
+<li><strong>品牌词、型号、规格被改写。</strong>“750ml”不能变成“750 mililiter”，“S24”这类型号和品牌名也不能动。工具自动保护规格、容量和型号（如 750ml、70x140cm、S24）；品牌名、成分名写进 <code>protectedTerms</code>（CSV 里用逗号分隔）。译文里缺了哪个词，会列在 <code>missingProtectedTerms</code>，空数组就表示都在。</li>
+<li><strong>马来语和印尼语混用。</strong>马来西亚说“kereta”，印尼说“mobil”（都是汽车）。语言按站点选：马来西亚 <code>ms</code>、印尼 <code>id</code>、泰国 <code>th</code>、越南 <code>vi</code>，工具会把 ms 和 id 分开处理。</li>
+<li><strong>关键词的顺序和用词。</strong>标题先放商品类型和关键规格，用当地买家搜索的词，而不是逐字翻；“power bank”“serum”这类当地人习惯用英文搜的词会保留英文。</li>
+<li><strong>平台不接受的内容。</strong>标题里的 emoji 和话题标签、任何位置的链接、电话和邮箱都会被删掉；“FREE SHIPPING”“BEST SELLER”这类促销词，AI 也被要求去掉。</li>
+</ul>
+<p>译文超长时，工具从尾部往前删词，第一个词（商品类型）和保护词不会删；连这些都放不下时才会从中间截断，并在 notes 里提醒你检查。泰语没有空格，会按词或词组的边界截断。被缩短的标题带有 <code>titleTrimmed: true</code>。</p>
+<p>上架前仍要人工看一遍：同一条保温杯标题，两次示例运行里，一次把“Vacuum Insulated”留成英文，另一次译成了“Vakum Penebat”。notes 还会提醒哪些宣称需要证明，例如保温 24 小时。另外，文档里的示例输入都是英文标题，没有说明中文原文的效果，建议先拿几条试跑（Apify 免费计划每次最多返回 10 条结果）。</p>
+
+<h2>批量处理：CSV 怎么填？</h2>
+<p>把商品表另存为 UTF-8 CSV（Excel 里选“CSV UTF-8”），放到公开链接（如 Google Drive 或 Dropbox 的直接下载链接），链接填进 <code>listingsCsvUrl</code>，文件不超过 10 MB。第一行是列名：<code>sku,title,description,variations,price,currency,brand,protectedTerms</code>，其中 sku 和 title 必填，variations 写成 <code>Color: Black, Silver; Size: S, M</code> 这样的格式。列名也可以用 Product Name、Body (HTML) 等常见写法；Shopify 后台导出的商品 CSV 可以直接用，同一商品的多行变体会合并，HTML 描述会转成纯文本。缺 sku 或 title 的行会被跳过，原因记在 SUMMARY 记录里。</p>
+<p>卖家信息（CPETTR 检查要用）在 <code>sellerProfile</code> 里填一次，单个商品也可以覆盖。用 API 的话，向 <code>https://api.apify.com/v2/acts/messnomore~sea-listing-localizer/run-sync-get-dataset-items</code> 发 POST，带上 Apify token，请求体就是同样的输入 JSON；100 条结果大约一分钟。下面是 Shopee、马来语的一条真实输出（CPETTR 检查关闭，相关字段为 null）：</p>
+<pre><code>{
+  "sku": "SRM-30",
+  "language": "ms",
+  "marketplace": "shopee",
+  "sourceTitle": "Hydrating Facial Serum with Hyaluronic Acid 30ml",
+  "localizedTitle": "Serum Melembapkan Muka dengan Hyaluronic Acid 30ml",
+  "titleLength": 50,
+  "titleMaxLength": 120,
+  "localizedDescription": "Serum ringan dengan 2% Hyaluronic Acid dan vitamin B5.\n\n• Sesuai untuk semua jenis kulit\n• Gunakan 2-3 titis pagi dan malam",
+  "localizedVariations": [],
+  "complianceScore": null,
+  "cpettrMissing": null,
+  "cpettrRecommended": null,
+  "cpettrHints": null,
+  "notes": [],
+  "missingProtectedTerms": [],
+  "titleTrimmed": false,
+  "titleLimitVerified": false,
+  "descriptionLength": 123,
+  "descriptionTrimmed": false
+}</code></pre>
+
+<h2>马来西亚 CPETTR 2024 要求卖家披露哪些信息？</h2>
+<p>CPETTR 全称 Consumer Protection (Electronic Trade Transaction) Regulations 2024，编号 P.U.(A) 449/2024，2024 年 12 月 25 日起生效。该工具对照这份法规的 Schedule（附表）逐项检查：</p>
+<ul>
+<li>卖家或公司名称（第 1 项）；邮箱和电话（第 3 项）；营业地址（第 4 项）</li>
+<li>商品主要特征（第 5 项），工具要求描述至少 50 个字符</li>
+<li>全价，以及运费或送货条款（第 6 项）</li>
+<li>付款方式（第 7 项）；条款与条件，至少要有退换货和退款政策（第 8 项）</li>
+<li>预计送达时间（第 9 项）</li>
+<li>马来语版本的信息（第 4 条 Regulation 4）</li>
+</ul>
+<p>另有三项只提示、不计分：网站和安全/健康证书（附表里都标注“if any”，第 2、10 项），以及公司注册号（Regulation 8(1)(c) 要求平台留档）。文档写明，马来语版本这一条的执行已在 2025 年 6 月推迟。</p>
+<p>每条结果有 0 到 100 的 <code>complianceScore</code>，以及缺项 <code>cpettrMissing</code> 和补充建议 <code>cpettrHints</code>。<a href="https://apify.com/messnomore/sea-listing-localizer/examples/cpettr-2024-seller-disclosure-check" target="_blank" rel="noopener">CPETTR 示例运行</a>里两条商品都是 100 分，但仍建议补充网站和安全证书。这只是对照条文的检查清单，不是法律意见；有疑问请咨询专业人士或 KPDN（国内贸易及生活成本部）。不卖马来西亚的话，把 <code>checkCPETTR</code> 设为 <code>false</code>。</p>
+
+<h2>价格怎么算？</h2>
+<p>按事件计费：每条本地化结果 0.02 美元（一个商品、一种语言算一条），另加每次运行 0.01 美元，不收计算资源费。50 个商品翻成马来语和泰语，共 100 条结果，合计 2.01 美元；200 个商品翻成四种语言是 800 条结果，合计 16.01 美元。失败的结果不收费；<code>maxResults</code> 是硬上限（默认 100）。Apify 的 Bronze、Silver 和 Gold 订阅用户有更低的价格。</p>
+
+<h2>覆盖范围和限制</h2>
+<ul>
+<li>只支持马来语、印尼语、泰语、越南语四种语言，以及 Shopee、Lazada、TikTok Shop 三个平台。</li>
+<li>不抓取平台数据，只处理你提供的商品。</li>
+<li>输出是标题、描述和规格选项（变体）；文件里的其他列会被忽略。</li>
+<li>译文由 Anthropic 的 Claude AI 生成，上架前请人工复核；商品内容会发送到 Anthropic API 来生成译文。</li>
+<li>这是独立的非官方工具，与 Shopee、Lazada、TikTok Shop、Shopify 没有关联。</li>
+</ul>
+    <aside class="cta">
+        <h2>直接试用</h2>
+        <p><a class="button" href="https://apify.com/messnomore/sea-listing-localizer" target="_blank" rel="noopener">SEA Listing Localizer &amp; CPETTR Checker</a></p>
+        <p>现成的示例任务：</p>
+        <ul>
+            <li><a href="https://apify.com/messnomore/sea-listing-localizer/examples/translate-shopee-listing-to-malay" target="_blank" rel="noopener">Translate Shopee product listings into Bahasa Malaysia</a></li>
+            <li><a href="https://apify.com/messnomore/sea-listing-localizer/examples/tiktok-shop-listing-thai-vietnamese" target="_blank" rel="noopener">Translate TikTok Shop listings into Thai and Vietnamese</a></li>
+            <li><a href="https://apify.com/messnomore/sea-listing-localizer/examples/lazada-listing-indonesian-translation" target="_blank" rel="noopener">Translate Lazada product listings into Indonesian</a></li>
+            <li><a href="https://apify.com/messnomore/sea-listing-localizer/examples/cpettr-2024-seller-disclosure-check" target="_blank" rel="noopener">Check Malaysia CPETTR 2024 seller disclosures on listings</a></li>
+        </ul>
+    </aside>
+    <section class="faq">
+        <h2>常见问题</h2>
+        <h3>Shopee 商品标题最多多少个字符？</h3>
+        <p>据该工具文档，Shopee 没有公布官方上限，工具采用卖家后台常见的 120 个字符（描述 3,000 个字符）。请核对你类目后台显示的数字，不同的话填进 titleMaxLength（10 到 255）。</p>
+        <h3>Lazada 商品标题的字数上限是多少？</h3>
+        <p>工具对 Lazada 采用标题 255、描述 25,000 个字符，数字来自 Lazada Open Platform 的 CreateProduct API。这个上限不能调高。</p>
+        <h3>TikTok Shop 商品标题有最低字数要求吗？</h3>
+        <p>有。工具采用的 TikTok Shop 标题范围是 25 到 255 个字符（来自 TikTok Shop Partner API），描述最多 10,000 个字符。标题不足 25 个字符时，结果的 notes 会提示补充商品信息。</p>
+        <h3>马来西亚 CPETTR 2024 要求卖家披露哪些信息？</h3>
+        <p>工具按 P.U.(A) 449/2024 的附表检查：卖家名称、邮箱和电话、营业地址、商品主要特征、价格和运费、付款方式、条款与条件、预计送达时间，以及马来语版本（第 4 条，2025 年 6 月宣布推迟执行）。这只是检查清单，不是法律意见。</p>
+        <h3>批量翻译 Shopee、Lazada listing 要多少钱？</h3>
+        <p>每条结果 0.02 美元（一个商品、一种语言），另加每次运行 0.01 美元；50 个商品翻成马来语和泰语共 100 条结果，合计 2.01 美元。Apify 的 Bronze、Silver 和 Gold 订阅用户有更低的价格。</p>
+        <h3>这个工具会抓取 Shopee 的数据吗？是官方工具吗？</h3>
+        <p>不抓取，只处理你提供的商品。它是独立的非官方工具，与 Shopee、Lazada、TikTok Shop 没有关联。</p>
+    </section>
+    <section class="related"><h2>其他指南</h2><ul>
+            <li><a href="/zh/hs-code-lookup/">商品HS编码怎么查？美国HTS、欧盟TARIC、英国商品编码查询方法</a></li>
+        </ul></section>
+</article>
+</main>
+<footer class="site">
+    <p>作者 <a href="https://apify.com/messnomore">Wong Xian Qi</a> · 数据工具运行在 Apify 平台 · <a href="/llms.txt">llms.txt</a></p>
+</footer>
+</body>
+</html>

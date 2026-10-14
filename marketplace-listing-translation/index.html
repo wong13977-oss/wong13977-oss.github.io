@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Translate Shopee, Lazada, TikTok Shop Listings: Title Limits</title>
+    <meta name="description" content="Title limits: Lazada 255, TikTok Shop 25-255, Shopee 120 (unofficial). Translate listings to Malay or Thai by API and see what CPETTR 2024 requires.">
+    <link rel="canonical" href="https://wong13977-oss.github.io/marketplace-listing-translation/">
+    <link rel="alternate" hreflang="en" href="https://wong13977-oss.github.io/marketplace-listing-translation/">
+    <link rel="alternate" hreflang="zh-CN" href="https://wong13977-oss.github.io/zh/shopee-lazada-listing-translation/">
+    <link rel="alternate" hreflang="x-default" href="https://wong13977-oss.github.io/marketplace-listing-translation/">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Translate Shopee, Lazada, TikTok Shop Listings: Title Limits">
+    <meta property="og:description" content="Title limits: Lazada 255, TikTok Shop 25-255, Shopee 120 (unofficial). Translate listings to Malay or Thai by API and see what CPETTR 2024 requires.">
+    <meta property="og:url" content="https://wong13977-oss.github.io/marketplace-listing-translation/">
+    <link rel="stylesheet" href="/styles.css">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"How do you translate Shopee, Lazada and TikTok Shop listings within the title limits?","description":"Title limits: Lazada 255, TikTok Shop 25-255, Shopee 120 (unofficial). Translate listings to Malay or Thai by API and see what CPETTR 2024 requires.","inLanguage":"en","dateModified":"2026-10-14","mainEntityOfPage":"https://wong13977-oss.github.io/marketplace-listing-translation/","author":{"@type":"Person","name":"Wong Xian Qi","url":"https://apify.com/messnomore"},"about":{"@type":"SoftwareApplication","name":"SEA Listing Localizer & CPETTR Checker","url":"https://apify.com/messnomore/sea-listing-localizer","applicationCategory":"DeveloperApplication","operatingSystem":"Web"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the Lazada product title character limit?","acceptedAnswer":{"@type":"Answer","text":"The SEA Listing Localizer Actor applies 255 characters for titles and 25,000 for descriptions on Lazada, taken from the Lazada Open Platform CreateProduct API. The Actor does not let you raise the Lazada limit."}},{"@type":"Question","name":"How long can a TikTok Shop product title be?","acceptedAnswer":{"@type":"Answer","text":"The Actor applies 25 to 255 characters for titles and up to 10,000 for descriptions on TikTok Shop, based on the TikTok Shop Partner API. A title shorter than 25 characters gets a note asking you to add product details."}},{"@type":"Question","name":"What is the Shopee product title limit?","acceptedAnswer":{"@type":"Answer","text":"According to the Actor's documentation, Shopee publishes no official limit, so the Actor uses 120 characters for titles and 3,000 for descriptions, the common Seller Centre figures. Check the number your Seller Centre shows for your category and set titleMaxLength (10 to 255) if it differs."}},{"@type":"Question","name":"What must sellers disclose under Malaysia's CPETTR 2024?","acceptedAnswer":{"@type":"Answer","text":"The Actor's checklist follows the Schedule of P.U.(A) 449/2024: seller name, e-mail and telephone, business address, product description, full price and delivery cost, payment methods, terms and conditions, estimated delivery time, plus a Bahasa Malaysia version (Regulation 4, enforcement postponed in June 2025). It is a checklist, not legal advice."}},{"@type":"Question","name":"Is there an API to translate Shopee listings into Malay, and what does it cost?","acceptedAnswer":{"@type":"Answer","text":"Yes. The Apify Actor SEA Listing Localizer & CPETTR Checker can be called through the Apify API with your listings, target languages and marketplace. It costs $0.02 per localized result plus $0.01 per run, and Apify Bronze, Silver and Gold subscribers get lower prices."}},{"@type":"Question","name":"Does the tool scrape Shopee, Lazada or TikTok Shop?","acceptedAnswer":{"@type":"Answer","text":"No. It only processes the listings you send and does not visit marketplace websites or read other sellers' data. It is an independent tool and is not affiliated with those marketplaces."}}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"MessNoMore Data Tools","item":"https://wong13977-oss.github.io/"},{"@type":"ListItem","position":2,"name":"Translate Shopee, Lazada, TikTok Shop Listings: Title Limits","item":"https://wong13977-oss.github.io/marketplace-listing-translation/"}]}</script>
+</head>
+<body>
+<header class="site">
+    <a class="brand" href="/">MessNoMore Data Tools</a>
+    <nav><a href="/zh/">中文</a> <a href="https://github.com/wong13977-oss/school-term-dates">Free data</a> <a href="https://apify.com/messnomore">Apify Store</a></nav>
+</header>
+<main>
+<article>
+    <p class="crumbs"><a href="/">MessNoMore Data Tools</a> › Translate Shopee, Lazada, TikTok Shop Listings: Title Limits</p>
+    <h1>How do you translate Shopee, Lazada and TikTok Shop listings within the title limits?</h1>
+    <p class="meta">Updated <time datetime="2026-10-14">2026-10-14</time> · By Wong Xian Qi</p>
+    <p>Title limits differ by marketplace: the SEA Listing Localizer Actor applies 120 characters on Shopee (a common Seller Centre figure; the Actor's documentation says Shopee publishes no official number), 255 on Lazada and 25 to 255 on TikTok Shop. When you translate a title into Malay, Indonesian, Thai or Vietnamese, keep brand names, sizes and model codes exactly as written and check the result against the limit. Sellers in Malaysia must also show the seller information listed in the CPETTR 2024 Schedule, and the unofficial Apify Actor <a href="https://apify.com/messnomore/sea-listing-localizer" target="_blank" rel="noopener">SEA Listing Localizer &amp; CPETTR Checker</a> translates, trims and checks listings through an API.</p>
+
+<h2>What are the title and description limits on Shopee, Lazada and TikTok Shop?</h2>
+<p>These are the numbers the Actor applies, counted the way a reader sees characters, so Thai marks and Vietnamese accents count correctly.</p>
+<table>
+<thead>
+<tr><th>Marketplace</th><th>Title</th><th>Description</th><th>Source of the number</th></tr>
+</thead>
+<tbody>
+<tr><td>Shopee</td><td>120</td><td>3,000</td><td>Common Seller Centre figures; the Actor's documentation says no official limit is published</td></tr>
+<tr><td>Lazada</td><td>255</td><td>25,000</td><td>Lazada Open Platform CreateProduct API</td></tr>
+<tr><td>TikTok Shop</td><td>25 to 255</td><td>10,000</td><td>TikTok Shop Partner API</td></tr>
+</tbody>
+</table>
+<p>Shopee is the one to check by hand: your own Seller Centre shows the number for your category. If it differs from 120, enter it as <code>titleMaxLength</code> (10 to 255); until then every Shopee result carries <code>titleLimitVerified: false</code>. The Lazada and TikTok Shop limits cannot be raised, and a TikTok Shop title under 25 characters gets a note asking for more product details.</p>
+
+<h2>Why does machine translation of a product title go wrong?</h2>
+<p>A title packs product type, key specs and brand into few words, so literal translation breaks in predictable ways:</p>
+<ul>
+<li><strong>Wrong market vocabulary.</strong> Malaysian Malay and Indonesian differ in everyday words, such as "kereta" in Malaysia and "mobil" in Indonesia. The Actor keeps <code>ms</code> and <code>id</code> apart.</li>
+<li><strong>Changed protected terms.</strong> "750ml" must not become "750 mililiter", and a model code like "S24" or a brand name must survive. Sizes, capacities and model codes are protected automatically; add brand, model or ingredient names in <code>protectedTerms</code>. Terms missing from the result are listed in <code>missingProtectedTerms</code> (empty is good).</li>
+<li><strong>Keywords in the wrong order or language.</strong> The Actor puts the product type and key specs first, uses words local shoppers search for, and keeps English where shoppers commonly search in English, such as "power bank" or "serum".</li>
+<li><strong>Text marketplaces reject.</strong> Emoji and hashtags in titles, and links, phone numbers and e-mail addresses anywhere, are removed, and the AI is told to drop promotional phrases such as "FREE SHIPPING" or "BEST SELLER".</li>
+</ul>
+<p>If a translated title is still over the limit, the Actor removes words from the end. The first word (the product type) and the protected terms stay; if even those do not fit, the title is cut mid-phrase and a note says so. Thai, which has no spaces between words, is trimmed at word or phrase boundaries. A shortened title has <code>titleTrimmed: true</code>.</p>
+<table>
+<thead>
+<tr><th>Source title</th><th>Malay (Shopee run)</th><th>Thai (TikTok Shop run)</th><th>Vietnamese (TikTok Shop run)</th></tr>
+</thead>
+<tbody>
+<tr><td>Stainless Steel Water Bottle 750ml Double Wall Vacuum Insulated</td><td>Botol Air Stainless Steel 750ml Dinding Berganda Vacuum Insulated</td><td>ขวดน้ำสแตนเลส 750ml ฉนวนสุญญากาศ 2 ชั้น</td><td>Bình nước giữ nhiệt inox 750ml 2 lớp thành chân không</td></tr>
+</tbody>
+</table>
+<p>Every version keeps "750ml", but read the output before publishing: in two sample runs on this title, one left "Vacuum Insulated" in English and the other wrote "Vakum Penebat". The <code>notes</code> field also flags claims that need proof, such as this bottle's 24-hour cold claim.</p>
+
+<h2>How do you translate listings to Malay, Thai or Vietnamese with an API?</h2>
+<p>Send listings, target languages and a marketplace in one request. Each listing needs <code>sku</code> and <code>title</code>; <code>description</code>, <code>variations</code>, <code>price</code>, <code>currency</code>, <code>brand</code> and <code>protectedTerms</code> are optional. <code>targetLanguages</code> takes <code>ms</code>, <code>id</code>, <code>th</code> and <code>vi</code>; <code>marketplace</code> is <code>shopee</code>, <code>lazada</code> or <code>tiktokshop</code>. For a whole catalogue, pass <code>listingsCsvUrl</code>, a public link to a UTF-8 CSV file or a Shopify product export.</p>
+<pre><code>curl -X POST "https://api.apify.com/v2/acts/messnomore~sea-listing-localizer/run-sync-get-dataset-items" -H "Authorization: Bearer YOUR_APIFY_TOKEN" -H "Content-Type: application/json" -d '{"listings":[{"sku":"BTL-750","title":"AcmeHome Stainless Steel Water Bottle 750ml","protectedTerms":["AcmeHome"]}],"targetLanguages":["ms","th"],"marketplace":"tiktokshop"}'</code></pre>
+<p>You get one result per listing per language. This is a real result, the Thai version on TikTok Shop:</p>
+<pre><code>{
+  "sku": "BTL-750",
+  "language": "th",
+  "marketplace": "tiktokshop",
+  "sourceTitle": "Stainless Steel Water Bottle 750ml Double Wall Vacuum Insulated",
+  "localizedTitle": "ขวดน้ำสแตนเลส 750ml ฉนวนสุญญากาศ 2 ชั้น",
+  "titleLength": 34,
+  "titleMaxLength": 255,
+  "localizedDescription": "เก็บความเย็นได้นาน 24 ชั่วโมง และเก็บความร้อนได้นาน 12 ชั่วโมง\n• ฝาป้องกันการรั่วซึม\n• ฝาไม่มี BPA\n• พอดีกับที่วางแก้วในรถยนต์ส่วนใหญ่",
+  "localizedVariations": [
+    {
+      "name": "สี",
+      "options": [
+        "ดำ",
+        "เงิน",
+        "ชมพูพาสเทล"
+      ]
+    }
+  ],
+  "complianceScore": null,
+  "cpettrMissing": null,
+  "cpettrRecommended": null,
+  "cpettrHints": null,
+  "notes": [
+    "Confirm the 24-hour cold and 12-hour hot retention claims with test data before publishing.",
+    "Source says 'BPA-free lid'; confirm the lid's BPA-free status is certified or documented."
+  ],
+  "missingProtectedTerms": [],
+  "titleTrimmed": false,
+  "titleLimitVerified": true,
+  "descriptionLength": 109,
+  "descriptionTrimmed": false
+}</code></pre>
+<p>The CPETTR fields are <code>null</code> because that check was off for this run. 100 results take about a minute.</p>
+
+<h2>What does Malaysia's CPETTR 2024 require sellers to disclose?</h2>
+<p>CPETTR is the Consumer Protection (Electronic Trade Transaction) Regulations 2024, P.U.(A) 449/2024, in force since 25 December 2024. The Actor's check follows its Schedule:</p>
+<ul>
+<li>Seller or company name (item 1); e-mail address and telephone number (item 3); address of the place of business (item 4)</li>
+<li>Main characteristics of the product (item 5); the Actor expects a description of at least 50 characters</li>
+<li>Full price, and delivery cost or delivery terms (item 6)</li>
+<li>Payment methods (item 7); terms and conditions, or at least the return and refund policy (item 8)</li>
+<li>Estimated delivery time (item 9); a Bahasa Malaysia version of the information (Regulation 4)</li>
+</ul>
+<p>Not scored but suggested: your website and any safety or health certificate (both "if any", items 2 and 10), and your company registration number, which marketplaces must keep on record (Regulation 8(1)(c)). The Actor's documentation says enforcement of the Bahasa Malaysia rule was postponed in June 2025.</p>
+<p>The Actor turns this into a <code>complianceScore</code> (0 to 100) per listing, plus <code>cpettrMissing</code> and <code>cpettrHints</code>. In the <a href="https://apify.com/messnomore/sea-listing-localizer/examples/cpettr-2024-seller-disclosure-check" target="_blank" rel="noopener">CPETTR example run</a> both listings scored 100. To read the rules, find the gazette text of P.U.(A) 449/2024; for legal questions ask a qualified adviser or the Ministry of Domestic Trade and Cost of Living (KPDN). The check is not legal advice.</p>
+
+<h2>How much does it cost to translate a listing?</h2>
+<p>Pay-per-event: $0.02 per localized result (one listing in one language) plus $0.01 per run, with no charge for compute time. 50 products in Bahasa Malaysia and Thai make 100 results and cost $2.01; 20 listings in one language cost $0.41. Failed results are not charged, and <code>maxResults</code> (default 100) is a hard cap. Runs on the Apify free plan return up to 10 results. Apify Bronze, Silver and Gold subscribers get lower prices.</p>
+
+<h2>What does it not cover?</h2>
+<ul>
+<li>Only Bahasa Malaysia, Bahasa Indonesia, Thai and Vietnamese, and only Shopee, Lazada and TikTok Shop.</li>
+<li>No scraping: it processes only the listings you provide.</li>
+<li>The output is titles, descriptions and variations; other columns in your file are ignored.</li>
+<li>The text is written by Anthropic's Claude AI, so review it before publishing. Your listings are sent to the Anthropic API for this.</li>
+<li>It is independent and unofficial, not affiliated with Shopee, Lazada, TikTok Shop or Shopify.</li>
+<li>CPETTR is Malaysian; if you do not sell there, set <code>checkCPETTR</code> to <code>false</code>.</li>
+</ul>
+    <aside class="cta">
+        <h2>Try it</h2>
+        <p><a class="button" href="https://apify.com/messnomore/sea-listing-localizer" target="_blank" rel="noopener">SEA Listing Localizer &amp; CPETTR Checker</a></p>
+        <p>Ready-made example runs:</p>
+        <ul>
+            <li><a href="https://apify.com/messnomore/sea-listing-localizer/examples/translate-shopee-listing-to-malay" target="_blank" rel="noopener">Translate Shopee product listings into Bahasa Malaysia</a></li>
+            <li><a href="https://apify.com/messnomore/sea-listing-localizer/examples/tiktok-shop-listing-thai-vietnamese" target="_blank" rel="noopener">Translate TikTok Shop listings into Thai and Vietnamese</a></li>
+            <li><a href="https://apify.com/messnomore/sea-listing-localizer/examples/lazada-listing-indonesian-translation" target="_blank" rel="noopener">Translate Lazada product listings into Indonesian</a></li>
+            <li><a href="https://apify.com/messnomore/sea-listing-localizer/examples/cpettr-2024-seller-disclosure-check" target="_blank" rel="noopener">Check Malaysia CPETTR 2024 seller disclosures on listings</a></li>
+        </ul>
+    </aside>
+    <section class="faq">
+        <h2>FAQ</h2>
+        <h3>What is the Lazada product title character limit?</h3>
+        <p>The SEA Listing Localizer Actor applies 255 characters for titles and 25,000 for descriptions on Lazada, taken from the Lazada Open Platform CreateProduct API. The Actor does not let you raise the Lazada limit.</p>
+        <h3>How long can a TikTok Shop product title be?</h3>
+        <p>The Actor applies 25 to 255 characters for titles and up to 10,000 for descriptions on TikTok Shop, based on the TikTok Shop Partner API. A title shorter than 25 characters gets a note asking you to add product details.</p>
+        <h3>What is the Shopee product title limit?</h3>
+        <p>According to the Actor's documentation, Shopee publishes no official limit, so the Actor uses 120 characters for titles and 3,000 for descriptions, the common Seller Centre figures. Check the number your Seller Centre shows for your category and set titleMaxLength (10 to 255) if it differs.</p>
+        <h3>What must sellers disclose under Malaysia's CPETTR 2024?</h3>
+        <p>The Actor's checklist follows the Schedule of P.U.(A) 449/2024: seller name, e-mail and telephone, business address, product description, full price and delivery cost, payment methods, terms and conditions, estimated delivery time, plus a Bahasa Malaysia version (Regulation 4, enforcement postponed in June 2025). It is a checklist, not legal advice.</p>
+        <h3>Is there an API to translate Shopee listings into Malay, and what does it cost?</h3>
+        <p>Yes. The Apify Actor SEA Listing Localizer &amp; CPETTR Checker can be called through the Apify API with your listings, target languages and marketplace. It costs $0.02 per localized result plus $0.01 per run, and Apify Bronze, Silver and Gold subscribers get lower prices.</p>
+        <h3>Does the tool scrape Shopee, Lazada or TikTok Shop?</h3>
+        <p>No. It only processes the listings you send and does not visit marketplace websites or read other sellers' data. It is an independent tool and is not affiliated with those marketplaces.</p>
+    </section>
+    <section class="related"><h2>More guides</h2><ul>
+            <li><a href="/airline-baggage-allowance-api/">Is there an airline baggage allowance API? Carry-on and checked bag limits by airline and fare, as JSON</a></li>
+            <li><a href="/halal-certificate-check/">How do you check a JAKIM or BPJPH halal certificate, and verify many suppliers at once?</a></li>
+            <li><a href="/hs-code-lookup/">How do you find the HS code for a product, and its US, EU and UK tariff codes?</a></li>
+            <li><a href="/school-term-dates-api/">Is there an API for school term dates and school holidays?</a></li>
+            <li><a href="/tech-conference-cfp-finder/">Where can I find tech conferences with an open call for papers, including CFPs that cover speaker travel?</a></li>
+            <li><a href="/visa-sponsor-check/">How do I check if a company sponsors work visas in the UK, US or Canada?</a></li>
+            <li><a href="/website-categorization-api/">How do I categorize a list of websites by IAB category, brand safety and parked status with an API?</a></li>
+        </ul></section>
+</article>
+</main>
+<footer class="site">
+    <p>By <a href="https://apify.com/messnomore">Wong Xian Qi</a> · Tools run on the Apify platform · <a href="/llms.txt">llms.txt</a></p>
+</footer>
+</body>
+</html>

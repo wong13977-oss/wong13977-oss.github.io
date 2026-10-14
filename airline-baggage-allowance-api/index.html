@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Airline Baggage Allowance API: Carry-on Limits as JSON</title>
+    <meta name="description" content="Carry-on, personal item and checked bag rules per fare as JSON from official airline pages. Covers only Air Arabia, Malaysia, Thai and Vietnam Airlines.">
+    <link rel="canonical" href="https://wong13977-oss.github.io/airline-baggage-allowance-api/">
+    
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Airline Baggage Allowance API: Carry-on Limits as JSON">
+    <meta property="og:description" content="Carry-on, personal item and checked bag rules per fare as JSON from official airline pages. Covers only Air Arabia, Malaysia, Thai and Vietnam Airlines.">
+    <meta property="og:url" content="https://wong13977-oss.github.io/airline-baggage-allowance-api/">
+    <link rel="stylesheet" href="/styles.css">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Is there an airline baggage allowance API? Carry-on and checked bag limits by airline and fare, as JSON","description":"Carry-on, personal item and checked bag rules per fare as JSON from official airline pages. Covers only Air Arabia, Malaysia, Thai and Vietnam Airlines.","inLanguage":"en","dateModified":"2026-10-14","mainEntityOfPage":"https://wong13977-oss.github.io/airline-baggage-allowance-api/","author":{"@type":"Person","name":"Wong Xian Qi","url":"https://apify.com/messnomore"},"about":{"@type":"SoftwareApplication","name":"Airline Baggage Allowance API: Carry-on & Checked Bag Rules","url":"https://apify.com/messnomore/airline-baggage-allowance","applicationCategory":"DeveloperApplication","operatingSystem":"Web"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is there an API for airline baggage allowance and carry-on limits?","acceptedAnswer":{"@type":"Answer","text":"For a small set of airlines, yes. The Airline Baggage Allowance API on Apify returns carry-on, personal item and checked bag rules per fare as JSON for Air Arabia, Malaysia Airlines, Thai Airways and Vietnam Airlines, taken from their official baggage pages. It does not cover other airlines."}},{"@type":"Question","name":"What is the Malaysia Airlines carry-on limit in economy?","acceptedAnswer":{"@type":"Answer","text":"In the Actor's data extracted on 13 October 2026, it is one piece up to 7 kg and 56 x 36 x 23 cm (115 cm linear), and the personal item counts towards the same 7 kg. Confirm on the airline's page, because rules can differ by route, date and booking."}},{"@type":"Question","name":"How often do airline baggage rules change?","acceptedAnswer":{"@type":"Answer","text":"Airlines change them without notice, so the Actor re-checks each covered airline's pages every week and records the date (lastChanged) and a summary of each change. Airlines that could not be checked for over two weeks are listed in the run summary."}},{"@type":"Question","name":"Does the API include baggage fees?","acceptedAnswer":{"@type":"Answer","text":"Partly. The checked.feeNotes field summarizes what the airline's pages say about paid and extra bags, but live prices for extra bags depend on route, date and booking channel and are not included."}},{"@type":"Question","name":"Why isn't my airline covered?","acceptedAnswer":{"@type":"Answer","text":"The Actor reads only airline websites whose terms and robots.txt allow automated access, and it identifies itself honestly instead of pretending to be a browser. Many large airlines block automated reading, so they are not covered; you can request an airline in the Actor's Issues tab."}},{"@type":"Question","name":"Is it legal to use airline baggage data?","acceptedAnswer":{"@type":"Answer","text":"The Actor reads only public baggage pages from the airlines' official websites, respects robots.txt and each site's terms, and reads each page once a week. It does not collect any personal data."}}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"MessNoMore Data Tools","item":"https://wong13977-oss.github.io/"},{"@type":"ListItem","position":2,"name":"Airline Baggage Allowance API: Carry-on Limits as JSON","item":"https://wong13977-oss.github.io/airline-baggage-allowance-api/"}]}</script>
+</head>
+<body>
+<header class="site">
+    <a class="brand" href="/">MessNoMore Data Tools</a>
+    <nav><a href="/zh/">中文</a> <a href="https://github.com/wong13977-oss/school-term-dates">Free data</a> <a href="https://apify.com/messnomore">Apify Store</a></nav>
+</header>
+<main>
+<article>
+    <p class="crumbs"><a href="/">MessNoMore Data Tools</a> › Airline Baggage Allowance API: Carry-on Limits as JSON</p>
+    <h1>Is there an airline baggage allowance API? Carry-on and checked bag limits by airline and fare, as JSON</h1>
+    <p class="meta">Updated <time datetime="2026-10-14">2026-10-14</time> · By Wong Xian Qi</p>
+    <p>The authoritative source for baggage rules is each airline's own baggage pages. The Airline Baggage Allowance API, an Apify Actor, reads those official pages every week and returns the rules as JSON, one record per fare: carry-on size and weight, personal item, checked baggage and special items. Coverage is narrow on purpose: it includes only Air Arabia, Malaysia Airlines, Thai Airways and Vietnam Airlines (60 fares in total).</p>
+
+<h2>Where do airline baggage rules officially come from?</h2>
+<p>From the airline's website. The official pages for the four covered airlines are <a href="https://www.malaysiaairlines.com/my/en/travel-info/baggage/cabin-baggage.html" target="_blank" rel="noopener">Malaysia Airlines cabin baggage</a>, <a href="https://www.thaiairways.com/en-th/content/baggage/carry-on-baggage/" target="_blank" rel="noopener">Thai Airways carry-on baggage</a>, <a href="https://www.vietnamairlines.com/gb/en/travel-information/baggage/baggage-allowance-hand-baggage" target="_blank" rel="noopener">Vietnam Airlines hand baggage</a> and <a href="https://www.airarabia.com/en/help/baggage-enquiries/hand-baggage_baggage-enquiries" target="_blank" rel="noopener">Air Arabia hand baggage</a>. Rules can differ by route, date and booking, so confirm with the airline before you travel.</p>
+
+<h2>Why is comparing baggage rules by hand slow?</h2>
+<ul>
+<li>Airlines describe carry-on and checked rules differently: per fare bundle, per route, in tables, pop-ups and footnotes. The rules also change without notice.</li>
+<li>Units and concepts differ: kilograms, centimetres, linear size limits and piece versus weight concept for checked bags.</li>
+<li>Details sit in notes. Malaysia Airlines' 7 kg cabin limit is shared with the personal item, and Air Arabia's cabin allowance includes duty-free purchases.</li>
+</ul>
+
+<h2>What are the carry-on limits of the covered airlines?</h2>
+<p>Economy carry-on values as returned by the Actor (extracted on 12 and 13 October 2026; <code>confidence</code> was <code>medium</code> for the first three):</p>
+<table>
+<thead><tr><th>Airline</th><th>Pieces</th><th>Max weight</th><th>Max size (cm)</th><th>Linear (cm)</th></tr></thead>
+<tbody>
+<tr><td>Malaysia Airlines (MH)</td><td>1</td><td>7 kg</td><td>56 x 36 x 23</td><td>115</td></tr>
+<tr><td>Thai Airways (TG)</td><td>1</td><td>7 kg</td><td>56 x 45 x 25</td><td>115</td></tr>
+<tr><td>Air Arabia (G9)</td><td>1</td><td>7 kg</td><td>55 x 40 x 20</td><td>not stated</td></tr>
+<tr><td>Vietnam Airlines (VN)</td><td>empty</td><td>empty</td><td>empty</td><td>empty</td></tr>
+</tbody>
+</table>
+<p>Vietnam Airlines shows its cabin baggage limits only in pop-ups, so its carry-on fields are empty rather than guessed; its checked baggage fields are filled. The <a href="https://apify.com/messnomore/airline-baggage-allowance/examples/compare-airline-carry-on-limits" target="_blank" rel="noopener">carry-on comparison run</a> returns this table's data for every covered airline.</p>
+
+<h2>What is the Malaysia Airlines baggage allowance by fare?</h2>
+<p>All six Malaysia Airlines economy records in the same run show one carry-on piece of up to 7 kg. The checked allowance varies by fare and route:</p>
+<ul>
+<li>Economy Value, Economy Basic and Economy Flex/Shuttle (all routes except Malaysia-Japan, Jeddah, Madinah and AMAL flights): 20 kg, 25 kg and 35 kg.</li>
+<li>Economy Group: 20 kg on domestic Malaysia routes, 30 kg international.</li>
+<li>Economy Class on international Piece Concept routes: 2 pieces of up to 23 kg.</li>
+</ul>
+<p>The ready-made run <a href="https://apify.com/messnomore/airline-baggage-allowance/examples/malaysia-airlines-baggage-allowance" target="_blank" rel="noopener">Get Malaysia Airlines baggage allowance by fare</a> returns every Malaysia Airlines fare, not only economy.</p>
+
+<h2>How do you get baggage rules as JSON?</h2>
+<p>Pass IATA codes or names in <code>airlines</code> (empty means every covered airline), optionally a <code>cabinClass</code> (<code>economy</code>, <code>premium</code>, <code>business</code> or <code>first</code>), and choose whether to include strollers, instruments and sports equipment with <code>includeSpecialItems</code>. Each record has <code>carryOn</code>, <code>personalItem</code> and <code>checked</code> blocks, a <code>confidence</code> of <code>high</code>, <code>medium</code> or <code>low</code>, source links and verification dates. A value is <code>null</code> when the airline's page does not state it. An AI model turns the page text into these fields, and every number must appear on the airline's page. One record from the run above (fields trimmed, special items off):</p>
+<pre><code>[
+  {
+    "airlineIata": "MH",
+    "airlineName": "Malaysia Airlines",
+    "fareClass": "Economy Value",
+    "cabinClass": "economy",
+    "routeScope": "All routes except Malaysia-Japan, Jeddah, Madinah and AMAL flights",
+    "carryOn": {
+      "pieces": 1,
+      "maxWeightKg": 7,
+      "maxDimensionsCm": [56, 36, 23],
+      "maxLinearCm": 115,
+      "notes": "The 7kg limit is shared with the personal item, which must fit within the same total."
+    },
+    "personalItem": {
+      "allowed": true,
+      "maxWeightKg": null,
+      "maxDimensionsCm": [25, 36, 25],
+      "notes": "One personal item (briefcase, handbag, laptop bag or small camera bag) is free; its weight counts towards the 7kg cabin bag limit."
+    },
+    "checked": {
+      "allowanceType": "weight",
+      "pieces": null,
+      "maxWeightKg": 20,
+      "maxLinearCm": 158,
+      "feeNotes": null,
+      "notes": null
+    },
+    "confidence": "medium",
+    "lastChanged": null,
+    "changeSummary": null,
+    "sourceUrl": "https://www.malaysiaairlines.com/my/en/travel-info/baggage/cabin-baggage.html",
+    "lastVerifiedAt": "2026-10-13T01:00:31.806Z"
+  }
+]</code></pre>
+<pre><code>curl -X POST "https://api.apify.com/v2/acts/messnomore~airline-baggage-allowance/run-sync-get-dataset-items" \
+  -H "Authorization: Bearer YOUR_APIFY_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"airlines": ["MH", "TG", "VN", "G9"], "cabinClass": "economy", "includeSpecialItems": false}'</code></pre>
+
+<h2>Can it alert you when baggage rules change?</h2>
+<p>Yes. Set <code>onlyChangedSince</code> to a date such as <code>2026-10-01</code> or a period such as <code>7 days</code> and schedule the run weekly. You get only the fares whose rules changed, with <code>lastChanged</code> and a <code>changeSummary</code> such as "Carry-on max weight: 7 kg → 10 kg". Fares an airline removed in that period are listed in the run summary at no charge.</p>
+
+<h2>How much does the baggage allowance API cost?</h2>
+<ul>
+<li><strong>$0.02 per fare</strong> returned (a "Baggage rule" result).</li>
+<li><strong>$0.05 per changed fare</strong> when you use <code>onlyChangedSince</code> (a "Change alert", charged instead of the normal result).</li>
+<li>A start fee of $0.00005 per run and no charge for compute time.</li>
+</ul>
+<p>Malaysia Airlines' 10 fares cost $0.20, and every covered airline (60 fares) about $1.20. The 26-record economy carry-on comparison across all four airlines would cost about $0.52. A weekly change check where nothing changed costs $0.00005. Apify Bronze, Silver and Gold subscribers get lower prices. <code>maxResults</code> is a hard cap on spend.</p>
+
+<h2>Which airlines are covered, and what is missing?</h2>
+<ul>
+<li><strong>Four airlines only:</strong> Air Arabia (G9), Malaysia Airlines (MH), Thai Airways (TG) and Vietnam Airlines (VN). Other airlines you request are listed in the run status and cost nothing. Vueling is paused because its website does not answer requests from the Apify platform.</li>
+<li><strong>Why not more:</strong> the Actor reads only airline websites whose terms and robots.txt allow automated access, and many large airlines block automated reading. You can ask for an airline in the Actor's Issues tab.</li>
+<li><strong>Known gaps:</strong> Vietnam Airlines carry-on fields are empty, and for some fares the airline's pages do not state every value.</li>
+<li><strong>Fees:</strong> <code>checked.feeNotes</code> summarizes what the pages say, but live prices for extra bags are not included.</li>
+<li><strong>Weekly, not real time:</strong> check <code>lastVerifiedAt</code>, and confirm with the airline before you travel.</li>
+</ul>
+    <aside class="cta">
+        <h2>Try it</h2>
+        <p><a class="button" href="https://apify.com/messnomore/airline-baggage-allowance" target="_blank" rel="noopener">Airline Baggage Allowance API: Carry-on &amp; Checked Bag Rules</a></p>
+        <p>Ready-made example runs:</p>
+        <ul>
+            <li><a href="https://apify.com/messnomore/airline-baggage-allowance/examples/malaysia-airlines-baggage-allowance" target="_blank" rel="noopener">Get Malaysia Airlines baggage allowance by fare</a></li>
+            <li><a href="https://apify.com/messnomore/airline-baggage-allowance/examples/thai-airways-baggage-allowance" target="_blank" rel="noopener">Get Thai Airways baggage allowance by fare</a></li>
+            <li><a href="https://apify.com/messnomore/airline-baggage-allowance/examples/vietnam-airlines-baggage-allowance" target="_blank" rel="noopener">Get Vietnam Airlines baggage allowance by fare</a></li>
+            <li><a href="https://apify.com/messnomore/airline-baggage-allowance/examples/air-arabia-baggage-allowance" target="_blank" rel="noopener">Get Air Arabia baggage allowance by fare</a></li>
+            <li><a href="https://apify.com/messnomore/airline-baggage-allowance/examples/compare-airline-carry-on-limits" target="_blank" rel="noopener">Compare carry-on size and weight limits across airlines</a></li>
+        </ul>
+    </aside>
+    <section class="faq">
+        <h2>FAQ</h2>
+        <h3>Is there an API for airline baggage allowance and carry-on limits?</h3>
+        <p>For a small set of airlines, yes. The Airline Baggage Allowance API on Apify returns carry-on, personal item and checked bag rules per fare as JSON for Air Arabia, Malaysia Airlines, Thai Airways and Vietnam Airlines, taken from their official baggage pages. It does not cover other airlines.</p>
+        <h3>What is the Malaysia Airlines carry-on limit in economy?</h3>
+        <p>In the Actor's data extracted on 13 October 2026, it is one piece up to 7 kg and 56 x 36 x 23 cm (115 cm linear), and the personal item counts towards the same 7 kg. Confirm on the airline's page, because rules can differ by route, date and booking.</p>
+        <h3>How often do airline baggage rules change?</h3>
+        <p>Airlines change them without notice, so the Actor re-checks each covered airline's pages every week and records the date (lastChanged) and a summary of each change. Airlines that could not be checked for over two weeks are listed in the run summary.</p>
+        <h3>Does the API include baggage fees?</h3>
+        <p>Partly. The checked.feeNotes field summarizes what the airline's pages say about paid and extra bags, but live prices for extra bags depend on route, date and booking channel and are not included.</p>
+        <h3>Why isn't my airline covered?</h3>
+        <p>The Actor reads only airline websites whose terms and robots.txt allow automated access, and it identifies itself honestly instead of pretending to be a browser. Many large airlines block automated reading, so they are not covered; you can request an airline in the Actor's Issues tab.</p>
+        <h3>Is it legal to use airline baggage data?</h3>
+        <p>The Actor reads only public baggage pages from the airlines' official websites, respects robots.txt and each site's terms, and reads each page once a week. It does not collect any personal data.</p>
+    </section>
+    <section class="related"><h2>More guides</h2><ul>
+            <li><a href="/halal-certificate-check/">How do you check a JAKIM or BPJPH halal certificate, and verify many suppliers at once?</a></li>
+            <li><a href="/hs-code-lookup/">How do you find the HS code for a product, and its US, EU and UK tariff codes?</a></li>
+            <li><a href="/marketplace-listing-translation/">How do you translate Shopee, Lazada and TikTok Shop listings within the title limits?</a></li>
+            <li><a href="/school-term-dates-api/">Is there an API for school term dates and school holidays?</a></li>
+            <li><a href="/tech-conference-cfp-finder/">Where can I find tech conferences with an open call for papers, including CFPs that cover speaker travel?</a></li>
+            <li><a href="/visa-sponsor-check/">How do I check if a company sponsors work visas in the UK, US or Canada?</a></li>
+            <li><a href="/website-categorization-api/">How do I categorize a list of websites by IAB category, brand safety and parked status with an API?</a></li>
+        </ul></section>
+</article>
+</main>
+<footer class="site">
+    <p>By <a href="https://apify.com/messnomore">Wong Xian Qi</a> · Tools run on the Apify platform · <a href="/llms.txt">llms.txt</a></p>
+</footer>
+</body>
+</html>

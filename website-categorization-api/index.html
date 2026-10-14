@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Website Categorization API: IAB Category Lookup by Domain</title>
+    <meta name="description" content="Get the IAB Content Taxonomy 3.1 category, brand safety flags and parked status for a list of domains by API. Manual method, limits and $0.006 per domain.">
+    <link rel="canonical" href="https://wong13977-oss.github.io/website-categorization-api/">
+    
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Website Categorization API: IAB Category Lookup by Domain">
+    <meta property="og:description" content="Get the IAB Content Taxonomy 3.1 category, brand safety flags and parked status for a list of domains by API. Manual method, limits and $0.006 per domain.">
+    <meta property="og:url" content="https://wong13977-oss.github.io/website-categorization-api/">
+    <link rel="stylesheet" href="/styles.css">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"How do I categorize a list of websites by IAB category, brand safety and parked status with an API?","description":"Get the IAB Content Taxonomy 3.1 category, brand safety flags and parked status for a list of domains by API. Manual method, limits and $0.006 per domain.","inLanguage":"en","dateModified":"2026-10-14","mainEntityOfPage":"https://wong13977-oss.github.io/website-categorization-api/","author":{"@type":"Person","name":"Wong Xian Qi","url":"https://apify.com/messnomore"},"about":{"@type":"SoftwareApplication","name":"AI Website Categorization: IAB, Industry & Brand Safety","url":"https://apify.com/messnomore/website-categorization","applicationCategory":"DeveloperApplication","operatingSystem":"Web"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is there a free API to get the IAB category of a website?","acceptedAnswer":{"@type":"Answer","text":"The IAB Tech Lab Content Taxonomy 3.1 file is free on GitHub, but it only lists categories and IDs, not which category a site belongs to. The AI Website Categorization Actor does the classification through the Apify API for $0.006 per classified domain, and Apify's free plan includes monthly platform credit that its README says is enough to try it on hundreds of domains."}},{"@type":"Question","name":"Which IAB Content Taxonomy version does it use, and is it an official IAB tool?","acceptedAnswer":{"@type":"Answer","text":"It uses IAB Tech Lab Content Taxonomy 3.1, Tier 1 and Tier 2 (37 and 323 categories) with the official IAB IDs. It is not affiliated with or endorsed by IAB Tech Lab."}},{"@type":"Question","name":"How do I find parked or for-sale domains in a list?","acceptedAnswer":{"@type":"Answer","text":"Run the list and filter the results on status = parked. The Actor marks domains that use parking nameservers, redirect to a domain marketplace, show a for-sale page, a default server page or a coming-soon placeholder. Parked domains cost $0.001 each instead of $0.006."}},{"@type":"Question","name":"How accurate is the IAB category?","acceptedAnswer":{"@type":"Answer","text":"In the developer's own tests on more than 150 well-known websites, about 97% got a sensible IAB category and the misses were close calls. Borderline sites can change category between runs, so filter on status = ok and a confidence of 0.7 or more when you need high certainty."}},{"@type":"Question","name":"Does it respect robots.txt?","acceptedAnswer":{"@type":"Answer","text":"Yes. It checks robots.txt for its WebsiteCategorizationBot user agent and the * group before every page, reads at most 3 public pages per domain, never logs in and never solves CAPTCHAs or works around bot protection."}},{"@type":"Question","name":"Can it classify websites that block automated visitors?","acceptedAnswer":{"@type":"Answer","text":"Optionally. With the AI knowledge fallback on, a blocked, robots.txt-disallowed or unreachable site is classified from the AI model's own knowledge of that domain, without visiting it again. These results are marked ai_knowledge and capped at 0.8 confidence; unknown domains stay unclassified and cost $0.001."}}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"MessNoMore Data Tools","item":"https://wong13977-oss.github.io/"},{"@type":"ListItem","position":2,"name":"Website Categorization API: IAB Category Lookup by Domain","item":"https://wong13977-oss.github.io/website-categorization-api/"}]}</script>
+</head>
+<body>
+<header class="site">
+    <a class="brand" href="/">MessNoMore Data Tools</a>
+    <nav><a href="/zh/">中文</a> <a href="https://github.com/wong13977-oss/school-term-dates">Free data</a> <a href="https://apify.com/messnomore">Apify Store</a></nav>
+</header>
+<main>
+<article>
+    <p class="crumbs"><a href="/">MessNoMore Data Tools</a> › Website Categorization API: IAB Category Lookup by Domain</p>
+    <h1>How do I categorize a list of websites by IAB category, brand safety and parked status with an API?</h1>
+    <p class="meta">Updated <time datetime="2026-10-14">2026-10-14</time> · By Wong Xian Qi</p>
+    <p>The IAB Tech Lab publishes its Content Taxonomy 3.1 for free on GitHub, but the file is only a list of categories and IDs: it does not say which category a given website belongs to. To label a domain list you have to read each site and pick a category, by hand or through an API that is not affiliated with IAB Tech Lab, such as the <a href="https://apify.com/messnomore/website-categorization" target="_blank" rel="noopener">AI Website Categorization</a> Actor, which returns the IAB Tier 1 and Tier 2 category with its ID, brand safety flags and a parked or dead status for every domain.</p>
+
+<h2>What is the IAB Content Taxonomy 3.1 and where do I get it?</h2>
+<p>It is IAB Tech Lab's tiered list of content categories, each with a unique ID. The tab-separated file is in the <a href="https://github.com/InteractiveAdvertisingBureau/Taxonomies" target="_blank" rel="noopener">IAB Tech Lab Taxonomies repository</a> on GitHub, licensed under <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="noopener">Creative Commons Attribution 3.0</a>. The Actor uses Tier 1 and Tier 2, which are 37 and 323 categories. Examples: ID 52 is Business and Finance, ID 596 is Technology &amp; Computing, and the Sensitive Topics group uses alphanumeric IDs such as v9i3On. Version 3.1 has no general News category, which matters for publishers (see the limits below).</p>
+
+<h2>How can I look up a domain's IAB category by hand?</h2>
+<ol>
+<li>Open the site and read its homepage and About page.</li>
+<li>Find the closest Tier 1 category in the taxonomy file, then its best Tier 2 child.</li>
+<li>Write down the ID, not only the name.</li>
+</ol>
+<p>That works for a handful of domains. On a long list the effort goes into everything around the lookup: redirects, parked domains, sites that block automated visitors and robots.txt rules that forbid reading a site.</p>
+
+<h2>How does the API categorize a domain?</h2>
+<ul>
+<li>It checks robots.txt before every page it reads, for its <code>WebsiteCategorizationBot</code> user agent and the <code>*</code> group. A robots.txt that answers with a server error (5xx) counts as "disallow all", as RFC 9309 says.</li>
+<li>It reads the homepage, the About page if one is linked and, with <code>maxPagesPerDomain</code> set to 3, one products or services page (default 2).</li>
+<li>It sends the title, meta description, headings, structured data types and visible text to an OpenAI model together with the full taxonomy. The model must choose a category from the list; the Actor maps it to the official ID and validates it.</li>
+<li>Brand safety covers the 11 IAB Sensitive Topics plus gambling. The model's flags are topped up by the IAB category itself and by keywords in page titles and descriptions, and <code>brandSafetyRisk</code> (none, low, medium, high) is the highest severity found.</li>
+</ul>
+<p>If a site blocks automated visitors, disallows them in robots.txt or drops the connection, the optional AI knowledge fallback (on by default) asks the model what it knows about that exact domain without visiting the site again. Those results carry <code>classificationSource: "ai_knowledge"</code> and a confidence capped at 0.8. Parked and non-existent domains are never classified this way.</p>
+
+<h2>How do I find parked domains in a list?</h2>
+<p>Every domain gets a <code>status</code>: <code>ok</code>, <code>redirect</code>, <code>parked</code>, <code>unreachable</code>, <code>robots_disallowed</code> or <code>blocked</code>. A domain is <code>parked</code> when it uses parking nameservers, lands on a domain marketplace such as Sedo, Dan or Afternic, or shows a for-sale page, a default server page or a "coming soon" placeholder. <code>statusReason</code> explains it, for example "Domain uses parking nameservers (afternic.com)". By hand you would check each domain's nameservers and open each site.</p>
+
+<h2>What does a request and result look like?</h2>
+<pre><code>curl -X POST "https://api.apify.com/v2/acts/messnomore~website-categorization/run-sync-get-dataset-items" \
+  -H "Authorization: Bearer YOUR_APIFY_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"domains": ["stripe.com", "shopify.com"], "taxonomy": "iab_content_3", "includeBrandSafety": true}'</code></pre>
+<p>For large lists, start the run asynchronously and read the dataset when it finishes. This is a real result from 2026-10-14, trimmed to one domain:</p>
+<pre><code>[
+  {
+    "domain": "stripe.com",
+    "status": "ok",
+    "statusReason": null,
+    "finalUrl": "https://stripe.com/",
+    "httpStatus": 200,
+    "title": "Stripe | Financial Infrastructure to Grow Your Revenue",
+    "iabTier1": { "id": "596", "name": "Technology &amp; Computing" },
+    "iabTier2": { "id": "599", "name": "Computing" },
+    "industry": "Technology / Payments infrastructure",
+    "businessModel": "B2B SaaS",
+    "language": "en",
+    "brandSafetyRisk": "none",
+    "brandSafetyFlags": [],
+    "customLabel": null,
+    "customLabelConfidence": null,
+    "description": "Stripe provides a financial services platform offering payments processing and related financial tooling for businesses.",
+    "confidence": 0.88,
+    "classificationSource": "website",
+    "pagesAnalyzed": ["https://stripe.com/", "https://stripe.com/about"],
+    "taxonomyVersion": "IAB Content Taxonomy 3.1",
+    "checkedAt": "2026-10-14T11:07:34.686Z"
+  }
+]</code></pre>
+<p>Borderline sites can land in neighbouring categories. In two sample runs on 2026-10-14, shopify.com was filed under Technology &amp; Computing &gt; Computing both times (confidence 0.9), while stripe.com got Business and Finance &gt; Business (0.72) in one and Technology &amp; Computing &gt; Computing (0.88) in the other. The Actor's documentation suggests filtering on <code>status = ok</code> and a confidence of 0.7 or more.</p>
+
+<h2>How much does it cost to categorize domains?</h2>
+<p>Pricing is pay-per-event: <strong>$6.00 per 1,000 classified domains</strong> ($0.006 each) and <strong>$1.00 per 1,000 domains that cannot be classified</strong> ($0.001 each: parked, non-existent, or blocked or unreachable and unknown to the AI). Invalid or duplicate entries, reachable sites where the AI call failed, and internal errors are free. There is a tiny start fee per run and no charge for compute or proxies. A list of 10,000 domains where 80% can be classified costs about $50. Apify Bronze, Silver and Gold subscribers get lower prices. One run takes up to 10,000 domains, and the maximum cost you set is never exceeded.</p>
+
+<h2>What does it not cover?</h2>
+<ul>
+<li>Tier 1 and Tier 2 only. The file's Tier 3 and Tier 4 rows are not returned.</li>
+<li>One category per site, judged on its main purpose. It is not a classifier for single articles.</li>
+<li>Only the homepage, About page and at most one more page are read. Sites that need JavaScript to show text may come back as <code>unreachable</code>.</li>
+<li>General news publishers and government portals are labelled Politics unless another topic clearly dominates; the <code>industry</code> field can still say "News / Broadcasting".</li>
+<li>Bot protection is never bypassed and CAPTCHAs are never solved. Those sites are <code>blocked</code> unless the fallback can classify them.</li>
+<li><code>www.example.com</code> and <code>example.com</code> are checked as separate domains.</li>
+<li>Accuracy: in the developer's own tests on more than 150 well-known websites, about 97% got a sensible IAB category (the misses were close calls) and the language was always right. This is not an independent benchmark.</li>
+</ul>
+
+<h2>Which ready-made examples can I run?</h2>
+<p>You can also pass 2 to 100 custom labels of your own with <code>taxonomy</code> set to <code>custom</code>, at the same price. The example tasks cover the common cases:</p>
+<ul>
+<li><a href="https://apify.com/messnomore/website-categorization/examples/iab-category-lookup-for-domains" target="_blank" rel="noopener">Get IAB content categories for a list of domains</a></li>
+<li><a href="https://apify.com/messnomore/website-categorization/examples/publisher-brand-safety-check" target="_blank" rel="noopener">Check brand safety of publisher websites</a></li>
+<li><a href="https://apify.com/messnomore/website-categorization/examples/detect-parked-dead-domains" target="_blank" rel="noopener">Find parked, dead and redirected domains in a list</a></li>
+<li><a href="https://apify.com/messnomore/website-categorization/examples/classify-websites-custom-labels" target="_blank" rel="noopener">Categorize websites with your own labels</a></li>
+</ul>
+    <aside class="cta">
+        <h2>Try it</h2>
+        <p><a class="button" href="https://apify.com/messnomore/website-categorization" target="_blank" rel="noopener">AI Website Categorization: IAB, Industry &amp; Brand Safety</a></p>
+        <p>Ready-made example runs:</p>
+        <ul>
+            <li><a href="https://apify.com/messnomore/website-categorization/examples/iab-category-lookup-for-domains" target="_blank" rel="noopener">Get IAB content categories for a list of domains</a></li>
+            <li><a href="https://apify.com/messnomore/website-categorization/examples/publisher-brand-safety-check" target="_blank" rel="noopener">Check brand safety of publisher websites</a></li>
+            <li><a href="https://apify.com/messnomore/website-categorization/examples/detect-parked-dead-domains" target="_blank" rel="noopener">Find parked, dead and redirected domains in a list</a></li>
+            <li><a href="https://apify.com/messnomore/website-categorization/examples/classify-websites-custom-labels" target="_blank" rel="noopener">Categorize websites with your own labels</a></li>
+        </ul>
+    </aside>
+    <section class="faq">
+        <h2>FAQ</h2>
+        <h3>Is there a free API to get the IAB category of a website?</h3>
+        <p>The IAB Tech Lab Content Taxonomy 3.1 file is free on GitHub, but it only lists categories and IDs, not which category a site belongs to. The AI Website Categorization Actor does the classification through the Apify API for $0.006 per classified domain, and Apify's free plan includes monthly platform credit that its README says is enough to try it on hundreds of domains.</p>
+        <h3>Which IAB Content Taxonomy version does it use, and is it an official IAB tool?</h3>
+        <p>It uses IAB Tech Lab Content Taxonomy 3.1, Tier 1 and Tier 2 (37 and 323 categories) with the official IAB IDs. It is not affiliated with or endorsed by IAB Tech Lab.</p>
+        <h3>How do I find parked or for-sale domains in a list?</h3>
+        <p>Run the list and filter the results on status = parked. The Actor marks domains that use parking nameservers, redirect to a domain marketplace, show a for-sale page, a default server page or a coming-soon placeholder. Parked domains cost $0.001 each instead of $0.006.</p>
+        <h3>How accurate is the IAB category?</h3>
+        <p>In the developer's own tests on more than 150 well-known websites, about 97% got a sensible IAB category and the misses were close calls. Borderline sites can change category between runs, so filter on status = ok and a confidence of 0.7 or more when you need high certainty.</p>
+        <h3>Does it respect robots.txt?</h3>
+        <p>Yes. It checks robots.txt for its WebsiteCategorizationBot user agent and the * group before every page, reads at most 3 public pages per domain, never logs in and never solves CAPTCHAs or works around bot protection.</p>
+        <h3>Can it classify websites that block automated visitors?</h3>
+        <p>Optionally. With the AI knowledge fallback on, a blocked, robots.txt-disallowed or unreachable site is classified from the AI model's own knowledge of that domain, without visiting it again. These results are marked ai_knowledge and capped at 0.8 confidence; unknown domains stay unclassified and cost $0.001.</p>
+    </section>
+    <section class="related"><h2>More guides</h2><ul>
+            <li><a href="/airline-baggage-allowance-api/">Is there an airline baggage allowance API? Carry-on and checked bag limits by airline and fare, as JSON</a></li>
+            <li><a href="/halal-certificate-check/">How do you check a JAKIM or BPJPH halal certificate, and verify many suppliers at once?</a></li>
+            <li><a href="/hs-code-lookup/">How do you find the HS code for a product, and its US, EU and UK tariff codes?</a></li>
+            <li><a href="/marketplace-listing-translation/">How do you translate Shopee, Lazada and TikTok Shop listings within the title limits?</a></li>
+            <li><a href="/school-term-dates-api/">Is there an API for school term dates and school holidays?</a></li>
+            <li><a href="/tech-conference-cfp-finder/">Where can I find tech conferences with an open call for papers, including CFPs that cover speaker travel?</a></li>
+            <li><a href="/visa-sponsor-check/">How do I check if a company sponsors work visas in the UK, US or Canada?</a></li>
+        </ul></section>
+</article>
+</main>
+<footer class="site">
+    <p>By <a href="https://apify.com/messnomore">Wong Xian Qi</a> · Tools run on the Apify platform · <a href="/llms.txt">llms.txt</a></p>
+</footer>
+</body>
+</html>

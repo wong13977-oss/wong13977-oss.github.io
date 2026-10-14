@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Open Call for Papers at Tech Conferences: Where to Find Them</title>
+    <meta name="description" content="Find tech conferences with an open call for papers on Sessionize and confs.tech, or filter by deadline, region and travel support through an API. Sample rows.">
+    <link rel="canonical" href="https://wong13977-oss.github.io/tech-conference-cfp-finder/">
+    
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Open Call for Papers at Tech Conferences: Where to Find Them">
+    <meta property="og:description" content="Find tech conferences with an open call for papers on Sessionize and confs.tech, or filter by deadline, region and travel support through an API. Sample rows.">
+    <meta property="og:url" content="https://wong13977-oss.github.io/tech-conference-cfp-finder/">
+    <link rel="stylesheet" href="/styles.css">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Where can I find tech conferences with an open call for papers, including CFPs that cover speaker travel?","description":"Find tech conferences with an open call for papers on Sessionize and confs.tech, or filter by deadline, region and travel support through an API. Sample rows.","inLanguage":"en","dateModified":"2026-10-14","mainEntityOfPage":"https://wong13977-oss.github.io/tech-conference-cfp-finder/","author":{"@type":"Person","name":"Wong Xian Qi","url":"https://apify.com/messnomore"},"about":{"@type":"SoftwareApplication","name":"CFP Radar: Tech Conference Call for Papers Finder & AI Matcher","url":"https://apify.com/messnomore/cfp-radar","applicationCategory":"DeveloperApplication","operatingSystem":"Web"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Where can I find a list of tech conferences with an open call for papers?","acceptedAnswer":{"@type":"Answer","text":"Sessionize hosts public call-for-speakers pages, and confs.tech is a community-maintained conference list that also links CFPs hosted elsewhere. The CFP Radar Actor reads both every day and returns only CFPs that are still open, with deadline, location and travel support."}},{"@type":"Question","name":"How do I find conference CFPs that pay for travel?","acceptedAnswer":{"@type":"Answer","text":"Turn on Only CFPs with travel support (requireTravelSupport) in CFP Radar. It keeps CFPs whose organizers cover or reimburse at least part of speaker travel or accommodation, taken from the speaker benefits on Sessionize or read from the CFP page by an AI model. Confirm the details with the organizers before you book."}},{"@type":"Question","name":"What does travel support unknown mean on a CFP?","acceptedAnswer":{"@type":"Answer","text":"The CFP page does not say whether the organizers pay for travel or a hotel. Many CFPs do not mention it, so unknown is common, and it is worth asking the organizers."}},{"@type":"Question","name":"Is there a free API for conference call for papers data?","acceptedAnswer":{"@type":"Answer","text":"The confs.tech conference data is published as open JSON files on GitHub under the MIT license, but its entries carry the CFP link and deadline and no travel-support field. CFP Radar adds Sessionize CFPs and travel support for $0.01 per CFP returned, and Apify's free plan includes monthly platform credit that its README says is enough for many runs."}},{"@type":"Question","name":"How often does the list of open CFPs update?","acceptedAnswer":{"@type":"Answer","text":"The index is rebuilt every day, and each run returns only CFPs that are open at that moment. Open Sessionize pages are re-checked about once a week by default, so an extended deadline can take a few days to appear."}},{"@type":"Question","name":"Does CFP Radar submit my talk to conferences?","acceptedAnswer":{"@type":"Answer","text":"No. Every result has a cfpUrl, the organizer's page where you submit your talk. CFP Radar returns event information only, not speaker data."}}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"MessNoMore Data Tools","item":"https://wong13977-oss.github.io/"},{"@type":"ListItem","position":2,"name":"Open Call for Papers at Tech Conferences: Where to Find Them","item":"https://wong13977-oss.github.io/tech-conference-cfp-finder/"}]}</script>
+</head>
+<body>
+<header class="site">
+    <a class="brand" href="/">MessNoMore Data Tools</a>
+    <nav><a href="/zh/">中文</a> <a href="https://github.com/wong13977-oss/school-term-dates">Free data</a> <a href="https://apify.com/messnomore">Apify Store</a></nav>
+</header>
+<main>
+<article>
+    <p class="crumbs"><a href="/">MessNoMore Data Tools</a> › Open Call for Papers at Tech Conferences: Where to Find Them</p>
+    <h1>Where can I find tech conferences with an open call for papers, including CFPs that cover speaker travel?</h1>
+    <p class="meta">Updated <time datetime="2026-10-14">2026-10-14</time> · By Wong Xian Qi</p>
+    <p>Open calls for papers at tech conferences are listed on <a href="https://sessionize.com" target="_blank" rel="noopener">Sessionize</a>, a widely used call-for-speakers platform, and on <a href="https://confs.tech" target="_blank" rel="noopener">confs.tech</a>, a community-maintained conference list that also links CFPs hosted elsewhere. Checking which of them are still open, and which pay for speaker travel, means opening many CFP pages one by one. The <a href="https://apify.com/messnomore/cfp-radar" target="_blank" rel="noopener">CFP Radar</a> Actor reads both sources every day, so one API call returns the CFPs that are still open, filtered by deadline, region, topic and travel support.</p>
+
+<h2>Where can I find tech conferences with an open call for papers?</h2>
+<ul>
+<li><strong>Sessionize.</strong> Public event pages live at <code>sessionize.com/&lt;event-slug&gt;/</code>, and Sessionize's own <a href="https://sessionize.com/sitemap/events.xml" target="_blank" rel="noopener">events sitemap</a> lists them. A CFP page shows when the call closes and, if the organizers list them, speaker benefits such as travel and accommodation.</li>
+<li><strong>confs.tech.</strong> Its data is open JSON in the <a href="https://github.com/tech-conferences/conference-data" target="_blank" rel="noopener">tech-conferences/conference-data</a> repository on GitHub (MIT license), one file per topic and year. Each entry has the name, dates, city, country, an online flag and, when a CFP is open, a CFP link and end date.</li>
+<li><strong>Everything else.</strong> Some CFPs sit on pretalx, PaperCall, a form tool or the conference's own website. confs.tech sometimes links to them.</li>
+</ul>
+
+<h2>Why is finding the right CFPs by hand slow?</h2>
+<ul>
+<li><strong>Deadlines.</strong> Organizers work in different time zones, and some give only a date. CFP Radar treats a date without a time as "anywhere on Earth", so a CFP is not hidden while it is still open somewhere.</li>
+<li><strong>Travel policy.</strong> It is a line in the CFP text or a speaker-benefits section, and many CFPs do not mention it at all.</li>
+<li><strong>Stale pages.</strong> Organizers sometimes leave the CFP page of a past event open, and deadlines get extended or closed early.</li>
+<li><strong>Duplicates.</strong> The same event can be listed in several places.</li>
+</ul>
+
+<h2>How do I list open CFPs with travel support through an API?</h2>
+<p>Set <code>requireTravelSupport</code> to <code>true</code> and pick <code>deadlineWithinDays</code> (1 to 365, default 60). You can add <code>regions</code> (Africa, Asia, Europe, North America, South America, Oceania or online; hybrid events count as online) and <code>topics</code> such as <code>rust</code>, <code>ai</code> or <code>kubernetes</code>. Closed CFPs are never returned.</p>
+<pre><code>curl -X POST "https://api.apify.com/v2/acts/messnomore~cfp-radar/run-sync-get-dataset-items" \
+  -H "Authorization: Bearer YOUR_APIFY_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"requireTravelSupport": true, "deadlineWithinDays": 60, "sortBy": "deadline", "maxResults": 20}'</code></pre>
+<p>The field <code>travelSupport</code> is <code>yes</code>, <code>no</code> or <code>unknown</code>. <code>yes</code> means the CFP says the organizers cover or reimburse at least part of travel or accommodation; free tickets, meals and swag do not count. It is taken from the speaker benefits where Sessionize lists them; otherwise an AI model reads the page text, so confirm details with the organizers. These rows come from a run on 2026-10-14. The data changes daily, so some deadlines here have passed.</p>
+<table>
+<thead>
+<tr><th>Conference</th><th>CFP deadline</th><th>Location</th><th>Travel support</th></tr>
+</thead>
+<tbody>
+<tr><td>NDC Security 2027</td><td>2026-10-18</td><td>Oslo, Norway</td><td>yes: travel and accommodation expenses covered</td></tr>
+<tr><td>PHP Tek 2027</td><td>2026-10-31</td><td>Chicago, United States</td><td>yes: travel and accommodation expenses covered</td></tr>
+<tr><td>AI Conf Asia</td><td>2026-11-01</td><td>Kathmandu, Nepal</td><td>yes: accommodation provided for all accepted speakers</td></tr>
+<tr><td>Apres-Cyber Slopes Summit 2027</td><td>2026-11-20</td><td>Park City, United States</td><td>yes: limited funding for travel and lodging for select speakers</td></tr>
+<tr><td>Programmable 2027 - Melbourne</td><td>2026-11-27</td><td>Melbourne, Australia</td><td>yes: travel and accommodation expenses covered</td></tr>
+</tbody>
+</table>
+<p>One full result from the same run:</p>
+<pre><code>{
+  "conference": "PHP Tek 2027",
+  "cfpDeadline": "2026-10-31",
+  "cfpDeadlineAt": "2026-11-01T04:59:00.000Z",
+  "daysLeft": 17,
+  "eventDates": "2027-04-27 to 2027-04-29",
+  "location": "Chicago, United States",
+  "online": false,
+  "travelSupport": "yes",
+  "travelSupportDetails": "travel: expenses covered; accommodation: expenses covered",
+  "topics": ["php", "leadership", "career"],
+  "cfpUrl": "https://sessionize.com/php-tek-2027/",
+  "eventUrl": "https://phptek.io/",
+  "source": "sessionize",
+  "format": "in-person",
+  "eventType": "conference",
+  "region": "North America",
+  "country": "United States",
+  "city": "Chicago",
+  "cfpStatus": "open",
+  "cfpOpensAt": "2026-06-01",
+  "summary": "PHP Tek 2027 seeks talks from PHP developers and tech leaders, focusing on leadership, expertise, and networking, with speakers encouraged to submit multiple ideas."
+}</code></pre>
+
+<h2>How often does the CFP list change?</h2>
+<p>The index is rebuilt every day, and each run returns only CFPs that are open at that moment. Open Sessionize pages are re-checked about once a week by default, so a deadline an organizer extends or closes early can take a few days to show up.</p>
+
+<h2>Can it rank CFPs by how well they fit my talk?</h2>
+<p>Yes. Paste up to 10 talk abstracts (4,000 characters each). The Actor compares them with every CFP that passes your filters using text embeddings, an AI model judges the closest candidates, and each result gets a <code>matchScore</code> from 0 to 100 and a one-line reason. 90 to 100 means the CFP is about your subject, 70 to 89 a strong fit, 40 to 69 a partial fit. In the sample run, an abstract about moving a high-throughput service to Tokio scored 91 for TokioConf 2027 in Portland, United States (CFP deadline 2026-11-30).</p>
+
+<h2>How much does it cost?</h2>
+<p>Pricing is pay-per-event: <strong>$0.01 per CFP returned</strong> plus a start fee of $0.00005 per run, with no charge for compute time. A run with 10 results costs about $0.10 and one with 30 results (the default maximum) about $0.30. <code>maxResults</code> is a hard cap on the cost, and a failed run returns no results and no result fees. Apify Bronze, Silver and Gold subscribers get lower prices.</p>
+
+<h2>What does it not cover?</h2>
+<ul>
+<li>CFPs are discovered only through public Sessionize event pages and the confs.tech list. A CFP hosted elsewhere and listed on neither is not found.</li>
+<li>Pages that confs.tech links to are read for details, except PaperCall and form-tool pages, so travel support stays <code>unknown</code> for those CFPs.</li>
+<li>Tech events only: an event listed only on Sessionize is left out when the AI finds no technology focus.</li>
+<li>No submissions. Each result has a <code>cfpUrl</code> where you submit your talk, and it returns event information, not speaker data.</li>
+<li><code>unknown</code> travel support means the CFP page does not say. It is worth asking the organizers.</li>
+</ul>
+
+<h2>Which ready-made examples can I run?</h2>
+<ul>
+<li><a href="https://apify.com/messnomore/cfp-radar/examples/open-rust-conference-cfps" target="_blank" rel="noopener">Find open Rust conference CFPs</a></li>
+<li><a href="https://apify.com/messnomore/cfp-radar/examples/python-ai-conference-cfps" target="_blank" rel="noopener">Find open Python and AI conference CFPs</a></li>
+<li><a href="https://apify.com/messnomore/cfp-radar/examples/cfps-with-travel-support" target="_blank" rel="noopener">Find tech conference CFPs that cover speaker travel</a></li>
+<li><a href="https://apify.com/messnomore/cfp-radar/examples/european-tech-conference-cfps" target="_blank" rel="noopener">Find open CFPs for tech conferences in Europe</a></li>
+<li><a href="https://apify.com/messnomore/cfp-radar/examples/match-talk-abstract-to-cfps" target="_blank" rel="noopener">Match your talk abstract to open conference CFPs</a></li>
+</ul>
+    <aside class="cta">
+        <h2>Try it</h2>
+        <p><a class="button" href="https://apify.com/messnomore/cfp-radar" target="_blank" rel="noopener">CFP Radar: Tech Conference Call for Papers Finder &amp; AI Matcher</a></p>
+        <p>Ready-made example runs:</p>
+        <ul>
+            <li><a href="https://apify.com/messnomore/cfp-radar/examples/open-rust-conference-cfps" target="_blank" rel="noopener">Find open Rust conference CFPs</a></li>
+            <li><a href="https://apify.com/messnomore/cfp-radar/examples/python-ai-conference-cfps" target="_blank" rel="noopener">Find open Python and AI conference CFPs</a></li>
+            <li><a href="https://apify.com/messnomore/cfp-radar/examples/cfps-with-travel-support" target="_blank" rel="noopener">Find tech conference CFPs that cover speaker travel</a></li>
+            <li><a href="https://apify.com/messnomore/cfp-radar/examples/european-tech-conference-cfps" target="_blank" rel="noopener">Find open CFPs for tech conferences in Europe</a></li>
+            <li><a href="https://apify.com/messnomore/cfp-radar/examples/match-talk-abstract-to-cfps" target="_blank" rel="noopener">Match your talk abstract to open conference CFPs</a></li>
+        </ul>
+    </aside>
+    <section class="faq">
+        <h2>FAQ</h2>
+        <h3>Where can I find a list of tech conferences with an open call for papers?</h3>
+        <p>Sessionize hosts public call-for-speakers pages, and confs.tech is a community-maintained conference list that also links CFPs hosted elsewhere. The CFP Radar Actor reads both every day and returns only CFPs that are still open, with deadline, location and travel support.</p>
+        <h3>How do I find conference CFPs that pay for travel?</h3>
+        <p>Turn on Only CFPs with travel support (requireTravelSupport) in CFP Radar. It keeps CFPs whose organizers cover or reimburse at least part of speaker travel or accommodation, taken from the speaker benefits on Sessionize or read from the CFP page by an AI model. Confirm the details with the organizers before you book.</p>
+        <h3>What does travel support unknown mean on a CFP?</h3>
+        <p>The CFP page does not say whether the organizers pay for travel or a hotel. Many CFPs do not mention it, so unknown is common, and it is worth asking the organizers.</p>
+        <h3>Is there a free API for conference call for papers data?</h3>
+        <p>The confs.tech conference data is published as open JSON files on GitHub under the MIT license, but its entries carry the CFP link and deadline and no travel-support field. CFP Radar adds Sessionize CFPs and travel support for $0.01 per CFP returned, and Apify's free plan includes monthly platform credit that its README says is enough for many runs.</p>
+        <h3>How often does the list of open CFPs update?</h3>
+        <p>The index is rebuilt every day, and each run returns only CFPs that are open at that moment. Open Sessionize pages are re-checked about once a week by default, so an extended deadline can take a few days to appear.</p>
+        <h3>Does CFP Radar submit my talk to conferences?</h3>
+        <p>No. Every result has a cfpUrl, the organizer's page where you submit your talk. CFP Radar returns event information only, not speaker data.</p>
+    </section>
+    <section class="related"><h2>More guides</h2><ul>
+            <li><a href="/airline-baggage-allowance-api/">Is there an airline baggage allowance API? Carry-on and checked bag limits by airline and fare, as JSON</a></li>
+            <li><a href="/halal-certificate-check/">How do you check a JAKIM or BPJPH halal certificate, and verify many suppliers at once?</a></li>
+            <li><a href="/hs-code-lookup/">How do you find the HS code for a product, and its US, EU and UK tariff codes?</a></li>
+            <li><a href="/marketplace-listing-translation/">How do you translate Shopee, Lazada and TikTok Shop listings within the title limits?</a></li>
+            <li><a href="/school-term-dates-api/">Is there an API for school term dates and school holidays?</a></li>
+            <li><a href="/visa-sponsor-check/">How do I check if a company sponsors work visas in the UK, US or Canada?</a></li>
+            <li><a href="/website-categorization-api/">How do I categorize a list of websites by IAB category, brand safety and parked status with an API?</a></li>
+        </ul></section>
+</article>
+</main>
+<footer class="site">
+    <p>By <a href="https://apify.com/messnomore">Wong Xian Qi</a> · Tools run on the Apify platform · <a href="/llms.txt">llms.txt</a></p>
+</footer>
+</body>
+</html>

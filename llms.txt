@@ -1,0 +1,38 @@
+# MessNoMore Data Tools
+
+> Clean, sourced data APIs for visas, school holidays, halal certificates, customs codes, airline baggage, SEA marketplaces and more.
+
+Guides written by Wong Xian Qi. Each guide names the official free sources first, then explains the matching API.
+The APIs are Apify Actors: call them from Apify Console, the REST API, the JavaScript or Python client, or the Apify MCP
+server (https://mcp.apify.com). Add `.md` to any Apify Store URL below for a Markdown version.
+
+## Guides
+
+- [Is there an airline baggage allowance API? Carry-on and checked bag limits by airline and fare, as JSON](https://wong13977-oss.github.io/airline-baggage-allowance-api/): Carry-on, personal item and checked bag rules per fare as JSON from official airline pages. Covers only Air Arabia, Malaysia, Thai and Vietnam Airlines.
+- [How do you check a JAKIM or BPJPH halal certificate, and verify many suppliers at once?](https://wong13977-oss.github.io/halal-certificate-check/): Check a halal certificate in the JAKIM (Malaysia) or BPJPH (Indonesia) registry by hand, or verify whole supplier lists with an API: status, expiry, number.
+- [How do you find the HS code for a product, and its US, EU and UK tariff codes?](https://wong13977-oss.github.io/hs-code-lookup/): Describe the product, apply the HS rules, then look up the US HTS, EU TARIC and UK commodity code. Free official tools, base-duty caveats and a bulk API.
+- [How do you translate Shopee, Lazada and TikTok Shop listings within the title limits?](https://wong13977-oss.github.io/marketplace-listing-translation/): Title limits: Lazada 255, TikTok Shop 25-255, Shopee 120 (unofficial). Translate listings to Malay or Thai by API and see what CPETTR 2024 requires.
+- [Is there an API for school term dates and school holidays?](https://wong13977-oss.github.io/school-term-dates-api/): No single UK school term dates API exists. Get UK council, NSW, Victoria, Queensland and Malaysia school dates as JSON, each with a source link.
+- [Where can I find tech conferences with an open call for papers, including CFPs that cover speaker travel?](https://wong13977-oss.github.io/tech-conference-cfp-finder/): Find tech conferences with an open call for papers on Sessionize and confs.tech, or filter by deadline, region and travel support through an API. Sample rows.
+- [How do I check if a company sponsors work visas in the UK, US or Canada?](https://wong13977-oss.github.io/visa-sponsor-check/): Is a company a UK licensed sponsor, H-1B sponsor or Canada LMIA employer? Official lists, the manual way and an unofficial API from $0.002 per check.
+- [How do I categorize a list of websites by IAB category, brand safety and parked status with an API?](https://wong13977-oss.github.io/website-categorization-api/): Get the IAB Content Taxonomy 3.1 category, brand safety flags and parked status for a list of domains by API. Manual method, limits and $0.006 per domain.
+
+## Chinese guides (中文)
+
+- [商品HS编码怎么查？美国HTS、欧盟TARIC、英国商品编码查询方法](https://wong13977-oss.github.io/zh/hs-code-lookup/): 跨境卖家怎么查商品HS编码？介绍USITC HTS、欧盟TARIC、英国Trade Tariff三个官方入口、6位与10位编码的区别，以及可输出中文理由的批量查询工具。
+- [东南亚卖家怎么把 Shopee、Lazada、TikTok Shop 的商品标题翻译成当地语言，又不超字数限制？](https://wong13977-oss.github.io/zh/shopee-lazada-listing-translation/): Lazada 标题上限 255，TikTok Shop 25 到 255，Shopee 常用 120（非官方）。批量翻译成马来语、印尼语、泰语、越南语，保护品牌词，并检查马来西亚 CPETTR 2024 披露。
+
+## APIs on Apify Store
+
+- [Airline Baggage Allowance API: Carry-on & Checked Bag Rules](https://apify.com/messnomore/airline-baggage-allowance)
+- [Halal Certificate Checker: JAKIM & BPJPH (Malaysia, Indonesia)](https://apify.com/messnomore/halal-certificate-checker)
+- [AI HS Code Classifier: HTS, TARIC & UK Tariff Codes](https://apify.com/messnomore/hs-code-classifier)
+- [SEA Listing Localizer & CPETTR Checker](https://apify.com/messnomore/sea-listing-localizer)
+- [School Holidays & Term Dates API: UK, Australia, Malaysia](https://apify.com/messnomore/school-holidays-api)
+- [CFP Radar: Tech Conference Call for Papers Finder & AI Matcher](https://apify.com/messnomore/cfp-radar)
+- [Visa Sponsor Checker: UK, US H-1B, Canada LMIA (Unofficial)](https://apify.com/messnomore/visa-sponsor-checker)
+- [AI Website Categorization: IAB, Industry & Brand Safety](https://apify.com/messnomore/website-categorization)
+
+## Free data
+
+- [School term dates sample dataset](https://github.com/wong13977-oss/school-term-dates): 2026 NSW, VIC, QLD and 2026/27 UK council term dates as JSON and CSV, CC BY 4.0 / OGL v3.0.

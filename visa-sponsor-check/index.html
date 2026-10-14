@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>How to Check if a Company Sponsors Visas (UK, US, Canada)</title>
+    <meta name="description" content="Is a company a UK licensed sponsor, H-1B sponsor or Canada LMIA employer? Official lists, the manual way and an unofficial API from $0.002 per check.">
+    <link rel="canonical" href="https://wong13977-oss.github.io/visa-sponsor-check/">
+    
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="How to Check if a Company Sponsors Visas (UK, US, Canada)">
+    <meta property="og:description" content="Is a company a UK licensed sponsor, H-1B sponsor or Canada LMIA employer? Official lists, the manual way and an unofficial API from $0.002 per check.">
+    <meta property="og:url" content="https://wong13977-oss.github.io/visa-sponsor-check/">
+    <link rel="stylesheet" href="/styles.css">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"How do I check if a company sponsors work visas in the UK, US or Canada?","description":"Is a company a UK licensed sponsor, H-1B sponsor or Canada LMIA employer? Official lists, the manual way and an unofficial API from $0.002 per check.","inLanguage":"en","dateModified":"2026-10-14","mainEntityOfPage":"https://wong13977-oss.github.io/visa-sponsor-check/","author":{"@type":"Person","name":"Wong Xian Qi","url":"https://apify.com/messnomore"},"about":{"@type":"SoftwareApplication","name":"Visa Sponsor Checker: UK, US H-1B, Canada LMIA (Unofficial)","url":"https://apify.com/messnomore/visa-sponsor-checker","applicationCategory":"DeveloperApplication","operatingSystem":"Web"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I check if a company is a licensed visa sponsor in the UK?","acceptedAnswer":{"@type":"Answer","text":"Search the Home Office register of licensed sponsors (workers) on GOV.UK for the organisation's name, or use the Visa Sponsor Checker API to look up many names at once. A listing means the organisation holds a sponsor licence today; the register shows routes such as Skilled Worker and a rating such as Worker (A rating), but no filing counts."}},{"@type":"Question","name":"How can I look up an H-1B sponsor?","acceptedAnswer":{"@type":"Answer","text":"The US Department of Labor publishes LCA disclosure data as XLSX files, and you can count a company's certified LCAs for H-1B, H-1B1 and E-3. Visa Sponsor Checker does this for you and returns filings and positions per fiscal year since FY2021. A certified LCA is not a visa approval."}},{"@type":"Question","name":"Where is the Canada LMIA employer list?","acceptedAnswer":{"@type":"Answer","text":"Employment and Social Development Canada publishes the positive LMIA employers list on Open Canada as a quarterly spreadsheet. Visa Sponsor Checker covers it from 2020 Q4 and returns approved LMIAs, positions and the stream, such as Global Talent Stream or High Wage."}},{"@type":"Question","name":"Does \"not found\" mean a company never sponsors visas?","acceptedAnswer":{"@type":"Answer","text":"No. It means no matching employer is in that register for the period covered. The company may sponsor under a different legal name, may have applied before the covered period, or may use routes these registers do not list."}},{"@type":"Question","name":"How often is the visa sponsor data updated?","acceptedAnswer":{"@type":"Answer","text":"The UK register is checked weekly, and Canada and the US are updated with every quarterly release. UK first-seen dates start on 2026-10-12, when the weekly snapshots began."}},{"@type":"Question","name":"Is Visa Sponsor Checker an official government service?","acceptedAnswer":{"@type":"Answer","text":"No. It is an unofficial tool and is not affiliated with the UK Home Office, the US Department of Labor or Employment and Social Development Canada. It republishes their open data, so confirm important decisions on the official register or with an immigration adviser."}}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"MessNoMore Data Tools","item":"https://wong13977-oss.github.io/"},{"@type":"ListItem","position":2,"name":"How to Check if a Company Sponsors Visas (UK, US, Canada)","item":"https://wong13977-oss.github.io/visa-sponsor-check/"}]}</script>
+</head>
+<body>
+<header class="site">
+    <a class="brand" href="/">MessNoMore Data Tools</a>
+    <nav><a href="/zh/">中文</a> <a href="https://github.com/wong13977-oss/school-term-dates">Free data</a> <a href="https://apify.com/messnomore">Apify Store</a></nav>
+</header>
+<main>
+<article>
+    <p class="crumbs"><a href="/">MessNoMore Data Tools</a> › How to Check if a Company Sponsors Visas (UK, US, Canada)</p>
+    <h1>How do I check if a company sponsors work visas in the UK, US or Canada?</h1>
+    <p class="meta">Updated <time datetime="2026-10-14">2026-10-14</time> · By Wong Xian Qi</p>
+    <p>To check whether a company sponsors work visas, look it up in each country's official register: the Home Office <a href="https://www.gov.uk/government/publications/register-of-licensed-sponsors-workers" target="_blank" rel="noopener">register of licensed sponsors (workers)</a> in the UK, the US Department of Labor <a href="https://www.dol.gov/agencies/eta/foreign-labor/performance" target="_blank" rel="noopener">LCA disclosure data</a> for H-1B, H-1B1 and E-3 filings, and Canada's <a href="https://open.canada.ca/data/en/dataset/90fed587-1364-4f33-a9ee-208181dc0b97" target="_blank" rel="noopener">positive LMIA employers list</a>. All three are open government data that you can download and search yourself. The unofficial <a href="https://apify.com/messnomore/visa-sponsor-checker" target="_blank" rel="noopener">Visa Sponsor Checker</a> API runs the same lookup for all three countries in one call.</p>
+
+<h2>How do I check if a company is a licensed sponsor?</h2>
+<ul>
+<li><strong>UK:</strong> download the register from GOV.UK, a CSV of roughly 120,000 rows with columns such as Organisation Name, Town/City, County, Type &amp; Rating and Route (one row per organisation and route). A listed employer holds a sponsor licence today; the register has no filing counts.</li>
+<li><strong>US:</strong> download the LCA disclosure XLSX files from the Department of Labor (hundreds of megabytes per year), filter by visa class and certified status, and count filings per employer.</li>
+<li><strong>Canada:</strong> open the Employment and Social Development Canada dataset on Open Canada and search the quarterly spreadsheet for the employer.</li>
+</ul>
+<p>Read the counts carefully. A Labor Condition Application (LCA) is filed before an H-1B, H-1B1 or E-3 petition, so a certified LCA shows that an employer sponsors or intends to sponsor that visa; it is not a visa approval. A positive Canadian LMIA lets an employer hire a foreign worker for the listed positions.</p>
+
+<h2>Why is checking by hand slow?</h2>
+<p>Each country publishes its data differently (a CSV in the UK, XLSX files in the US and Canada), and listed names often differ from what you type. "Google" appears as "Google (UK) Limited" and "Google LLC"; "J.P. Morgan" appears as "JPMorgan Chase &amp; Co.". Searching "Amazon" in the US data turns up several similar names, and the right one is "Amazon.com Services LLC" (81,822 filings in a sample run), not "Amazon LLC". The UK file also shows only who holds a licence now, so "first listed" dates need your own saved copies.</p>
+
+<h2>How do I check visa sponsors with an API?</h2>
+<p>Send company names and countries (UK, US, CA) to the Actor. You get one row per company and country with the status (<code>matched</code> or <code>not_found</code>), the employer name as published, <code>matchConfidence</code> from 0 to 1, sponsor routes, town, first and last seen dates, <code>filingsCount</code>, <code>positionsCount</code> and yearly <code>history</code>. Names are normalised (Ltd, Inc, LLC, punctuation and words like "UK" are ignored) and ambiguous names get an AI check; <code>matchMethod</code> tells you whether a match was exact, normalized, fuzzy or ai. Matches below <code>minConfidence</code> (default 0.8) come back as <code>not_found</code>, with close names in <code>otherCandidates</code>.</p>
+<pre><code>curl -X POST "https://api.apify.com/v2/acts/messnomore~visa-sponsor-checker/run-sync-get-dataset-items" \
+  -H "Authorization: Bearer YOUR_APIFY_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"companyNames": ["Revolut", "Infosys"], "countries": ["UK", "US"]}'</code></pre>
+<p>Two rows from real runs, shortened:</p>
+<pre><code>[
+  {
+    "inputCompany": "Revolut",
+    "country": "UK",
+    "status": "matched",
+    "matchConfidence": 0.97,
+    "matchMethod": "exact",
+    "matchedEmployerName": "Revolut Ltd",
+    "sponsorRoutes": ["Global Business Mobility: Senior or Specialist Worker", "Scale-up", "Skilled Worker"],
+    "sponsorRatings": ["Worker (A rating)"],
+    "town": "London",
+    "currentlyListed": true,
+    "firstSeen": "2026-10-12",
+    "registerName": "UK Register of Licensed Sponsors: Workers (Home Office)",
+    "sourceDate": "2026-10-12"
+  },
+  {
+    "inputCompany": "Infosys",
+    "country": "US",
+    "status": "matched",
+    "matchedEmployerName": "INFOSYS LIMITED",
+    "sponsorRoutes": ["E-3 Australian", "H-1B", "H-1B1 Singapore"],
+    "town": "Richardson",
+    "region": "TX",
+    "firstSeen": "2020-10-01",
+    "lastSeen": "2026-06-30",
+    "filingsCount": 37279,
+    "positionsCount": 278285,
+    "history": [
+      { "period": "FY2025", "filings": 5758, "positions": 16326 },
+      { "period": "FY2026", "filings": 4572, "positions": 8932 }
+    ],
+    "registerName": "US DOL LCA Disclosure Data (H-1B, H-1B1, E-3)",
+    "sourceDate": "2026-06-30"
+  }
+]</code></pre>
+<p>In the Canadian sample run, "Shopify Inc." matched with the Global Talent Stream and High Wage streams, 124 approved LMIAs and 169 positions since 2020 Q4, while "Infosys" returned <code>not_found</code>. The same Actor can export a register by town or visa route (for example <a href="https://apify.com/messnomore/visa-sponsor-checker/examples/uk-skilled-worker-sponsors-by-city" target="_blank" rel="noopener">Skilled Worker sponsors in a city</a>), and it can add a <code>visaSponsor</code> object to every job in a job-scraper dataset.</p>
+
+<h2>How much does it cost?</h2>
+<p>Pay-per-event pricing: <strong>$0.002</strong> per company checked in one country (or per exported register entry), <strong>$0.005</strong> per job enriched, and $0.00005 per run start. Checking 100 companies in all three countries (300 rows) costs about $0.60, and a "not found" row counts as a result. Enriching 1,000 jobs costs about $5. AI name checks are included and compute time is not charged. Apify Bronze, Silver and Gold subscribers get lower prices.</p>
+
+<h2>What does it cover, and what does it not?</h2>
+<ul>
+<li><strong>UK:</strong> the workers register only, refreshed weekly. UK first-seen dates start on 2026-10-12, when the weekly snapshots began. Source data is public sector information under the Open Government Licence v3.0.</li>
+<li><strong>US:</strong> certified H-1B, H-1B1 and E-3 LCAs since fiscal year 2021 (DOL statuses Certified and Certified - Withdrawn), updated with each quarterly release. Other US visa types are not covered.</li>
+<li><strong>Canada:</strong> positive LMIA employers since 2020 Q4, updated quarterly.</li>
+<li><strong>Other countries:</strong> not covered yet.</li>
+</ul>
+<p>"Not found" does not mean a company never sponsors: it may use a different legal name, have applied before the covered period, or use routes these registers do not list. The tool is not affiliated with the Home Office, the Department of Labor or Employment and Social Development Canada, so confirm important decisions on the official register or with an immigration adviser. See the <a href="https://apify.com/messnomore/visa-sponsor-checker" target="_blank" rel="noopener">Store page</a> for the full input options.</p>
+    <aside class="cta">
+        <h2>Try it</h2>
+        <p><a class="button" href="https://apify.com/messnomore/visa-sponsor-checker" target="_blank" rel="noopener">Visa Sponsor Checker: UK, US H-1B, Canada LMIA (Unofficial)</a></p>
+        <p>Ready-made example runs:</p>
+        <ul>
+            <li><a href="https://apify.com/messnomore/visa-sponsor-checker/examples/uk-visa-sponsor-licence-check" target="_blank" rel="noopener">Check if a UK company is a licensed visa sponsor</a></li>
+            <li><a href="https://apify.com/messnomore/visa-sponsor-checker/examples/h1b-sponsor-company-lookup" target="_blank" rel="noopener">Look up a company's H-1B sponsorship history</a></li>
+            <li><a href="https://apify.com/messnomore/visa-sponsor-checker/examples/canada-lmia-employer-check" target="_blank" rel="noopener">Check Canadian employers with positive LMIA decisions</a></li>
+            <li><a href="https://apify.com/messnomore/visa-sponsor-checker/examples/uk-skilled-worker-sponsors-by-city" target="_blank" rel="noopener">List UK Skilled Worker visa sponsors in a city</a></li>
+        </ul>
+    </aside>
+    <section class="faq">
+        <h2>FAQ</h2>
+        <h3>How do I check if a company is a licensed visa sponsor in the UK?</h3>
+        <p>Search the Home Office register of licensed sponsors (workers) on GOV.UK for the organisation's name, or use the Visa Sponsor Checker API to look up many names at once. A listing means the organisation holds a sponsor licence today; the register shows routes such as Skilled Worker and a rating such as Worker (A rating), but no filing counts.</p>
+        <h3>How can I look up an H-1B sponsor?</h3>
+        <p>The US Department of Labor publishes LCA disclosure data as XLSX files, and you can count a company's certified LCAs for H-1B, H-1B1 and E-3. Visa Sponsor Checker does this for you and returns filings and positions per fiscal year since FY2021. A certified LCA is not a visa approval.</p>
+        <h3>Where is the Canada LMIA employer list?</h3>
+        <p>Employment and Social Development Canada publishes the positive LMIA employers list on Open Canada as a quarterly spreadsheet. Visa Sponsor Checker covers it from 2020 Q4 and returns approved LMIAs, positions and the stream, such as Global Talent Stream or High Wage.</p>
+        <h3>Does &quot;not found&quot; mean a company never sponsors visas?</h3>
+        <p>No. It means no matching employer is in that register for the period covered. The company may sponsor under a different legal name, may have applied before the covered period, or may use routes these registers do not list.</p>
+        <h3>How often is the visa sponsor data updated?</h3>
+        <p>The UK register is checked weekly, and Canada and the US are updated with every quarterly release. UK first-seen dates start on 2026-10-12, when the weekly snapshots began.</p>
+        <h3>Is Visa Sponsor Checker an official government service?</h3>
+        <p>No. It is an unofficial tool and is not affiliated with the UK Home Office, the US Department of Labor or Employment and Social Development Canada. It republishes their open data, so confirm important decisions on the official register or with an immigration adviser.</p>
+    </section>
+    <section class="related"><h2>More guides</h2><ul>
+            <li><a href="/airline-baggage-allowance-api/">Is there an airline baggage allowance API? Carry-on and checked bag limits by airline and fare, as JSON</a></li>
+            <li><a href="/halal-certificate-check/">How do you check a JAKIM or BPJPH halal certificate, and verify many suppliers at once?</a></li>
+            <li><a href="/hs-code-lookup/">How do you find the HS code for a product, and its US, EU and UK tariff codes?</a></li>
+            <li><a href="/marketplace-listing-translation/">How do you translate Shopee, Lazada and TikTok Shop listings within the title limits?</a></li>
+            <li><a href="/school-term-dates-api/">Is there an API for school term dates and school holidays?</a></li>
+            <li><a href="/tech-conference-cfp-finder/">Where can I find tech conferences with an open call for papers, including CFPs that cover speaker travel?</a></li>
+            <li><a href="/website-categorization-api/">How do I categorize a list of websites by IAB category, brand safety and parked status with an API?</a></li>
+        </ul></section>
+</article>
+</main>
+<footer class="site">
+    <p>By <a href="https://apify.com/messnomore">Wong Xian Qi</a> · Tools run on the Apify platform · <a href="/llms.txt">llms.txt</a></p>
+</footer>
+</body>
+</html>

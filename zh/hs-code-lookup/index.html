@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HS编码查询：商品HS编码怎么查（美国/欧盟/英国）</title>
+    <meta name="description" content="跨境卖家怎么查商品HS编码？介绍USITC HTS、欧盟TARIC、英国Trade Tariff三个官方入口、6位与10位编码的区别，以及可输出中文理由的批量查询工具。">
+    <link rel="canonical" href="https://wong13977-oss.github.io/zh/hs-code-lookup/">
+    <link rel="alternate" hreflang="en" href="https://wong13977-oss.github.io/hs-code-lookup/">
+    <link rel="alternate" hreflang="zh-CN" href="https://wong13977-oss.github.io/zh/hs-code-lookup/">
+    <link rel="alternate" hreflang="x-default" href="https://wong13977-oss.github.io/hs-code-lookup/">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="HS编码查询：商品HS编码怎么查（美国/欧盟/英国）">
+    <meta property="og:description" content="跨境卖家怎么查商品HS编码？介绍USITC HTS、欧盟TARIC、英国Trade Tariff三个官方入口、6位与10位编码的区别，以及可输出中文理由的批量查询工具。">
+    <meta property="og:url" content="https://wong13977-oss.github.io/zh/hs-code-lookup/">
+    <link rel="stylesheet" href="/styles.css">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"商品HS编码怎么查？美国HTS、欧盟TARIC、英国商品编码查询方法","description":"跨境卖家怎么查商品HS编码？介绍USITC HTS、欧盟TARIC、英国Trade Tariff三个官方入口、6位与10位编码的区别，以及可输出中文理由的批量查询工具。","inLanguage":"zh-CN","dateModified":"2026-10-14","mainEntityOfPage":"https://wong13977-oss.github.io/zh/hs-code-lookup/","author":{"@type":"Person","name":"Wong Xian Qi","url":"https://apify.com/messnomore"},"about":{"@type":"SoftwareApplication","name":"AI HS Code Classifier: HTS, TARIC & UK Tariff Codes","url":"https://apify.com/messnomore/hs-code-classifier","applicationCategory":"DeveloperApplication","operatingSystem":"Web"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"商品HS编码怎么查？","acceptedAnswer":{"@type":"Answer","text":"先说明商品的材质、用途和制造方式，再按归类总规则（GRI）在官方税则中找到对应的品目和子目，最后在目的国税则里选出10位税号。美国可查USITC的HTS，英国可查UK Trade Tariff，欧盟可查TARIC，都是官方免费入口。"}},{"@type":"Question","name":"HS编码6位和美国HTS、欧盟TARIC的10位编码有什么区别？","acceptedAnswer":{"@type":"Answer","text":"6位是HS 2022版的通用分类；美国HTS、欧盟TARIC和英国商品编码在它的基础上细分为10位国家税号。同一个6位编码下可能有多条10位税号，税率也因国家而不同。"}},{"@type":"Question","name":"美国HTS编码查询出来的税率包含301关税吗？","acceptedAnswer":{"@type":"Answer","text":"不包含。工具显示的是基础税率（美国General column 1 MFN税率，欧盟和英国第三国关税），不含第99章下的Section 301、232等附加关税，也不含反倾销反补贴税、优惠税率、配额、消费税和进口增值税，英国标准VAT除外。"}},{"@type":"Question","name":"AI给出的HS编码可以直接用来报关吗？","acceptedAnswer":{"@type":"Answer","text":"不可以。AI结果不具法律约束力，只有海关出具的裁定才有，申报责任在进口方。报关前请人工复核标记为needsReview的结果，并对照官方税则或咨询报关行。"}},{"@type":"Question","name":"能批量查HS编码并让归类理由用中文输出吗？","acceptedAnswer":{"@type":"Answer","text":"可以。AI HS Code Classifier每次最多处理10,000件商品，把reasoningLanguage设为zh，归类理由就用简体中文输出；每件$0.01，Apify免费计划每次运行最多归类20件。"}},{"@type":"Question","name":"欧盟TARIC编码的结果来自哪里？","acceptedAnswer":{"@type":"Answer","text":"该工具的欧盟结果来自英国Trade Tariff的北爱尔兰版本，该版本执行欧盟TARIC措施，不是欧盟自己的TARIC查询网站。正式申报前请到官方TARIC核对。"}}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"MessNoMore Data Tools","item":"https://wong13977-oss.github.io/zh/"},{"@type":"ListItem","position":2,"name":"HS编码查询：商品HS编码怎么查（美国/欧盟/英国）","item":"https://wong13977-oss.github.io/zh/hs-code-lookup/"}]}</script>
+</head>
+<body>
+<header class="site">
+    <a class="brand" href="/zh/">MessNoMore Data Tools</a>
+    <nav><a href="/">English</a> <a href="https://github.com/wong13977-oss/school-term-dates">免费数据</a> <a href="https://apify.com/messnomore">Apify Store</a></nav>
+</header>
+<main>
+<article>
+    <p class="crumbs"><a href="/zh/">MessNoMore Data Tools</a> › HS编码查询：商品HS编码怎么查（美国/欧盟/英国）</p>
+    <h1>商品HS编码怎么查？美国HTS、欧盟TARIC、英国商品编码查询方法</h1>
+    <p class="meta">更新于 <time datetime="2026-10-14">2026-10-14</time> · 作者 Wong Xian Qi</p>
+    <p>出口到美国、欧盟或英国的跨境电商卖家，不论在亚马逊、Shopee、TikTok Shop 还是独立站开店，查商品 HS 编码都是同一个思路：先把商品是什么、什么材质、怎么制成、有什么用途讲清楚，再到官方税则里从品目到子目逐级对照，最后在目的国税则中选出具体的 10 位税号。美国查 USITC 的 HTS，英国查 UK Trade Tariff，欧盟查 TARIC，都是官方免费入口；SKU 很多时，可以用 Apify 上的 AI HS Code Classifier 批量得到 6 位 HS 编码和美、欧、英税号，再交给人工复核。</p>
+
+<h2>HS 编码 6 位和各国 10 位税号有什么区别？</h2>
+<p>6 位 HS 编码是世界海关组织（WCO）HS 2022 版的商品分类。美国 HTS、欧盟 TARIC 和英国商品编码在此基础上细分到 10 位，例如美国写作 <code>6109.10.0012</code>，欧盟和英国写作 <code>6109100010</code>，三者都以同一个 6 位编码 <code>610910</code> 开头。</p>
+<p>同一个 6 位编码下，各国可能还有多条 10 位税号，税率也各不相同。样例中，男式棉质 T 恤在美国 <code>610910</code> 项下除选中的税号外还有 10 条备选，要看颜色、口袋、装饰等事实才能定；真空保温杯（<code>961700</code>）的基础税率是美国 7.2%、欧盟 6.70 %、英国 0.00 %。所以要先定 6 位，再按目的国分别确定 10 位税号。</p>
+
+<h2>官方免费查询入口有哪些？</h2>
+<ul>
+<li><strong>美国：</strong><a href="https://hts.usitc.gov/" target="_blank" rel="noopener">USITC Harmonized Tariff Schedule</a>（HTS，10 位）。美国基础税率指其 General（column 1，MFN）税率。</li>
+<li><strong>英国：</strong><a href="https://www.trade-tariff.service.gov.uk/" target="_blank" rel="noopener">UK Trade Tariff</a>（GOV.UK，10 位商品编码），涵盖 UK Global Tariff，可查第三国关税和英国标准 VAT。</li>
+<li><strong>欧盟：</strong>TARIC（10 位），欧盟自己的查询网站是 <code>ec.europa.eu/taxation_customs/dds2/taric/</code>。英国 Trade Tariff 另有北爱尔兰版本，执行欧盟 TARIC 措施；下文的工具用它提供欧盟结果，所以正式申报欧盟税号前，请到 TARIC 官网再核对一次。</li>
+</ul>
+
+<h2>手动归类要遵循什么规则？</h2>
+<p>归类依据是《协调制度》的归类总规则（GRI），按顺序适用：先看品目条文和类、章注释；不完整或未组装货品、混合物有专门规则；多个品目都适用时，更具体的描述优先，组合品和零售成套货品看基本特征，再不行就取编号靠后的品目；仍无法归入的货品按最相似的货品归类；包装容器另有规定；到了子目层级，只在同级子目之间比较。这是简要转述，不是法律条文。</p>
+<p>实际操作时要抓住商品的基本特征、按重量占比最大的主要材质、功能和制造方式（针织还是梭织）。纺织品按重量占优的纤维归类，针织或钩编服装在第 61 章，其他服装在第 62 章。每个 SKU 都要读章节和注释，还要对每个目的国重复一遍，商品多了很费时间。</p>
+
+<h2>怎样批量查 HS 编码，并让归类理由用中文输出？</h2>
+<p><a href="https://apify.com/messnomore/hs-code-classifier" target="_blank" rel="noopener">AI HS Code Classifier</a> 接收商品列表（每项至少有 <code>title</code> 或 <code>description</code>，还可加 <code>material</code> 等字段）。AI 先给出 6 位 HS 编码，再对照官方子目文本复核，最后从美国 USITC 和英国 Trade Tariff 实时返回的税号里选出各国 10 位税号，不会凭空编造。<code>destinations</code> 可选 <code>US</code>、<code>EU</code>、<code>UK</code>，<code>maxProducts</code> 上限为每次 10,000 件。把 <code>reasoningLanguage</code> 设为 <code>zh</code>，归类理由 <code>reasoning</code> 和税号选择说明 <code>selectionNote</code> 就用简体中文输出。工具只需要商品文本，所以商品挂在哪个平台上无关紧要，整理出标题和描述就能提交。</p>
+<pre><code>curl -X POST "https://api.apify.com/v2/acts/messnomore~hs-code-classifier/run-sync-get-dataset-items" \
+  -H "Authorization: Bearer YOUR_APIFY_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"products":[{"sku":"A1","title":"Men'\''s cotton crew-neck T-shirt","material":"cotton"}],"destinations":["US","EU","UK"],"reasoningLanguage":"zh"}'</code></pre>
+<p>样例结果（商品标题是输入时的英文原文）：</p>
+<table>
+<thead><tr><th>商品</th><th>HS6</th><th>美国 HTS</th><th>欧盟</th><th>英国</th><th>置信度</th></tr></thead>
+<tbody>
+<tr><td>Men's cotton crew-neck T-shirt</td><td>610910</td><td>6109.10.0012，16.5%</td><td>6109100010，12.00 %</td><td>6109100010，12.00 %</td><td>0.95</td></tr>
+<tr><td>Wireless Bluetooth earbuds with charging case</td><td>851830</td><td>8518.30.2000，Free</td><td>8518300090，0.00 %</td><td>8518300090，0.00 %</td><td>0.93</td></tr>
+<tr><td>Vacuum-insulated stainless steel water bottle 750 ml</td><td>961700</td><td>9617.00.1000，7.2%</td><td>9617000000，6.70 %</td><td>9617000000，0.00 %</td><td>0.92</td></tr>
+</tbody>
+</table>
+<p>下面是真空保温杯的完整记录：</p>
+<pre><code>{
+  "sku": "C3",
+  "title": "Vacuum-insulated stainless steel water bottle 750 ml",
+  "hs6": "961700",
+  "hs6Description": "Vacuum flasks and other vacuum vessels, complete; parts thereof other than glass inners",
+  "chapter": "96",
+  "national": [
+    {
+      "country": "US",
+      "code": "9617.00.1000",
+      "description": "Vessels &gt; Having a capacity not exceeding 1 liter",
+      "generalDutyRate": "7.2%",
+      "dutyRateType": "General (column 1, MFN) rate",
+      "vatRate": null,
+      "selection": "ai",
+      "selectionNote": "产品标称容量为750毫升，不超过1升，因此选择容量不超过1升的税目。",
+      "otherCandidates": [
+        "9617.00.3000",
+        "9617.00.4000",
+        "9617.00.6000"
+      ],
+      "source": "USITC HTS REST API (hts.usitc.gov)"
+    },
+    {
+      "country": "EU",
+      "code": "9617000000",
+      "description": "Vacuum flasks and other vacuum vessels, complete; parts thereof other than glass inners",
+      "generalDutyRate": "6.70 %",
+      "dutyRateType": "Third country duty (ERGA OMNES)",
+      "vatRate": null,
+      "selection": "only-candidate",
+      "selectionNote": null,
+      "otherCandidates": [],
+      "source": "UK Trade Tariff API, Northern Ireland (XI) tariff applying EU TARIC measures (Open Government Licence v3.0)"
+    },
+    {
+      "country": "UK",
+      "code": "9617000000",
+      "description": "Vacuum flasks and other vacuum vessels, complete; parts thereof other than glass inners",
+      "generalDutyRate": "0.00 %",
+      "dutyRateType": "Third country duty",
+      "vatRate": "20.00 %",
+      "selection": "only-candidate",
+      "selectionNote": null,
+      "otherCandidates": [],
+      "source": "UK Trade Tariff API (GOV.UK, Open Government Licence v3.0)"
+    }
+  ],
+  "confidence": 0.92,
+  "reasoning": "该产品为真空隔热不锈钢饮水瓶，属于真空瓶及其他真空容器的整件成品，应归入税目9617。依据是税目文本明确涵盖完整的真空瓶和其他真空容器，且产品为整件成品而非单纯的家用器皿，因此不适用税目7323。税目9617下只有子目961700，故选择该编码。",
+  "needsReview": false,
+  "reviewReasons": [],
+  "alternatives": [
+    "732393"
+  ],
+  "missingInformation": [],
+  "inputIndex": 2
+}</code></pre>
+<p>其中 <code>reasoning</code> 用中文说明了为什么归入税目 9617 而不是 7323；<code>hs6Description</code> 和各国税号的 <code>description</code> 是官方税则的英文原文，没有翻译。<code>confidence</code> 取值 0 到 1，<code>alternatives</code> 列出其他可能的 HS 编码，<code>missingInformation</code> 列出能让结果更确定的缺失信息。想先在 Apify 控制台试用，可以打开现成示例：<a href="https://apify.com/messnomore/hs-code-classifier/examples/hs-code-classification-chinese" target="_blank" rel="noopener">中文理由</a>、<a href="https://apify.com/messnomore/hs-code-classifier/examples/us-hts-code-lookup" target="_blank" rel="noopener">美国 HTS</a>、<a href="https://apify.com/messnomore/hs-code-classifier/examples/eu-taric-code-lookup" target="_blank" rel="noopener">欧盟 TARIC</a>、<a href="https://apify.com/messnomore/hs-code-classifier/examples/uk-commodity-code-lookup" target="_blank" rel="noopener">英国商品编码</a>。</p>
+
+<h2>报关前为什么必须人工复核？</h2>
+<ul>
+<li><strong>结果没有法律约束力。</strong>只有海关出具的归类才有约束力：美国 CBP 裁定、欧盟约束性关税信息（Binding Tariff Information）、英国预先税则裁定（Advance Tariff Rulings）。申报编码的责任仍在进口方。</li>
+<li><strong>准确率不是 100%。</strong>开发者用 89 份 2024 至 2026 年的美国海关（CBP）归类裁定自测：6 位编码完全一致 70%，正确编码出现在答案及备选中 85%，置信度不低于 0.85 时完全一致 90%。这些裁定对应的多是难归类的商品，如手工套件、机器零件、医疗器械。</li>
+<li><strong>缺失信息会改变结果。</strong>置信度低于你设定的阈值（<code>minConfidence</code>，默认 0.7），或某国税号缺失时，结果会标记 <code>needsReview: true</code>；<code>selection</code> 为 <code>ai-assumed</code> 表示 AI 假设了某个事实，说明里会写明。</li>
+</ul>
+
+<h2>结果里的税率包含 301 等附加关税吗？</h2>
+<p>不包含。显示的是基础税率：美国的 General（column 1，MFN）税率，以及欧盟和英国的第三国关税。不含美国第 99 章下的附加关税（如 Section 301、Section 232 等）、反倾销和反补贴税、贸易协定优惠税率、配额、消费税和进口增值税；唯一例外是单独列出的英国标准 VAT。商品是否要加征附加关税，请查官方税则或咨询报关行，再估算落地成本。</p>
+
+<h2>价格和使用限制</h2>
+<p>按事件计费：每个成功归类的商品 $0.01（美、欧、英税号都包含），每次运行另收 $0.00005 启动费，不收计算时间费。100 件约 $1.00，1,000 件约 $10.00；无法归类的商品不收费。Apify Bronze、Silver 和 Gold 订阅用户享有更低价格。Apify 免费计划每次运行最多归类 20 件。</p>
+<ul>
+<li>目的国只支持美国、欧盟、英国；欧盟结果来自英国 Trade Tariff 的北爱尔兰版本。</li>
+<li>税则行和税率实时获取，最多缓存 24 小时；没有标题和描述的商品会被跳过。</li>
+<li>样例商品标题均为英文，文档没有给出中文标题的准确率数据，批量上传前请先用少量 SKU 试跑核对。</li>
+<li>商品文本会发送给 Anthropic API，仅用于归类。</li>
+</ul>
+    <aside class="cta">
+        <h2>直接试用</h2>
+        <p><a class="button" href="https://apify.com/messnomore/hs-code-classifier" target="_blank" rel="noopener">AI HS Code Classifier: HTS, TARIC &amp; UK Tariff Codes</a></p>
+        <p>现成的示例任务：</p>
+        <ul>
+            <li><a href="https://apify.com/messnomore/hs-code-classifier/examples/hs-code-lookup-from-description" target="_blank" rel="noopener">Find HS codes from product descriptions</a></li>
+            <li><a href="https://apify.com/messnomore/hs-code-classifier/examples/us-hts-code-lookup" target="_blank" rel="noopener">Find US HTS codes and duty rates for products</a></li>
+            <li><a href="https://apify.com/messnomore/hs-code-classifier/examples/eu-taric-code-lookup" target="_blank" rel="noopener">Find EU TARIC codes for products</a></li>
+            <li><a href="https://apify.com/messnomore/hs-code-classifier/examples/uk-commodity-code-lookup" target="_blank" rel="noopener">Find UK commodity codes for e-commerce products</a></li>
+            <li><a href="https://apify.com/messnomore/hs-code-classifier/examples/hs-code-classification-chinese" target="_blank" rel="noopener">Classify products into HS codes with Chinese explanations</a></li>
+        </ul>
+    </aside>
+    <section class="faq">
+        <h2>常见问题</h2>
+        <h3>商品HS编码怎么查？</h3>
+        <p>先说明商品的材质、用途和制造方式，再按归类总规则（GRI）在官方税则中找到对应的品目和子目，最后在目的国税则里选出10位税号。美国可查USITC的HTS，英国可查UK Trade Tariff，欧盟可查TARIC，都是官方免费入口。</p>
+        <h3>HS编码6位和美国HTS、欧盟TARIC的10位编码有什么区别？</h3>
+        <p>6位是HS 2022版的通用分类；美国HTS、欧盟TARIC和英国商品编码在它的基础上细分为10位国家税号。同一个6位编码下可能有多条10位税号，税率也因国家而不同。</p>
+        <h3>美国HTS编码查询出来的税率包含301关税吗？</h3>
+        <p>不包含。工具显示的是基础税率（美国General column 1 MFN税率，欧盟和英国第三国关税），不含第99章下的Section 301、232等附加关税，也不含反倾销反补贴税、优惠税率、配额、消费税和进口增值税，英国标准VAT除外。</p>
+        <h3>AI给出的HS编码可以直接用来报关吗？</h3>
+        <p>不可以。AI结果不具法律约束力，只有海关出具的裁定才有，申报责任在进口方。报关前请人工复核标记为needsReview的结果，并对照官方税则或咨询报关行。</p>
+        <h3>能批量查HS编码并让归类理由用中文输出吗？</h3>
+        <p>可以。AI HS Code Classifier每次最多处理10,000件商品，把reasoningLanguage设为zh，归类理由就用简体中文输出；每件$0.01，Apify免费计划每次运行最多归类20件。</p>
+        <h3>欧盟TARIC编码的结果来自哪里？</h3>
+        <p>该工具的欧盟结果来自英国Trade Tariff的北爱尔兰版本，该版本执行欧盟TARIC措施，不是欧盟自己的TARIC查询网站。正式申报前请到官方TARIC核对。</p>
+    </section>
+    <section class="related"><h2>其他指南</h2><ul>
+            <li><a href="/zh/shopee-lazada-listing-translation/">东南亚卖家怎么把 Shopee、Lazada、TikTok Shop 的商品标题翻译成当地语言，又不超字数限制？</a></li>
+        </ul></section>
+</article>
+</main>
+<footer class="site">
+    <p>作者 <a href="https://apify.com/messnomore">Wong Xian Qi</a> · 数据工具运行在 Apify 平台 · <a href="/llms.txt">llms.txt</a></p>
+</footer>
+</body>
+</html>

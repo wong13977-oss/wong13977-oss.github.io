@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>How to Find the HS Code for a Product (US, EU, UK)</title>
+    <meta name="description" content="Describe the product, apply the HS rules, then look up the US HTS, EU TARIC and UK commodity code. Free official tools, base-duty caveats and a bulk API.">
+    <link rel="canonical" href="https://wong13977-oss.github.io/hs-code-lookup/">
+    <link rel="alternate" hreflang="en" href="https://wong13977-oss.github.io/hs-code-lookup/">
+    <link rel="alternate" hreflang="zh-CN" href="https://wong13977-oss.github.io/zh/hs-code-lookup/">
+    <link rel="alternate" hreflang="x-default" href="https://wong13977-oss.github.io/hs-code-lookup/">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="How to Find the HS Code for a Product (US, EU, UK)">
+    <meta property="og:description" content="Describe the product, apply the HS rules, then look up the US HTS, EU TARIC and UK commodity code. Free official tools, base-duty caveats and a bulk API.">
+    <meta property="og:url" content="https://wong13977-oss.github.io/hs-code-lookup/">
+    <link rel="stylesheet" href="/styles.css">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"How do you find the HS code for a product, and its US, EU and UK tariff codes?","description":"Describe the product, apply the HS rules, then look up the US HTS, EU TARIC and UK commodity code. Free official tools, base-duty caveats and a bulk API.","inLanguage":"en","dateModified":"2026-10-14","mainEntityOfPage":"https://wong13977-oss.github.io/hs-code-lookup/","author":{"@type":"Person","name":"Wong Xian Qi","url":"https://apify.com/messnomore"},"about":{"@type":"SoftwareApplication","name":"AI HS Code Classifier: HTS, TARIC & UK Tariff Codes","url":"https://apify.com/messnomore/hs-code-classifier","applicationCategory":"DeveloperApplication","operatingSystem":"Web"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I find the HS code for a product?","acceptedAnswer":{"@type":"Answer","text":"Describe the product's material, function and how it is made, find the matching heading and subheading in the official tariff using the General Interpretative Rules, then pick the national 10-digit line for the destination. The USITC Harmonized Tariff Schedule and the UK Trade Tariff are free official sources."}},{"@type":"Question","name":"What is the difference between an HS code, an HTS code and a TARIC code?","acceptedAnswer":{"@type":"Answer","text":"An HS code has 6 digits. The US HTS, EU TARIC and UK commodity codes extend it to 10-digit national lines, and each destination has its own duty rates."}},{"@type":"Question","name":"Does the duty rate include Section 301 tariffs?","acceptedAnswer":{"@type":"Answer","text":"No. The rate is the base rate: the US General (column 1, MFN) rate and the EU and UK third-country duty. It excludes Chapter 99 additional duties such as Section 301 and 232, anti-dumping and countervailing duties, trade-agreement rates, quotas, excise and import VAT, except the UK standard VAT rate it shows."}},{"@type":"Question","name":"Is an AI-generated HS code legally binding?","acceptedAnswer":{"@type":"Answer","text":"No. Only customs authorities issue binding classifications, such as US CBP rulings, EU Binding Tariff Information and UK Advance Tariff Rulings. The importer remains responsible for the declared code, so review flagged results and check with a customs broker before you declare goods."}},{"@type":"Question","name":"How accurate is AI HS code classification?","acceptedAnswer":{"@type":"Answer","text":"In the developer's test on 89 real US CBP rulings from 2024 to 2026, the exact 6-digit code matched 70% of the time and the correct code was among the answer and its alternatives 85% of the time. When confidence was 0.85 or higher, the exact code matched 90% of the time."}},{"@type":"Question","name":"How much does a bulk HS code lookup cost?","acceptedAnswer":{"@type":"Answer","text":"The AI HS Code Classifier charges $0.01 per classified product with US, EU and UK tariffs included, plus a $0.00005 start fee per run, so 100 products cost about $1.00. Products that cannot be classified are not charged, and Apify Bronze, Silver and Gold subscribers get lower prices."}}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"MessNoMore Data Tools","item":"https://wong13977-oss.github.io/"},{"@type":"ListItem","position":2,"name":"How to Find the HS Code for a Product (US, EU, UK)","item":"https://wong13977-oss.github.io/hs-code-lookup/"}]}</script>
+</head>
+<body>
+<header class="site">
+    <a class="brand" href="/">MessNoMore Data Tools</a>
+    <nav><a href="/zh/">中文</a> <a href="https://github.com/wong13977-oss/school-term-dates">Free data</a> <a href="https://apify.com/messnomore">Apify Store</a></nav>
+</header>
+<main>
+<article>
+    <p class="crumbs"><a href="/">MessNoMore Data Tools</a> › How to Find the HS Code for a Product (US, EU, UK)</p>
+    <h1>How do you find the HS code for a product, and its US, EU and UK tariff codes?</h1>
+    <p class="meta">Updated <time datetime="2026-10-14">2026-10-14</time> · By Wong Xian Qi</p>
+    <p>To find the HS code for a product, describe what it is, what it is made of, how it is made and what it does, match that to a heading and subheading of the Harmonized System, then pick the national line for the country you ship to. The free official sources are the USITC Harmonized Tariff Schedule (US HTS), the UK Trade Tariff (UK commodity codes) and the EU's TARIC database. For a whole catalogue, an API such as the AI HS Code Classifier on Apify can do the first pass, which a person should still review.</p>
+
+<h2>Where can I look up HS, HTS, TARIC and UK commodity codes for free?</h2>
+<ul>
+<li><strong>United States (HTS, 10 digits):</strong> the <a href="https://hts.usitc.gov/" target="_blank" rel="noopener">USITC Harmonized Tariff Schedule</a>. The US base duty is its General (column 1, MFN) rate.</li>
+<li><strong>United Kingdom (commodity code, 10 digits):</strong> the <a href="https://www.trade-tariff.service.gov.uk/" target="_blank" rel="noopener">UK Trade Tariff</a> on GOV.UK. It covers the UK Global Tariff, with third-country duty and standard UK VAT.</li>
+<li><strong>European Union (TARIC, 10 digits):</strong> the EU's own consultation website is <code>ec.europa.eu/taxation_customs/dds2/taric/</code>. The UK Trade Tariff also runs a Northern Ireland service whose tariff applies EU TARIC measures. The tool below uses it for EU results, so confirm EU codes on the official TARIC site before you declare goods.</li>
+</ul>
+
+<h2>How do the General Interpretative Rules pick the right heading?</h2>
+<p>The Harmonized System is applied through six General Interpretative Rules (GRIs), used in order:</p>
+<ol>
+<li><strong>GRI 1:</strong> the wording of the headings and the Section and Chapter notes decide first.</li>
+<li><strong>GRI 2:</strong> covers incomplete or unassembled goods and mixtures.</li>
+<li><strong>GRI 3:</strong> if more than one heading fits, (a) the most specific description wins, (b) for composite goods and retail sets the essential character decides, (c) otherwise the heading that comes last in numerical order applies.</li>
+<li><strong>GRI 4:</strong> goods the earlier rules cannot place go with the most akin goods.</li>
+<li><strong>GRI 5:</strong> covers cases and packing.</li>
+<li><strong>GRI 6:</strong> the same logic one level down: compare only subheadings of the same level.</li>
+</ol>
+<p>This is a paraphrase, not the legal text. The deciding facts are the product's essential character, main material by weight, function and how it is made, such as knitted or woven. In the sample below, a vacuum-insulated bottle goes to heading 9617 rather than the household-article heading 7323 because it is the more specific description (GRI 3(a)).</p>
+
+<h2>What are the limits of looking codes up by hand?</h2>
+<p>Manual lookup is fine for a few products, but a catalogue means reading chapters, notes and subheadings for every SKU and repeating the search for each country. The 6-digit code is also only the start: in the sample, a men's cotton T-shirt under <code>610910</code> has ten other US lines besides the selected one, and the right line depends on facts such as colour and trim that a title may leave out.</p>
+
+<h2>How do I look up HS codes from product descriptions with an API?</h2>
+<p>The <a href="https://apify.com/messnomore/hs-code-classifier" target="_blank" rel="noopener">AI HS Code Classifier</a> takes products with at least a <code>title</code> or <code>description</code>, plus optional facts such as <code>material</code>, brand, <code>intendedUse</code> or size, and returns one record per product. You set <code>destinations</code> (<code>US</code>, <code>EU</code>, <code>UK</code>), <code>minConfidence</code> (default 0.7) and <code>maxProducts</code> (up to 10,000 per run).</p>
+<p>The AI proposes an HS code, must then choose the final 6-digit code from the official subheading texts of the headings it considered, and picks the national 10-digit line from lines fetched live from USITC and the UK Trade Tariff. It never invents national codes.</p>
+<p>Three products from a real run, with base duty rates as returned:</p>
+<table>
+<thead><tr><th>Product</th><th>HS6</th><th>US HTS</th><th>EU</th><th>UK</th><th>Confidence</th></tr></thead>
+<tbody>
+<tr><td>Men's cotton crew-neck T-shirt</td><td>610910</td><td>6109.10.0012, 16.5%</td><td>6109100010, 12.00 %</td><td>6109100010, 12.00 %</td><td>0.97</td></tr>
+<tr><td>Wireless Bluetooth earbuds with charging case</td><td>851830</td><td>8518.30.2000, Free</td><td>8518300090, 0.00 %</td><td>8518300090, 0.00 %</td><td>0.95</td></tr>
+<tr><td>Vacuum-insulated stainless steel water bottle 750 ml</td><td>961700</td><td>9617.00.1000, 7.2%</td><td>9617000000, 6.70 %</td><td>9617000000, 0.00 %</td><td>0.93</td></tr>
+</tbody>
+</table>
+<p>The full record for the bottle:</p>
+<pre><code>{
+  "sku": "C3",
+  "title": "Vacuum-insulated stainless steel water bottle 750 ml",
+  "hs6": "961700",
+  "hs6Description": "Vacuum flasks and other vacuum vessels, complete; parts thereof other than glass inners",
+  "chapter": "96",
+  "national": [
+    {
+      "country": "US",
+      "code": "9617.00.1000",
+      "description": "Vessels &gt; Having a capacity not exceeding 1 liter",
+      "generalDutyRate": "7.2%",
+      "dutyRateType": "General (column 1, MFN) rate",
+      "vatRate": null,
+      "selection": "ai",
+      "selectionNote": "The product is a 750 ml vacuum-insulated stainless steel bottle, which falls within the not-exceeding-1-liter capacity line.",
+      "otherCandidates": [
+        "9617.00.3000",
+        "9617.00.4000",
+        "9617.00.6000"
+      ],
+      "source": "USITC HTS REST API (hts.usitc.gov)"
+    },
+    {
+      "country": "EU",
+      "code": "9617000000",
+      "description": "Vacuum flasks and other vacuum vessels, complete; parts thereof other than glass inners",
+      "generalDutyRate": "6.70 %",
+      "dutyRateType": "Third country duty (ERGA OMNES)",
+      "vatRate": null,
+      "selection": "only-candidate",
+      "selectionNote": null,
+      "otherCandidates": [],
+      "source": "UK Trade Tariff API, Northern Ireland (XI) tariff applying EU TARIC measures (Open Government Licence v3.0)"
+    },
+    {
+      "country": "UK",
+      "code": "9617000000",
+      "description": "Vacuum flasks and other vacuum vessels, complete; parts thereof other than glass inners",
+      "generalDutyRate": "0.00 %",
+      "dutyRateType": "Third country duty",
+      "vatRate": "20.00 %",
+      "selection": "only-candidate",
+      "selectionNote": null,
+      "otherCandidates": [],
+      "source": "UK Trade Tariff API (GOV.UK, Open Government Licence v3.0)"
+    }
+  ],
+  "confidence": 0.93,
+  "reasoning": "The product is a complete vacuum-insulated stainless steel bottle, which is a vacuum vessel. Heading 9617 expressly covers vacuum flasks and other vacuum vessels, complete, so it is more specific than the general household-article heading 7323 under GRI 3(a). Within 9617 the only listed subheading is 961700, so GRI 6 leads directly to that code.",
+  "needsReview": false,
+  "reviewReasons": [],
+  "alternatives": [
+    "732393"
+  ],
+  "missingInformation": [],
+  "inputIndex": 2
+}</code></pre>
+<p>Each record also has <code>missingInformation</code> and <code>needsReview</code>. A script call:</p>
+<pre><code>curl -X POST "https://api.apify.com/v2/acts/messnomore~hs-code-classifier/run-sync-get-dataset-items" \
+  -H "Authorization: Bearer YOUR_APIFY_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"products":[{"sku":"A1","title":"Men'\''s cotton crew-neck T-shirt","material":"cotton"}],"destinations":["US","EU","UK"]}'</code></pre>
+<p>Ready-made examples: <a href="https://apify.com/messnomore/hs-code-classifier/examples/us-hts-code-lookup" target="_blank" rel="noopener">US HTS codes</a>, <a href="https://apify.com/messnomore/hs-code-classifier/examples/eu-taric-code-lookup" target="_blank" rel="noopener">EU TARIC codes</a> or <a href="https://apify.com/messnomore/hs-code-classifier/examples/uk-commodity-code-lookup" target="_blank" rel="noopener">UK commodity codes</a>.</p>
+
+<h2>Why does an automated HS code still need human review for customs?</h2>
+<ul>
+<li><strong>It is not binding.</strong> Only customs authorities issue binding classifications: US CBP rulings, EU Binding Tariff Information and UK Advance Tariff Rulings. The importer remains responsible for the declared code.</li>
+<li><strong>It is not always right.</strong> The developer tested it on 89 real CBP rulings from 2024 to 2026, which cover hard-to-classify products: the exact 6-digit code matched 70% of the time, the correct code was among the answer and its alternatives 85% of the time, and the exact code matched 90% of the time at confidence 0.85 or higher.</li>
+<li><strong>Missing facts change the answer.</strong> A result is flagged <code>needsReview</code> when confidence is below your threshold or a national line is missing, and a <code>selection</code> of <code>ai-assumed</code> means the AI assumed a fact, which the note names.</li>
+</ul>
+
+<h2>Is the duty rate shown the duty I will pay?</h2>
+<p>No. It is the base rate: the US General (column 1, MFN) rate and the EU and UK third-country duty. It excludes US additional duties under Chapter 99 (such as Section 301, Section 232 or other tariff actions), anti-dumping and countervailing duties, preferential rates under trade agreements, quotas, excise and import VAT. The UK standard VAT rate is shown separately. Check the official tariff or your customs broker before you declare goods.</p>
+
+<h2>How much does it cost?</h2>
+<p>Pricing is pay-per-event: $0.01 per classified product with all destinations included, plus a $0.00005 start fee per run. 100 products cost about $1.00 and 1,000 about $10.00. Products that cannot be classified are not charged, and your maximum products and maximum cost per run cap the spend. Apify Bronze, Silver and Gold subscribers get lower prices. The Apify free plan classifies up to 20 products per run.</p>
+
+<h2>What does it cover, and what does it not?</h2>
+<ul>
+<li>Destinations are the US, EU and UK only. EU results come from the Northern Ireland tariff of the UK Trade Tariff service.</li>
+<li>Codes use the HS 2022 edition at 6 digits. Tariff lines and rates are fetched live and cached for up to 24 hours.</li>
+<li>Products with no title or description are skipped.</li>
+<li>It is not a government service, and its output is a reasoned suggestion, not a ruling.</li>
+</ul>
+    <aside class="cta">
+        <h2>Try it</h2>
+        <p><a class="button" href="https://apify.com/messnomore/hs-code-classifier" target="_blank" rel="noopener">AI HS Code Classifier: HTS, TARIC &amp; UK Tariff Codes</a></p>
+        <p>Ready-made example runs:</p>
+        <ul>
+            <li><a href="https://apify.com/messnomore/hs-code-classifier/examples/hs-code-lookup-from-description" target="_blank" rel="noopener">Find HS codes from product descriptions</a></li>
+            <li><a href="https://apify.com/messnomore/hs-code-classifier/examples/us-hts-code-lookup" target="_blank" rel="noopener">Find US HTS codes and duty rates for products</a></li>
+            <li><a href="https://apify.com/messnomore/hs-code-classifier/examples/eu-taric-code-lookup" target="_blank" rel="noopener">Find EU TARIC codes for products</a></li>
+            <li><a href="https://apify.com/messnomore/hs-code-classifier/examples/uk-commodity-code-lookup" target="_blank" rel="noopener">Find UK commodity codes for e-commerce products</a></li>
+            <li><a href="https://apify.com/messnomore/hs-code-classifier/examples/hs-code-classification-chinese" target="_blank" rel="noopener">Classify products into HS codes with Chinese explanations</a></li>
+        </ul>
+    </aside>
+    <section class="faq">
+        <h2>FAQ</h2>
+        <h3>How do I find the HS code for a product?</h3>
+        <p>Describe the product's material, function and how it is made, find the matching heading and subheading in the official tariff using the General Interpretative Rules, then pick the national 10-digit line for the destination. The USITC Harmonized Tariff Schedule and the UK Trade Tariff are free official sources.</p>
+        <h3>What is the difference between an HS code, an HTS code and a TARIC code?</h3>
+        <p>An HS code has 6 digits. The US HTS, EU TARIC and UK commodity codes extend it to 10-digit national lines, and each destination has its own duty rates.</p>
+        <h3>Does the duty rate include Section 301 tariffs?</h3>
+        <p>No. The rate is the base rate: the US General (column 1, MFN) rate and the EU and UK third-country duty. It excludes Chapter 99 additional duties such as Section 301 and 232, anti-dumping and countervailing duties, trade-agreement rates, quotas, excise and import VAT, except the UK standard VAT rate it shows.</p>
+        <h3>Is an AI-generated HS code legally binding?</h3>
+        <p>No. Only customs authorities issue binding classifications, such as US CBP rulings, EU Binding Tariff Information and UK Advance Tariff Rulings. The importer remains responsible for the declared code, so review flagged results and check with a customs broker before you declare goods.</p>
+        <h3>How accurate is AI HS code classification?</h3>
+        <p>In the developer's test on 89 real US CBP rulings from 2024 to 2026, the exact 6-digit code matched 70% of the time and the correct code was among the answer and its alternatives 85% of the time. When confidence was 0.85 or higher, the exact code matched 90% of the time.</p>
+        <h3>How much does a bulk HS code lookup cost?</h3>
+        <p>The AI HS Code Classifier charges $0.01 per classified product with US, EU and UK tariffs included, plus a $0.00005 start fee per run, so 100 products cost about $1.00. Products that cannot be classified are not charged, and Apify Bronze, Silver and Gold subscribers get lower prices.</p>
+    </section>
+    <section class="related"><h2>More guides</h2><ul>
+            <li><a href="/airline-baggage-allowance-api/">Is there an airline baggage allowance API? Carry-on and checked bag limits by airline and fare, as JSON</a></li>
+            <li><a href="/halal-certificate-check/">How do you check a JAKIM or BPJPH halal certificate, and verify many suppliers at once?</a></li>
+            <li><a href="/marketplace-listing-translation/">How do you translate Shopee, Lazada and TikTok Shop listings within the title limits?</a></li>
+            <li><a href="/school-term-dates-api/">Is there an API for school term dates and school holidays?</a></li>
+            <li><a href="/tech-conference-cfp-finder/">Where can I find tech conferences with an open call for papers, including CFPs that cover speaker travel?</a></li>
+            <li><a href="/visa-sponsor-check/">How do I check if a company sponsors work visas in the UK, US or Canada?</a></li>
+            <li><a href="/website-categorization-api/">How do I categorize a list of websites by IAB category, brand safety and parked status with an API?</a></li>
+        </ul></section>
+</article>
+</main>
+<footer class="site">
+    <p>By <a href="https://apify.com/messnomore">Wong Xian Qi</a> · Tools run on the Apify platform · <a href="/llms.txt">llms.txt</a></p>
+</footer>
+</body>
+</html>

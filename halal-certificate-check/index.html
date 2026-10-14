@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>How to Check JAKIM and BPJPH Halal Certificates in Bulk</title>
+    <meta name="description" content="Check a halal certificate in the JAKIM (Malaysia) or BPJPH (Indonesia) registry by hand, or verify whole supplier lists with an API: status, expiry, number.">
+    <link rel="canonical" href="https://wong13977-oss.github.io/halal-certificate-check/">
+    
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="How to Check JAKIM and BPJPH Halal Certificates in Bulk">
+    <meta property="og:description" content="Check a halal certificate in the JAKIM (Malaysia) or BPJPH (Indonesia) registry by hand, or verify whole supplier lists with an API: status, expiry, number.">
+    <meta property="og:url" content="https://wong13977-oss.github.io/halal-certificate-check/">
+    <link rel="stylesheet" href="/styles.css">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"How do you check a JAKIM or BPJPH halal certificate, and verify many suppliers at once?","description":"Check a halal certificate in the JAKIM (Malaysia) or BPJPH (Indonesia) registry by hand, or verify whole supplier lists with an API: status, expiry, number.","inLanguage":"en","dateModified":"2026-10-14","mainEntityOfPage":"https://wong13977-oss.github.io/halal-certificate-check/","author":{"@type":"Person","name":"Wong Xian Qi","url":"https://apify.com/messnomore"},"about":{"@type":"SoftwareApplication","name":"Halal Certificate Checker: JAKIM & BPJPH (Malaysia, Indonesia)","url":"https://apify.com/messnomore/halal-certificate-checker","applicationCategory":"DeveloperApplication","operatingSystem":"Web"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is there an API to check JAKIM and BPJPH halal certificates in bulk?","acceptedAnswer":{"@type":"Answer","text":"Yes. The unofficial Halal Certificate Checker Apify Actor reads the public JAKIM (Malaysia) and BPJPH (Indonesia) registries and returns status, expiry date, certificate number and a match confidence for each name as JSON, CSV or Excel. It is not affiliated with JAKIM or BPJPH."}},{"@type":"Question","name":"Does a BPJPH halal certificate expire?","acceptedAnswer":{"@type":"Answer","text":"BPJPH publishes no expiry date. Under Indonesian law as it stands (Law 6/2023), a certificate stays valid from its issue date as long as the ingredients and production process do not change, so you get the issue date in validFrom."}},{"@type":"Question","name":"Does \"not found\" mean a product is not halal?","acceptedAnswer":{"@type":"Answer","text":"No. It only means no registry entry matched your query above the match threshold. The product may be certified under another company name, by another country's halal body, or not certified in that country."}},{"@type":"Question","name":"Why does one Malaysian company show several expiry dates?","acceptedAnswer":{"@type":"Answer","text":"JAKIM certifies products and premises separately, so a company often holds many certificates. The checker returns the soonest upcoming expiry in validUntil and lists every date in expiryDates."}},{"@type":"Question","name":"Can I check Singapore MUIS halal certificates?","acceptedAnswer":{"@type":"Answer","text":"No. The checker covers only Malaysia's JAKIM directory and Indonesia's BPJPH certificate search. Singapore's MUIS is excluded because its terms of use do not allow commercial reuse of its directory without permission."}},{"@type":"Question","name":"Is it legal to check halal certificates this way?","acceptedAnswer":{"@type":"Answer","text":"The Actor reads only public registry search pages, one request at a time, and returns the business details those registries publish. Some Indonesian small businesses are registered under the owner's personal name, so results can contain personal data: make sure you have a legitimate reason, and consult a lawyer if unsure."}}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"MessNoMore Data Tools","item":"https://wong13977-oss.github.io/"},{"@type":"ListItem","position":2,"name":"How to Check JAKIM and BPJPH Halal Certificates in Bulk","item":"https://wong13977-oss.github.io/halal-certificate-check/"}]}</script>
+</head>
+<body>
+<header class="site">
+    <a class="brand" href="/">MessNoMore Data Tools</a>
+    <nav><a href="/zh/">中文</a> <a href="https://github.com/wong13977-oss/school-term-dates">Free data</a> <a href="https://apify.com/messnomore">Apify Store</a></nav>
+</header>
+<main>
+<article>
+    <p class="crumbs"><a href="/">MessNoMore Data Tools</a> › How to Check JAKIM and BPJPH Halal Certificates in Bulk</p>
+    <h1>How do you check a JAKIM or BPJPH halal certificate, and verify many suppliers at once?</h1>
+    <p class="meta">Updated <time datetime="2026-10-14">2026-10-14</time> · By Wong Xian Qi</p>
+    <p>To check a halal certificate in Malaysia, search the company, brand or product in the JAKIM halal directory (MYeHALAL) on <a href="https://www.halal.gov.my/" target="_blank" rel="noopener">halal.gov.my</a>. In Indonesia, use the <a href="https://bpjph.halal.go.id/cari/sertifikat" target="_blank" rel="noopener">BPJPH certificate search</a>. Both registries are public but take one name at a time, so for a supplier list an unofficial API such as the Halal Certificate Checker can run the same public searches in bulk and return status, expiry date and certificate number in one format.</p>
+
+<h2>Where do you check a halal certificate officially?</h2>
+<p><strong>Malaysia (JAKIM).</strong> Open the <a href="https://www.halal.gov.my/index.php?data=ZGlyZWN0b3J5L2luZGV4X2RpcmVjdG9yeTs7Ozs=" target="_blank" rel="noopener">JAKIM halal directory</a>, pick a category (food and beverage products, or food premises such as restaurants) and type a name. The site is in Malay. Results are split into a company tab (<em>Syarikat</em>) and a product tab (<em>Produk</em>); each row lists expiry dates and links to a detail page. The public directory does not show certificate numbers.</p>
+<p><strong>Indonesia (BPJPH).</strong> The BPJPH search accepts a product name, a business name or a halal certificate number (<code>ID</code> followed by digits). Each result shows the certificate number, issue date, business, product and brand, but no expiry date: under Indonesian law as it stands (Law 6/2023), a certificate stays valid from its issue date while the ingredients and production process do not change.</p>
+
+<h2>What are the limits of checking by hand?</h2>
+<ul>
+<li><strong>Two sites, two data models.</strong> JAKIM gives expiry dates but no certificate numbers; BPJPH gives certificate numbers and issue dates but no expiry.</li>
+<li><strong>Many certificates per company.</strong> JAKIM certifies products and premises separately, so one company can hold many certificates. Gardenia Bakeries (KL) has 29 expiry dates in the sample below.</li>
+<li><strong>Names do not always match exactly.</strong> Legal forms (Sdn Bhd, PT, Tbk) and spellings vary. BPJPH also lists many food stalls whose menu items carry big brand names such as Indomie Goreng, and shows the newest certificates first, so search by the manufacturer's company name (for example "PT Indofood CBP") or by certificate number.</li>
+<li><strong>No bulk mode.</strong> Hundreds of suppliers mean hundreds of manual searches in two languages, and tracking expiry dates means repeating them all.</li>
+</ul>
+
+<h2>How do you verify halal certificates in bulk with an API?</h2>
+<p>The <a href="https://apify.com/messnomore/halal-certificate-checker" target="_blank" rel="noopener">Halal Certificate Checker</a> is an unofficial Apify Actor. You send company names, brands, products or Indonesian certificate numbers plus the countries to check (<code>MY</code>, <code>ID</code> or both). It reads the live registries and returns one row per query and country. Names are matched fuzzily with legal forms ignored. <code>matchConfidence</code> runs from 0 to 1, and below your <code>matchThreshold</code> (default 0.8) the row becomes <code>not_found</code> with the closest <code>alternatives</code>. On paid Apify plans an AI check also reviews ambiguous matches and rejects restaurants, stalls and resellers that only use a brand name; <code>matchMethod</code> and <code>aiReason</code> show how each match was decided.</p>
+<table>
+<thead><tr><th>Field</th><th>What it holds</th></tr></thead>
+<tbody>
+<tr><td><code>status</code></td><td><code>valid</code>, <code>expired</code> or <code>not_found</code> (<code>error</code> means the registry lookup failed)</td></tr>
+<tr><td><code>matchedCompany</code>, <code>matchedProduct</code>, <code>matchedBrand</code></td><td>The certified business, product and brand</td></tr>
+<tr><td><code>certificateNo</code></td><td>BPJPH certificate number (empty for JAKIM)</td></tr>
+<tr><td><code>validUntil</code>, <code>daysToExpiry</code>, <code>expiryDates</code></td><td>Expiry data (JAKIM only)</td></tr>
+<tr><td><code>validFrom</code></td><td>Issue date (BPJPH only)</td></tr>
+<tr><td><code>sourceUrl</code>, <code>checkedAt</code></td><td>Official registry page to verify the row, and when it was read</td></tr>
+</tbody>
+</table>
+<p>Two rows from a real run on 14 October 2026 (fields trimmed, and the Gardenia <code>expiryDates</code> list shortened from 29 dates):</p>
+<pre><code>[
+  {
+    "query": "Gardenia Bakeries",
+    "country": "MY",
+    "status": "valid",
+    "matchedCompany": "GARDENIA BAKERIES (KL) SDN BHD",
+    "certificateNo": null,
+    "issuingBody": "JAKIM",
+    "validUntil": "2026-12-31",
+    "daysToExpiry": 78,
+    "expiryDates": ["2026-12-31", "2027-01-15", "2027-01-31", "..."],
+    "matchConfidence": 0.97,
+    "matchedOn": "company",
+    "matchMethod": "string",
+    "sourceUrl": "https://www.halal.gov.my/directory/slm_viewdetail.php?comp_code=COMP-20050727-143627&amp;type=C&amp;ty=CO",
+    "checkedAt": "2026-10-14T11:05:02.466Z"
+  },
+  {
+    "query": "Mayora Indah",
+    "country": "ID",
+    "status": "valid",
+    "matchedCompany": "PT. MAYORA INDAH TBK",
+    "matchedProduct": "Astick Singles Vanilla Shake",
+    "certificateNo": "ID00410000045791119",
+    "issuingBody": "BPJPH",
+    "validFrom": "2026-08-05",
+    "validUntil": null,
+    "matchConfidence": 1,
+    "matchedOn": "company",
+    "matchMethod": "string",
+    "sourceUrl": "https://bpjph.halal.go.id/cari/sertifikat?no_regis=ID00410000045791119",
+    "checkedAt": "2026-10-14T11:05:10.045Z"
+  }
+]</code></pre>
+<p>Call it from your own system through the Apify API. For long lists, start the run asynchronously and read the dataset when it finishes: the registries are queried one request at a time, so 100 queries in both countries take about 10 to 15 minutes. Ready-made inputs: <a href="https://apify.com/messnomore/halal-certificate-checker/examples/jakim-halal-certificate-check" target="_blank" rel="noopener">JAKIM check</a> and <a href="https://apify.com/messnomore/halal-certificate-checker/examples/bpjph-halal-certificate-check" target="_blank" rel="noopener">BPJPH check</a>.</p>
+<pre><code>curl -X POST "https://api.apify.com/v2/acts/messnomore~halal-certificate-checker/run-sync-get-dataset-items" \
+  -H "Authorization: Bearer YOUR_APIFY_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"queries": ["Gardenia Bakeries", "Mayora Indah"], "countries": ["MY", "ID"]}'</code></pre>
+
+<h2>How do you monitor halal certificate expiry?</h2>
+<p>Set <code>onlyExpiringWithinDays</code> (for example 90) and schedule the run weekly. Every query is checked, but only certificates that expire within that window, have already expired or are no longer listed are returned. This covers Malaysia only, because BPJPH publishes no expiry date. The Malaysian directory appears to drop certificates once they expire, so a vanished certificate comes back as <code>not_found</code> for you to follow up. See the example run <a href="https://apify.com/messnomore/halal-certificate-checker/examples/halal-certificates-expiring-soon" target="_blank" rel="noopener">Find supplier halal certificates expiring in 90 days</a>.</p>
+
+<h2>How much does halal certificate verification cost?</h2>
+<ul>
+<li><strong>$0.005 per result</strong> (one query in one country), including <code>not_found</code> results.</li>
+<li><strong>$0.002 per check</strong> in expiry monitoring mode, whether or not the certificate needs attention.</li>
+<li>A start fee of $0.00005 per run and no charge for compute time. Failed lookups (<code>error</code> rows) are never charged.</li>
+</ul>
+<p>Checking 100 suppliers in Malaysia and Indonesia is 200 results, about $1.00. A weekly monitoring run over 100 Malaysian suppliers costs about $0.20. Apify Bronze, Silver and Gold subscribers get lower prices. <code>maxChecks</code> caps the cost of a run.</p>
+
+<h2>What does the halal checker not cover?</h2>
+<ul>
+<li><strong>Only Malaysia (JAKIM) and Indonesia (BPJPH).</strong> Singapore's MUIS is not covered: its terms of use do not allow commercial reuse of its directory without permission.</li>
+<li><strong>Not official.</strong> It is not affiliated with or endorsed by JAKIM or BPJPH. It reports what their public pages show; for audits or legal purposes, confirm on the official page in <code>sourceUrl</code>. AI checks can be wrong, which is why each row shows its confidence and reason.</li>
+<li><strong><code>not_found</code> does not mean haram.</strong> It means no entry matched above your threshold. The product may be certified under another company name, by another country's halal body, or not certified in that country.</li>
+<li><strong>First page only.</strong> The Actor reads the first page of each registry search. If a broad name has more results, the <code>not_found</code> row says so in <code>note</code>; use the full company name, or the certificate number for Indonesia.</li>
+</ul>
+    <aside class="cta">
+        <h2>Try it</h2>
+        <p><a class="button" href="https://apify.com/messnomore/halal-certificate-checker" target="_blank" rel="noopener">Halal Certificate Checker: JAKIM &amp; BPJPH (Malaysia, Indonesia)</a></p>
+        <p>Ready-made example runs:</p>
+        <ul>
+            <li><a href="https://apify.com/messnomore/halal-certificate-checker/examples/jakim-halal-certificate-check" target="_blank" rel="noopener">Check JAKIM halal certificates for Malaysian brands</a></li>
+            <li><a href="https://apify.com/messnomore/halal-certificate-checker/examples/bpjph-halal-certificate-check" target="_blank" rel="noopener">Verify Indonesian BPJPH halal certificates for suppliers</a></li>
+            <li><a href="https://apify.com/messnomore/halal-certificate-checker/examples/halal-certificates-expiring-soon" target="_blank" rel="noopener">Find supplier halal certificates expiring in 90 days</a></li>
+        </ul>
+    </aside>
+    <section class="faq">
+        <h2>FAQ</h2>
+        <h3>Is there an API to check JAKIM and BPJPH halal certificates in bulk?</h3>
+        <p>Yes. The unofficial Halal Certificate Checker Apify Actor reads the public JAKIM (Malaysia) and BPJPH (Indonesia) registries and returns status, expiry date, certificate number and a match confidence for each name as JSON, CSV or Excel. It is not affiliated with JAKIM or BPJPH.</p>
+        <h3>Does a BPJPH halal certificate expire?</h3>
+        <p>BPJPH publishes no expiry date. Under Indonesian law as it stands (Law 6/2023), a certificate stays valid from its issue date as long as the ingredients and production process do not change, so you get the issue date in validFrom.</p>
+        <h3>Does &quot;not found&quot; mean a product is not halal?</h3>
+        <p>No. It only means no registry entry matched your query above the match threshold. The product may be certified under another company name, by another country's halal body, or not certified in that country.</p>
+        <h3>Why does one Malaysian company show several expiry dates?</h3>
+        <p>JAKIM certifies products and premises separately, so a company often holds many certificates. The checker returns the soonest upcoming expiry in validUntil and lists every date in expiryDates.</p>
+        <h3>Can I check Singapore MUIS halal certificates?</h3>
+        <p>No. The checker covers only Malaysia's JAKIM directory and Indonesia's BPJPH certificate search. Singapore's MUIS is excluded because its terms of use do not allow commercial reuse of its directory without permission.</p>
+        <h3>Is it legal to check halal certificates this way?</h3>
+        <p>The Actor reads only public registry search pages, one request at a time, and returns the business details those registries publish. Some Indonesian small businesses are registered under the owner's personal name, so results can contain personal data: make sure you have a legitimate reason, and consult a lawyer if unsure.</p>
+    </section>
+    <section class="related"><h2>More guides</h2><ul>
+            <li><a href="/airline-baggage-allowance-api/">Is there an airline baggage allowance API? Carry-on and checked bag limits by airline and fare, as JSON</a></li>
+            <li><a href="/hs-code-lookup/">How do you find the HS code for a product, and its US, EU and UK tariff codes?</a></li>
+            <li><a href="/marketplace-listing-translation/">How do you translate Shopee, Lazada and TikTok Shop listings within the title limits?</a></li>
+            <li><a href="/school-term-dates-api/">Is there an API for school term dates and school holidays?</a></li>
+            <li><a href="/tech-conference-cfp-finder/">Where can I find tech conferences with an open call for papers, including CFPs that cover speaker travel?</a></li>
+            <li><a href="/visa-sponsor-check/">How do I check if a company sponsors work visas in the UK, US or Canada?</a></li>
+            <li><a href="/website-categorization-api/">How do I categorize a list of websites by IAB category, brand safety and parked status with an API?</a></li>
+        </ul></section>
+</article>
+</main>
+<footer class="site">
+    <p>By <a href="https://apify.com/messnomore">Wong Xian Qi</a> · Tools run on the Apify platform · <a href="/llms.txt">llms.txt</a></p>
+</footer>
+</body>
+</html>

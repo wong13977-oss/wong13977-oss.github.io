@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>School Term Dates API: UK, Australia, Malaysia (JSON)</title>
+    <meta name="description" content="No single UK school term dates API exists. Get UK council, NSW, Victoria, Queensland and Malaysia school dates as JSON, each with a source link.">
+    <link rel="canonical" href="https://wong13977-oss.github.io/school-term-dates-api/">
+    
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="School Term Dates API: UK, Australia, Malaysia (JSON)">
+    <meta property="og:description" content="No single UK school term dates API exists. Get UK council, NSW, Victoria, Queensland and Malaysia school dates as JSON, each with a source link.">
+    <meta property="og:url" content="https://wong13977-oss.github.io/school-term-dates-api/">
+    <link rel="stylesheet" href="/styles.css">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Is there an API for school term dates and school holidays?","description":"No single UK school term dates API exists. Get UK council, NSW, Victoria, Queensland and Malaysia school dates as JSON, each with a source link.","inLanguage":"en","dateModified":"2026-10-14","mainEntityOfPage":"https://wong13977-oss.github.io/school-term-dates-api/","author":{"@type":"Person","name":"Wong Xian Qi","url":"https://apify.com/messnomore"},"about":{"@type":"SoftwareApplication","name":"School Holidays & Term Dates API: UK, Australia, Malaysia","url":"https://apify.com/messnomore/school-holidays-api","applicationCategory":"DeveloperApplication","operatingSystem":"Web"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is there a free API for UK school term dates?","acceptedAnswer":{"@type":"Answer","text":"There is no single national JSON API for UK school term dates. Each council publishes its own dates in different formats, and data.gov.uk has some council datasets as CSV or XML. The School Holidays & Term Dates API puts 10 councils plus Northern Ireland into one JSON format."}},{"@type":"Question","name":"What are Kumpulan A and Kumpulan B school holidays in Malaysia?","acceptedAnswer":{"@type":"Answer","text":"The Ministry of Education (KPM) academic calendar has separate tables for Kumpulan A and Kumpulan B. The API maps Kelantan, Terengganu and Kedah to Kumpulan A and the other states and federal territories to Kumpulan B, with separate variations for Kedah and Sarawak, so you can request a state by name or code."}},{"@type":"Question","name":"Where can I find NSW school term dates and holidays as JSON?","acceptedAnswer":{"@type":"Answer","text":"The NSW Department of Education publishes term and holiday dates on its website, with Eastern and Western division dates. The API returns them as JSON: AU-NSW holds the Eastern dates and AU-NSW-W the Western division, each record with a sourceUrl and a lastVerified date."}},{"@type":"Question","name":"How often do the school term dates data change?","acceptedAnswer":{"@type":"Answer","text":"Every source is checked weekly, and lastVerified on each record is the last day its source was fetched and still matched the dates. New school years appear once the publisher releases them."}},{"@type":"Question","name":"Can I use school term dates data commercially?","acceptedAnswer":{"@type":"Answer","text":"The UK data is published under the Open Government Licence v3.0 and the Australian data under CC BY 4.0, both of which allow commercial use with attribution. Keep sourceName, sourceUrl and licence with the data. The Malaysian dates are factual dates from KPM's academic calendar, so credit KPM as the source."}},{"@type":"Question","name":"Do the dates apply to every school?","acceptedAnswer":{"@type":"Answer","text":"They apply to the schools named in the scope field. In England that means community and voluntary-controlled schools, so academies, free and foundation schools may set their own dates, and INSET days are not included. Australian and Malaysian records cover government schools."}}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"MessNoMore Data Tools","item":"https://wong13977-oss.github.io/"},{"@type":"ListItem","position":2,"name":"School Term Dates API: UK, Australia, Malaysia (JSON)","item":"https://wong13977-oss.github.io/school-term-dates-api/"}]}</script>
+</head>
+<body>
+<header class="site">
+    <a class="brand" href="/">MessNoMore Data Tools</a>
+    <nav><a href="/zh/">中文</a> <a href="https://github.com/wong13977-oss/school-term-dates">Free data</a> <a href="https://apify.com/messnomore">Apify Store</a></nav>
+</header>
+<main>
+<article>
+    <p class="crumbs"><a href="/">MessNoMore Data Tools</a> › School Term Dates API: UK, Australia, Malaysia (JSON)</p>
+    <h1>Is there an API for school term dates and school holidays?</h1>
+    <p class="meta">Updated <time datetime="2026-10-14">2026-10-14</time> · By Wong Xian Qi</p>
+    <p>There is no single national JSON API for UK school term dates: each council publishes its own dates in its own format, and the Australian state education departments and Malaysia's Ministry of Education (KPM) do the same. The <a href="https://apify.com/messnomore/school-holidays-api" target="_blank" rel="noopener">School Holidays &amp; Term Dates API</a> reads those official calendars for 10 UK councils plus Northern Ireland, five Australian states and every Malaysian state, and returns terms, half terms and holidays as consistent JSON with a source link on every record.</p>
+
+<h2>Where do school term dates come from?</h2>
+<p>In the UK, term dates come from each council's own website. They appear as an HTML table (for example <a href="https://www.eastsussex.gov.uk/education-learning/term-dates" target="_blank" rel="noopener">East Sussex</a>) or as a calendar feed (<a href="https://events.falkirk.gov.uk/ics/schools" target="_blank" rel="noopener">Falkirk</a> publishes an iCalendar file), and data.gov.uk has some council datasets as CSV or XML. Northern Ireland publishes <a href="https://www.education-ni.gov.uk/articles/school-holidays" target="_blank" rel="noopener">school holidays</a> but not term dates. GOV.UK does publish one JSON file, <a href="https://www.gov.uk/bank-holidays.json" target="_blank" rel="noopener">bank holidays</a>, but that is not the same as school terms.</p>
+<p>In Australia each state publishes its own calendar: <a href="https://education.nsw.gov.au/schooling/calendars/2026" target="_blank" rel="noopener">NSW</a> (Eastern and Western divisions, with later years on a <a href="https://education.nsw.gov.au/schooling/calendars/future-and-past-nsw-term-and-vacation-dates" target="_blank" rel="noopener">separate page</a>), <a href="https://www.vic.gov.au/school-term-dates-and-holidays-victoria" target="_blank" rel="noopener">Victoria</a>, <a href="https://education.qld.gov.au/about-us/calendar/term-dates" target="_blank" rel="noopener">Queensland</a>, <a href="https://www.education.wa.edu.au/future-term-dates" target="_blank" rel="noopener">Western Australia</a> and <a href="https://www.decyp.tas.gov.au/learning/term-dates/" target="_blank" rel="noopener">Tasmania</a>. In Malaysia, KPM publishes a yearly academic calendar PDF with separate tables for Kumpulan A and Kumpulan B, listed on its <a href="https://www.moe.gov.my/kalendar-akademik-semasa" target="_blank" rel="noopener">academic calendar page</a>.</p>
+
+<h2>Which Malaysian states follow Kumpulan A and Kumpulan B?</h2>
+<table>
+<thead><tr><th>Calendar</th><th>States and territories, as the API maps them</th></tr></thead>
+<tbody>
+<tr><td>Kumpulan A</td><td>Kelantan, Terengganu, and Kedah (own variation)</td></tr>
+<tr><td>Kumpulan B</td><td>Johor, Melaka, Negeri Sembilan, Pahang, Pulau Pinang, Perak, Perlis, Selangor, Sabah, Kuala Lumpur, Labuan, Putrajaya, and Sarawak (own variation)</td></tr>
+</tbody>
+</table>
+<p>Kedah and Sarawak have their own calendars because the Ministry gives them some different festive holidays. Malaysian <code>holiday</code> records include the extra festive school holidays announced by KPM. Ask for a state by name or code (<code>Selangor</code> or <code>MY-10</code>) and you get its calendar.</p>
+
+<h2>How do I get school term dates as JSON?</h2>
+<p>Choose a country (<code>GB</code>, <code>AU</code> or <code>MY</code>), the councils or states, the school years and the record types: <code>term</code>, <code>half_term</code>, <code>holiday</code> or <code>public_holiday</code>. A year means the year a school year starts, so in the UK 2026 is 2026/27, and in Australia and Malaysia it is the 2026 school year. This request returns NSW terms and holidays for 2026 and 2027:</p>
+<pre><code>curl -X POST "https://api.apify.com/v2/acts/messnomore~school-holidays-api/run-sync-get-dataset-items" \
+  -H "Authorization: Bearer YOUR_APIFY_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"country": "AU", "regions": ["NSW"], "years": [2026, 2027], "types": ["term", "holiday"]}'</code></pre>
+<p>The first two of its 16 records, from a real run:</p>
+<pre><code>[
+  {
+    "country": "AU",
+    "region": "New South Wales",
+    "regionCode": "AU-NSW",
+    "scope": "Government (state) schools. Catholic and independent schools may differ.",
+    "schoolYear": "2026",
+    "type": "term",
+    "name": "Term 1",
+    "start": "2026-02-02",
+    "end": "2026-04-02",
+    "days": 60,
+    "derived": false,
+    "notes": "School development days Tuesday 27 January to Friday 30 January; students start Monday 2 February",
+    "sourceName": "NSW Department of Education",
+    "sourceUrl": "https://education.nsw.gov.au/schooling/calendars/2026",
+    "licence": "CC BY 4.0",
+    "lastVerified": "2026-10-12"
+  },
+  {
+    "country": "AU",
+    "region": "New South Wales",
+    "regionCode": "AU-NSW",
+    "scope": "Government (state) schools. Catholic and independent schools may differ.",
+    "schoolYear": "2026",
+    "type": "holiday",
+    "name": "Autumn holidays",
+    "start": "2026-04-07",
+    "end": "2026-04-17",
+    "days": 11,
+    "derived": false,
+    "notes": null,
+    "sourceName": "NSW Department of Education",
+    "sourceUrl": "https://education.nsw.gov.au/schooling/calendars/2026",
+    "licence": "CC BY 4.0",
+    "lastVerified": "2026-10-12"
+  }
+]</code></pre>
+<p>The same fields come back for every publisher, even when the calendars are built differently. Falkirk has four terms a year, and some publishers, Victoria among them, list mainly term dates, so the holidays between terms are worked out and marked <code>derived: true</code>:</p>
+<table>
+<thead><tr><th>regionCode</th><th>schoolYear</th><th>type</th><th>name</th><th>start</th><th>end</th><th>days</th><th>derived</th></tr></thead>
+<tbody>
+<tr><td>GB-BKM</td><td>2026/27</td><td>half_term</td><td>October half term</td><td>2026-10-26</td><td>2026-10-30</td><td>5</td><td>false</td></tr>
+<tr><td>GB-FAL</td><td>2026/27</td><td>term</td><td>Autumn term</td><td>2026-08-12</td><td>2026-10-09</td><td>59</td><td>false</td></tr>
+<tr><td>GB-FAL</td><td>2026/27</td><td>term</td><td>Winter term</td><td>2026-10-26</td><td>2026-12-22</td><td>58</td><td>false</td></tr>
+<tr><td>AU-VIC</td><td>2026</td><td>holiday</td><td>Term 1 holidays</td><td>2026-04-03</td><td>2026-04-17</td><td>15</td><td>true</td></tr>
+</tbody>
+</table>
+<p>Every record also carries <code>sourceUrl</code>, <code>licence</code> and <code>lastVerified</code>, the last day the source was fetched and still matched. Each source is checked weekly, its dates are extracted twice and compared, and every change is reviewed before it is published. New school years appear once the publisher releases them.</p>
+
+<h2>How much does it cost?</h2>
+<p>Pay-per-event pricing: <strong>$0.005 per record returned</strong>, plus $0.00005 per run start, with no charge for compute time. One UK council for two school years is about 18 records, or about $0.09. The 16 NSW records above cost about $0.08. All six Australian regions for one school year are roughly 45 to 55 records (about $0.25), and all 16 Malaysian states and territories for one year are roughly 160 to 190 records (about $0.80 to $0.95). Apify Bronze, Silver and Gold subscribers get lower prices.</p>
+
+<h2>Which regions are covered, and what is not?</h2>
+<ul>
+<li><strong>UK:</strong> Buckinghamshire, Bracknell Forest, East Sussex, Milton Keynes, Staffordshire and Wolverhampton (England); Merthyr Tydfil and Monmouthshire (Wales); Falkirk and Renfrewshire (Scotland); Northern Ireland (holidays only). Other councils are not covered yet.</li>
+<li><strong>Australia:</strong> NSW (Eastern, plus Western as <code>AU-NSW-W</code>), Victoria, Queensland, Western Australia and Tasmania.</li>
+<li><strong>Malaysia:</strong> all 13 states and 3 federal territories.</li>
+<li><strong>Not included:</strong> school INSET or training days, and public holidays for Australia and Malaysia. In England the dates cover community and voluntary-controlled schools, so academies, free and foundation schools may differ.</li>
+</ul>
+
+<h2>Is there a free sample dataset?</h2>
+<p>A free sample dataset will be published on GitHub: 2026 for NSW, Victoria and Queensland, and 2026/27 for some UK councils, under CC BY 4.0 and the Open Government Licence. Find it here: <a href="https://github.com/wong13977-oss/school-term-dates" target="_blank" rel="noopener">free school term dates sample dataset</a>.</p>
+    <aside class="cta">
+        <h2>Try it</h2>
+        <p><a class="button" href="https://apify.com/messnomore/school-holidays-api" target="_blank" rel="noopener">School Holidays &amp; Term Dates API: UK, Australia, Malaysia</a></p>
+        <p>Ready-made example runs:</p>
+        <ul>
+            <li><a href="https://apify.com/messnomore/school-holidays-api/examples/nsw-school-term-dates-holidays" target="_blank" rel="noopener">Get NSW school term dates and holidays</a></li>
+            <li><a href="https://apify.com/messnomore/school-holidays-api/examples/victoria-school-term-dates" target="_blank" rel="noopener">Get Victoria school term dates and holidays</a></li>
+            <li><a href="https://apify.com/messnomore/school-holidays-api/examples/queensland-school-holidays" target="_blank" rel="noopener">Get Queensland school term dates and holidays</a></li>
+            <li><a href="https://apify.com/messnomore/school-holidays-api/examples/malaysia-school-holidays" target="_blank" rel="noopener">Get Malaysia school holidays for Kumpulan A and B</a></li>
+            <li><a href="https://apify.com/messnomore/school-holidays-api/examples/uk-council-school-term-dates" target="_blank" rel="noopener">Get UK school term dates and half terms by council</a></li>
+            <li><a href="https://apify.com/messnomore/school-holidays-api/examples/northern-ireland-school-holidays" target="_blank" rel="noopener">Get Northern Ireland school holidays</a></li>
+        </ul>
+    </aside>
+    <section class="faq">
+        <h2>FAQ</h2>
+        <h3>Is there a free API for UK school term dates?</h3>
+        <p>There is no single national JSON API for UK school term dates. Each council publishes its own dates in different formats, and data.gov.uk has some council datasets as CSV or XML. The School Holidays &amp; Term Dates API puts 10 councils plus Northern Ireland into one JSON format.</p>
+        <h3>What are Kumpulan A and Kumpulan B school holidays in Malaysia?</h3>
+        <p>The Ministry of Education (KPM) academic calendar has separate tables for Kumpulan A and Kumpulan B. The API maps Kelantan, Terengganu and Kedah to Kumpulan A and the other states and federal territories to Kumpulan B, with separate variations for Kedah and Sarawak, so you can request a state by name or code.</p>
+        <h3>Where can I find NSW school term dates and holidays as JSON?</h3>
+        <p>The NSW Department of Education publishes term and holiday dates on its website, with Eastern and Western division dates. The API returns them as JSON: AU-NSW holds the Eastern dates and AU-NSW-W the Western division, each record with a sourceUrl and a lastVerified date.</p>
+        <h3>How often do the school term dates data change?</h3>
+        <p>Every source is checked weekly, and lastVerified on each record is the last day its source was fetched and still matched the dates. New school years appear once the publisher releases them.</p>
+        <h3>Can I use school term dates data commercially?</h3>
+        <p>The UK data is published under the Open Government Licence v3.0 and the Australian data under CC BY 4.0, both of which allow commercial use with attribution. Keep sourceName, sourceUrl and licence with the data. The Malaysian dates are factual dates from KPM's academic calendar, so credit KPM as the source.</p>
+        <h3>Do the dates apply to every school?</h3>
+        <p>They apply to the schools named in the scope field. In England that means community and voluntary-controlled schools, so academies, free and foundation schools may set their own dates, and INSET days are not included. Australian and Malaysian records cover government schools.</p>
+    </section>
+    <section class="related"><h2>More guides</h2><ul>
+            <li><a href="/airline-baggage-allowance-api/">Is there an airline baggage allowance API? Carry-on and checked bag limits by airline and fare, as JSON</a></li>
+            <li><a href="/halal-certificate-check/">How do you check a JAKIM or BPJPH halal certificate, and verify many suppliers at once?</a></li>
+            <li><a href="/hs-code-lookup/">How do you find the HS code for a product, and its US, EU and UK tariff codes?</a></li>
+            <li><a href="/marketplace-listing-translation/">How do you translate Shopee, Lazada and TikTok Shop listings within the title limits?</a></li>
+            <li><a href="/tech-conference-cfp-finder/">Where can I find tech conferences with an open call for papers, including CFPs that cover speaker travel?</a></li>
+            <li><a href="/visa-sponsor-check/">How do I check if a company sponsors work visas in the UK, US or Canada?</a></li>
+            <li><a href="/website-categorization-api/">How do I categorize a list of websites by IAB category, brand safety and parked status with an API?</a></li>
+        </ul></section>
+</article>
+</main>
+<footer class="site">
+    <p>By <a href="https://apify.com/messnomore">Wong Xian Qi</a> · Tools run on the Apify platform · <a href="/llms.txt">llms.txt</a></p>
+</footer>
+</body>
+</html>
