@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MCP Server for Visa, School Holiday, Halal &amp; HS Code Data</title>
+    <meta name="description" content="Connect Claude, ChatGPT or Cursor to 8 data tools over MCP: visa sponsors, school term dates, halal certificates, HS codes, baggage rules and more.">
+    <link rel="canonical" href="https://wong13977-oss.github.io/mcp-server/">
+    
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="MCP Server for Visa, School Holiday, Halal &amp; HS Code Data">
+    <meta property="og:description" content="Connect Claude, ChatGPT or Cursor to 8 data tools over MCP: visa sponsors, school term dates, halal certificates, HS codes, baggage rules and more.">
+    <meta property="og:url" content="https://wong13977-oss.github.io/mcp-server/">
+    <link rel="stylesheet" href="/styles.css">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Use visa sponsor, school holiday, halal certificate, HS code and other data tools in Claude, ChatGPT and Cursor (MCP)","description":"Connect Claude, ChatGPT or Cursor to 8 data tools over MCP: visa sponsors, school term dates, halal certificates, HS codes, baggage rules and more.","inLanguage":"en","dateModified":"2026-10-14","mainEntityOfPage":"https://wong13977-oss.github.io/mcp-server/","author":{"@type":"Person","name":"Wong Xian Qi","url":"https://apify.com/messnomore"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is there an MCP server for UK visa sponsors, school term dates or halal certificates?","acceptedAnswer":{"@type":"Answer","text":"Yes. Add the remote MCP URL on this page to Claude, ChatGPT, Cursor or any MCP client and the assistant gets eight tools, including a visa sponsor checker, a school term dates API and a halal certificate checker."}},{"@type":"Question","name":"Do I need an account?","acceptedAnswer":{"@type":"Answer","text":"Yes, a free Apify account. The tools run on Apify, and the first connection opens an Apify sign-in page to authorize your MCP client."}},{"@type":"Question","name":"How much does it cost?","acceptedAnswer":{"@type":"Answer","text":"There is no subscription. Each tool charges per result returned, from $0.002 per visa sponsor record to $0.02 per airline fare or localized listing, billed to your Apify account. Apify's free plan includes monthly usage credit."}},{"@type":"Question","name":"What happens if a lookup takes longer than the assistant waits?","acceptedAnswer":{"@type":"Answer","text":"The server includes the get-actor-run and get-dataset-items tools, so the assistant can check the run and fetch the results once it finishes."}},{"@type":"Question","name":"Are these official government or registry tools?","acceptedAnswer":{"@type":"Answer","text":"No. They are independent tools that read official public sources such as the UK register of licensed sponsors, council and state school calendars, and the JAKIM and BPJPH registries. Confirm important results with the official source."}}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"MessNoMore Data Tools","item":"https://wong13977-oss.github.io/"},{"@type":"ListItem","position":2,"name":"MCP Server for Visa, School Holiday, Halal & HS Code Data","item":"https://wong13977-oss.github.io/mcp-server/"}]}</script>
+</head>
+<body>
+<header class="site">
+    <a class="brand" href="/">MessNoMore Data Tools</a>
+    <nav><a href="/zh/">中文</a> <a href="https://github.com/wong13977-oss/school-term-dates">Free data</a> <a href="https://apify.com/messnomore">Apify Store</a></nav>
+</header>
+<main>
+<article>
+    <p class="crumbs"><a href="/">MessNoMore Data Tools</a> › MCP Server for Visa, School Holiday, Halal &amp; HS Code Data</p>
+    <h1>Use visa sponsor, school holiday, halal certificate, HS code and other data tools in Claude, ChatGPT and Cursor (MCP)</h1>
+    <p class="meta">Updated <time datetime="2026-10-14">2026-10-14</time> · By Wong Xian Qi</p>
+    <p>To give Claude, ChatGPT, Cursor or another MCP client access to these data tools, add one remote MCP server URL and sign in with a free Apify account. The assistant then gets eight tools: tech conference CFPs, school term dates, visa sponsor registers, halal certificates, airline baggage rules, HS codes, Southeast Asian marketplace listing translation and website categorization. Each tool charges per result returned, billed to your own Apify account.</p>
+
+<h2>What is the MCP server URL?</h2>
+<p>The server is Apify's hosted MCP server, limited to these eight tools plus two helper tools for fetching results of longer runs. It uses the Streamable HTTP transport and OAuth sign-in:</p>
+<pre><code>https://mcp.apify.com/?tools=messnomore/cfp-radar,messnomore/school-holidays-api,messnomore/visa-sponsor-checker,messnomore/halal-certificate-checker,messnomore/airline-baggage-allowance,messnomore/hs-code-classifier,messnomore/sea-listing-localizer,messnomore/website-categorization,get-actor-run,get-dataset-items</code></pre>
+
+<h2>Which tools does the assistant get?</h2>
+<table>
+<thead><tr><th>Tool</th><th>Ask it for</th><th>Price</th></tr></thead>
+<tbody>
+<tr><td><a href="https://apify.com/messnomore/visa-sponsor-checker" target="_blank" rel="noopener">Visa Sponsor Checker</a></td><td>Whether a company is on the UK register of licensed sponsors, files US H-1B LCAs, or has positive Canadian LMIA decisions</td><td>$0.002 per company record, $0.005 per enriched job</td></tr>
+<tr><td><a href="https://apify.com/messnomore/school-holidays-api" target="_blank" rel="noopener">School Holidays &amp; Term Dates API</a></td><td>Term dates, half terms and holidays for 10 UK councils plus Northern Ireland, five Australian states and every Malaysian state</td><td>$0.005 per record</td></tr>
+<tr><td><a href="https://apify.com/messnomore/halal-certificate-checker" target="_blank" rel="noopener">Halal Certificate Checker</a></td><td>Certificate status, expiry date and number in the JAKIM (Malaysia) and BPJPH (Indonesia) registries</td><td>$0.005 per check</td></tr>
+<tr><td><a href="https://apify.com/messnomore/hs-code-classifier" target="_blank" rel="noopener">AI HS Code Classifier</a></td><td>6-digit HS codes from product descriptions, mapped to US HTS, EU TARIC and UK codes with base duty rates</td><td>$0.01 per product</td></tr>
+<tr><td><a href="https://apify.com/messnomore/airline-baggage-allowance" target="_blank" rel="noopener">Airline Baggage Allowance API</a></td><td>Carry-on, personal item and checked bag rules per fare for Malaysia Airlines, Thai Airways, Vietnam Airlines and Air Arabia</td><td>$0.02 per fare</td></tr>
+<tr><td><a href="https://apify.com/messnomore/sea-listing-localizer" target="_blank" rel="noopener">Shopee, Lazada &amp; TikTok Shop Listing Translator</a></td><td>Shopee, Lazada and TikTok Shop listings translated into Malay, Indonesian, Thai or Vietnamese within title limits, plus a Malaysia CPETTR 2024 check</td><td>$0.02 per localized listing, $0.01 per run</td></tr>
+<tr><td><a href="https://apify.com/messnomore/website-categorization" target="_blank" rel="noopener">AI Website Categorization</a></td><td>IAB Content Taxonomy 3.1 categories, industry, brand safety flags and parked or dead domain detection</td><td>$0.006 per domain, $0.001 if unclassifiable</td></tr>
+<tr><td><a href="https://apify.com/messnomore/cfp-radar" target="_blank" rel="noopener">CFP Radar</a></td><td>Open tech conference calls for papers by topic, region, deadline and travel support, ranked against your talk abstract</td><td>$0.01 per CFP</td></tr>
+</tbody>
+</table>
+<p>Apify Bronze, Silver and Gold subscribers get lower prices. There is no subscription to these tools themselves.</p>
+
+<h2>How do I connect it to Claude?</h2>
+<ol>
+<li>In Claude (claude.ai or Claude Desktop), open <strong>Settings</strong> and then <strong>Connectors</strong>.</li>
+<li>Select <strong>Add</strong>, then <strong>Add custom connector</strong>.</li>
+<li>Enter a name such as <code>MessNoMore data tools</code> and paste the URL above as the remote MCP server URL.</li>
+<li>Select <strong>Continue</strong>, keep the detected OAuth settings and select <strong>Add</strong>. Your browser opens to sign in to Apify.</li>
+</ol>
+<p>In Claude Code, run:</p>
+<pre><code>claude mcp add --transport http messnomore "https://mcp.apify.com/?tools=messnomore/cfp-radar,messnomore/school-holidays-api,messnomore/visa-sponsor-checker,messnomore/halal-certificate-checker,messnomore/airline-baggage-allowance,messnomore/hs-code-classifier,messnomore/sea-listing-localizer,messnomore/website-categorization,get-actor-run,get-dataset-items"</code></pre>
+
+<h2>How do I connect it to ChatGPT?</h2>
+<ol>
+<li>Turn on Developer mode in ChatGPT.</li>
+<li>Go to <strong>Settings</strong>, <strong>Apps &amp; Connectors</strong>, <strong>Create</strong>.</li>
+<li>Paste the URL above as the MCP server URL and choose OAuth as the authentication.</li>
+<li>Select <strong>Create</strong> and authorize ChatGPT in the Apify sign-in page.</li>
+</ol>
+<p>ChatGPT does not let you change the tool list of a connector after it is created; create a new connector to change it.</p>
+
+<h2>How do I connect it to Cursor, VS Code or other clients?</h2>
+<p>Most clients accept a remote server entry with a URL. Cursor (<code>mcp.json</code>):</p>
+<pre><code>{
+  "mcpServers": {
+    "messnomore": {
+      "url": "https://mcp.apify.com/?tools=messnomore/cfp-radar,messnomore/school-holidays-api,messnomore/visa-sponsor-checker,messnomore/halal-certificate-checker,messnomore/airline-baggage-allowance,messnomore/hs-code-classifier,messnomore/sea-listing-localizer,messnomore/website-categorization,get-actor-run,get-dataset-items"
+    }
+  }
+}</code></pre>
+<p>If a client cannot do OAuth, send your Apify API token as an <code>Authorization: Bearer YOUR_APIFY_TOKEN</code> header instead.</p>
+
+<h2>What can I ask once it is connected?</h2>
+<ul>
+<li>"Is Revolut a licensed UK visa sponsor, and for which routes?"</li>
+<li>"List the 2027 school holidays for New South Wales as a table."</li>
+<li>"Check whether Gardenia Bakeries has a valid JAKIM halal certificate."</li>
+<li>"What are the carry-on limits on Malaysia Airlines economy fares?"</li>
+<li>"Find the HS code and US base duty rate for a vacuum-insulated stainless steel water bottle."</li>
+<li>"Which IAB category is shopify.com in, and is it brand safe?"</li>
+<li>"Find open Rust conference CFPs that cover speaker travel."</li>
+</ul>
+<p>Each guide on this site explains the free official way to get the same answer by hand: see the <a href="/">full list of guides</a>.</p>
+    
+    <section class="faq">
+        <h2>FAQ</h2>
+        <h3>Is there an MCP server for UK visa sponsors, school term dates or halal certificates?</h3>
+        <p>Yes. Add the remote MCP URL on this page to Claude, ChatGPT, Cursor or any MCP client and the assistant gets eight tools, including a visa sponsor checker, a school term dates API and a halal certificate checker.</p>
+        <h3>Do I need an account?</h3>
+        <p>Yes, a free Apify account. The tools run on Apify, and the first connection opens an Apify sign-in page to authorize your MCP client.</p>
+        <h3>How much does it cost?</h3>
+        <p>There is no subscription. Each tool charges per result returned, from $0.002 per visa sponsor record to $0.02 per airline fare or localized listing, billed to your Apify account. Apify's free plan includes monthly usage credit.</p>
+        <h3>What happens if a lookup takes longer than the assistant waits?</h3>
+        <p>The server includes the get-actor-run and get-dataset-items tools, so the assistant can check the run and fetch the results once it finishes.</p>
+        <h3>Are these official government or registry tools?</h3>
+        <p>No. They are independent tools that read official public sources such as the UK register of licensed sponsors, council and state school calendars, and the JAKIM and BPJPH registries. Confirm important results with the official source.</p>
+    </section>
+    <section class="related"><h2>More guides</h2><ul>
+            <li><a href="/airline-baggage-allowance-api/">Is there an airline baggage allowance API? Carry-on and checked bag limits by airline and fare, as JSON</a></li>
+            <li><a href="/halal-certificate-check/">How do you check a JAKIM or BPJPH halal certificate, and verify many suppliers at once?</a></li>
+            <li><a href="/hs-code-lookup/">How do you find the HS code for a product, and its US, EU and UK tariff codes?</a></li>
+            <li><a href="/marketplace-listing-translation/">How do you translate Shopee, Lazada and TikTok Shop listings within the title limits?</a></li>
+            <li><a href="/school-term-dates-api/">Is there an API for school term dates and school holidays?</a></li>
+            <li><a href="/tech-conference-cfp-finder/">Where can I find tech conferences with an open call for papers, including CFPs that cover speaker travel?</a></li>
+            <li><a href="/visa-sponsor-check/">How do I check if a company sponsors work visas in the UK, US or Canada?</a></li>
+            <li><a href="/website-categorization-api/">How do I categorize a list of websites by IAB category, brand safety and parked status with an API?</a></li>
+        </ul></section>
+</article>
+</main>
+<footer class="site">
+    <p>By <a href="https://apify.com/messnomore">Wong Xian Qi</a> · Tools run on the Apify platform · <a href="/llms.txt">llms.txt</a></p>
+</footer>
+</body>
+</html>
