@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>做菜视频怎么转成文字菜谱：用量、步骤和营养一次整理</title>
+    <meta name="description" content="把 YouTube、抖音、小红书的做菜视频整理成文字菜谱：先看简介和文案，批量处理时用 API 输出食材用量、步骤、每份营养和购物清单。">
+    <link rel="canonical" href="https://wong13977-oss.github.io/zh/cooking-video-to-recipe/">
+    <link rel="alternate" hreflang="en" href="https://wong13977-oss.github.io/cooking-video-to-recipe/">
+    <link rel="alternate" hreflang="zh-CN" href="https://wong13977-oss.github.io/zh/cooking-video-to-recipe/">
+    <link rel="alternate" hreflang="x-default" href="https://wong13977-oss.github.io/cooking-video-to-recipe/">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="做菜视频怎么转成文字菜谱：用量、步骤和营养一次整理">
+    <meta property="og:description" content="把 YouTube、抖音、小红书的做菜视频整理成文字菜谱：先看简介和文案，批量处理时用 API 输出食材用量、步骤、每份营养和购物清单。">
+    <meta property="og:url" content="https://wong13977-oss.github.io/zh/cooking-video-to-recipe/">
+    <link rel="stylesheet" href="/styles.css">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"做菜视频怎么转成带用量、步骤和营养的文字菜谱？","description":"把 YouTube、抖音、小红书的做菜视频整理成文字菜谱：先看简介和文案，批量处理时用 API 输出食材用量、步骤、每份营养和购物清单。","inLanguage":"zh-CN","dateModified":"2026-10-15","mainEntityOfPage":"https://wong13977-oss.github.io/zh/cooking-video-to-recipe/","author":{"@type":"Person","name":"Wong Xian Qi","url":"https://apify.com/messnomore"},"about":{"@type":"SoftwareApplication","name":"Video to Recipe API: YouTube Recipe Extractor & Nutrition","url":"https://apify.com/messnomore/video-to-recipe","applicationCategory":"DeveloperApplication","operatingSystem":"Web"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"能直接粘贴抖音或小红书的链接吗？","acceptedAnswer":{"@type":"Answer","text":"不能。请把视频文案复制进来，链接可以填在 sourceUrl 里留作记录。这个工具不会打开抖音、小红书、TikTok 或 Instagram 的页面。如果用量只在口播里，可以提供你有权处理的视频或音频文件直链，语音会先转成文字。"}},{"@type":"Question","name":"输出可以是中文吗？","acceptedAnswer":{"@type":"Answer","text":"可以。outputLanguage 选 zh，菜名、食材和步骤都用简体中文输出，原视频是繁体或其他语言也一样。另有英文、马来文、泰文、越南文、日文等共 12 种输出语言。"}},{"@type":"Question","name":"视频里没说用量怎么办？","acceptedAnswer":{"@type":"Answer","text":"用量会留空，并在 missingInfo 里写明 quantity:<食材>，提醒你下厨前确认。工具不会猜测用量，视频没提到的份数和时间也会列在这里。"}},{"@type":"Question","name":"每份营养准确吗？","acceptedAnswer":{"@type":"Answer","text":"是估算值。每种食材会对应到美国农业部 USDA FoodData Central 的一种食物，再按用量算出重量；能对应上且有用量的食材不到一半时，nutritionPerServing 为 null。带骨肉的重量会把骨头算进去，所以这类菜谱的热量偏高。"}},{"@type":"Question","name":"收费怎么算？","acceptedAnswer":{"@type":"Answer","text":"每道菜谱 0.04 美元，包含 3 分钟以内的音视频；超出部分每开始一分钟 0.015 美元，每次运行另有 0.00005 美元启动费。不是菜谱或无法读取的条目不收费。Apify Bronze、Silver 和 Gold 订阅用户价格更低。"}}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"MessNoMore Data Tools","item":"https://wong13977-oss.github.io/zh/"},{"@type":"ListItem","position":2,"name":"做菜视频怎么转成文字菜谱：用量、步骤和营养一次整理","item":"https://wong13977-oss.github.io/zh/cooking-video-to-recipe/"}]}</script>
+</head>
+<body>
+<header class="site">
+    <a class="brand" href="/zh/">MessNoMore Data Tools</a>
+    <nav><a href="/">English</a> <a href="https://github.com/wong13977-oss/school-term-dates">免费数据</a> <a href="https://apify.com/messnomore">Apify Store</a></nav>
+</header>
+<main>
+<article>
+    <p class="crumbs"><a href="/zh/">MessNoMore Data Tools</a> › 做菜视频怎么转成文字菜谱：用量、步骤和营养一次整理</p>
+    <h1>做菜视频怎么转成带用量、步骤和营养的文字菜谱？</h1>
+    <p class="meta">更新于 <time datetime="2026-10-15">2026-10-15</time> · 作者 Wong Xian Qi</p>
+    <p>想把做菜视频变成文字菜谱，先看创作者自己写下的内容：YouTube 的视频简介和置顶评论，抖音、小红书、Reels 的文案，很多人会把食材清单放在那里；只在口播里说的用量，暂停视频记下来即可。如果要一次处理很多视频，或者需要统一的克数、份数和营养数据，可以用 Apify 上的 Video to Recipe API：它通过 YouTube 官方 Data API 读取视频简介、把音视频文件的语音转成文字、或解析你粘贴的文案，每个视频输出一份结构化的 JSON 菜谱。</p>
+
+<h2>做菜视频里的菜谱通常在哪里？</h2>
+<ul>
+<li><strong>简介和置顶评论</strong>：YouTube 上很多博主把食材写在简介里，也有人只放在置顶评论。</li>
+<li><strong>文案</strong>：抖音、小红书、TikTok、Instagram Reels 的菜谱一般写在文案里，常常夹着话题标签和表情符号。</li>
+<li><strong>口播</strong>：短视频经常只说"两勺生抽"，画面和文字里都没有。</li>
+<li><strong>博主自己的网站</strong>：有些视频会附上完整的文字版菜谱，有的话直接用它，那是作者的正式版本。</li>
+</ul>
+<p>只做今晚这一道菜，手动整理完全够用：复制文案，边看边补上口播里的用量，买菜前确认一下份数。</p>
+
+<h2>手动整理为什么费时间？</h2>
+<ul>
+<li><strong>信息分散</strong>：一半用量在简介里，另一半在口播里，份数很少有人说明。</li>
+<li><strong>单位不统一</strong>：有的说克，有的说杯、勺、"一把"。按家里人数调整份量、换算单位，每一行都要算。</li>
+<li><strong>营养要逐个查</strong>：免费的官方数据来源是 <a href="https://fdc.nal.usda.gov/" target="_blank" rel="noopener">USDA FoodData Central</a>，每种食材都要搜索、选对形态（生的还是熟的、干意面还是鲜意面），再按用量换算。</li>
+<li><strong>购物清单要合并</strong>：两道菜都用到大蒜，清单上应该只出现一行。</li>
+</ul>
+<p>偶尔做一次没问题；但如果你在做菜谱 App、买菜清单工具或美食账号，要把几百个视频整理成菜谱卡片，就需要自动化。</p>
+
+<h2>用 API 从视频提取菜谱</h2>
+<p><a href="https://apify.com/messnomore/video-to-recipe" target="_blank" rel="noopener">Video to Recipe API</a> 支持三种输入，可以在一次运行里混用：</p>
+<ul>
+<li><strong>YouTube 链接</strong>：需要你自己的 YouTube Data API 密钥（免费，每天 10,000 配额单位，每个视频用 1 个）。只读取公开的标题和简介，不下载视频或字幕。</li>
+<li><strong>音视频文件直链</strong>：你有权处理的文件，语音会先转写成文字。</li>
+<li><strong>粘贴的文案</strong>：来自 TikTok、Instagram Reels、Facebook、小红书等平台。工具不会打开这些平台的页面。</li>
+</ul>
+<p>AI 模型把这些文字整理成菜谱，并保留每种食材在原文里的那一行，方便你核对；之后由代码换算份量和单位，并把每种食材对应到 USDA 食物数据。输出包括菜名、带数量和单位的食材、编号步骤、份数、准备和烹饪时间、每份热量、蛋白质、脂肪和碳水，以及按超市货架分组的购物清单。下面是一条粘贴 TikTok 文案得到的真实结果（只保留 11 种食材中的 2 种）：</p>
+<pre><code>{
+  "title": "Creamy Tuscan Chicken Pasta",
+  "servings": 3,
+  "ingredients": [
+    { "name": "penne", "quantity": 250, "unit": "g", "originalText": "250g penne" },
+    { "name": "chicken breasts", "quantity": 2, "unit": "piece", "estimatedGrams": 340, "originalText": "2 chicken breasts sliced" }
+  ],
+  "nutritionPerServing": { "kcal": 789, "protein_g": 43.7, "fat_g": 35.8, "carbs_g": 73.1, "matchedIngredients": 8, "totalIngredients": 9 },
+  "confidence": 0.96,
+  "missingInfo": ["prepMinutes", "cookMinutes", "nutrition:italian herbs"]
+}</code></pre>
+<p>把 outputLanguage 设为 zh，就会用简体中文输出菜名、食材和步骤；设置 servings 可以按人数缩放所有用量，unitSystem 可选公制（克、毫升）或英制（盎司、杯、勺）。</p>
+
+<h2>价格</h2>
+<p>按事件计费：<strong>每道菜谱 0.04 美元</strong>，包含 3 分钟以内的音视频；超出部分<strong>每开始一分钟 0.015 美元</strong>；每次运行另有 0.00005 美元启动费，不另收计算费用。10 道来自文案或 YouTube 链接的菜谱共 0.40 美元；一个 10 分钟的视频文件是 0.04 + 7 × 0.015 = 0.145 美元。不是菜谱、无法读取或没有声音的条目会被跳过，不收费。Apify Bronze、Silver 和 Gold 订阅用户价格更低。Apify 免费套餐每次运行最多返回 3 道菜谱，音视频最长 5 分钟。</p>
+
+<h2>它做不到什么</h2>
+<ul>
+<li>不猜测：视频没说的用量会留空，并列在 <code>missingInfo</code> 里。</li>
+<li>不从 YouTube、抖音、小红书下载内容：YouTube 只读标题和简介，其他平台需要你粘贴文案。</li>
+<li>不识别画面上的文字：如果菜谱只出现在画面字幕里，没有简介、文案或口播，就无法提取。</li>
+<li>营养是估算值；能对应上的食材不到一半时，不给出营养数据。</li>
+</ul>
+<p>发布整理好的菜谱时，请注明并链接原作者。食材清单本身一般不受版权保护，但作者的文字、图片和视频受保护。本工具与 YouTube、Google、TikTok、Meta 均无关联。</p>
+    <aside class="cta">
+        <h2>直接试用</h2>
+        <p><a class="button" href="https://apify.com/messnomore/video-to-recipe" target="_blank" rel="noopener">Video to Recipe API: YouTube Recipe Extractor &amp; Nutrition</a></p>
+        <p>现成的示例任务：</p>
+        <ul>
+            <li><a href="https://apify.com/messnomore/video-to-recipe/examples/tiktok-recipe-caption-to-recipe" target="_blank" rel="noopener">Turn a TikTok recipe caption into a structured recipe</a></li>
+            <li><a href="https://apify.com/messnomore/video-to-recipe/examples/reels-recipe-shopping-list" target="_blank" rel="noopener">Make a grocery shopping list from Instagram Reels recipes</a></li>
+            <li><a href="https://apify.com/messnomore/video-to-recipe/examples/recipe-nutrition-calculator" target="_blank" rel="noopener">Calculate calories and macros per serving for a recipe</a></li>
+            <li><a href="https://apify.com/messnomore/video-to-recipe/examples/cooking-video-file-to-recipe" target="_blank" rel="noopener">Transcribe a cooking video file into a written recipe</a></li>
+            <li><a href="https://apify.com/messnomore/video-to-recipe/examples/scale-recipe-servings-cups" target="_blank" rel="noopener">Scale a recipe to more servings and convert to cups and ounces</a></li>
+        </ul>
+    </aside>
+    <section class="faq">
+        <h2>常见问题</h2>
+        <h3>能直接粘贴抖音或小红书的链接吗？</h3>
+        <p>不能。请把视频文案复制进来，链接可以填在 sourceUrl 里留作记录。这个工具不会打开抖音、小红书、TikTok 或 Instagram 的页面。如果用量只在口播里，可以提供你有权处理的视频或音频文件直链，语音会先转成文字。</p>
+        <h3>输出可以是中文吗？</h3>
+        <p>可以。outputLanguage 选 zh，菜名、食材和步骤都用简体中文输出，原视频是繁体或其他语言也一样。另有英文、马来文、泰文、越南文、日文等共 12 种输出语言。</p>
+        <h3>视频里没说用量怎么办？</h3>
+        <p>用量会留空，并在 missingInfo 里写明 quantity:&lt;食材&gt;，提醒你下厨前确认。工具不会猜测用量，视频没提到的份数和时间也会列在这里。</p>
+        <h3>每份营养准确吗？</h3>
+        <p>是估算值。每种食材会对应到美国农业部 USDA FoodData Central 的一种食物，再按用量算出重量；能对应上且有用量的食材不到一半时，nutritionPerServing 为 null。带骨肉的重量会把骨头算进去，所以这类菜谱的热量偏高。</p>
+        <h3>收费怎么算？</h3>
+        <p>每道菜谱 0.04 美元，包含 3 分钟以内的音视频；超出部分每开始一分钟 0.015 美元，每次运行另有 0.00005 美元启动费。不是菜谱或无法读取的条目不收费。Apify Bronze、Silver 和 Gold 订阅用户价格更低。</p>
+    </section>
+    <section class="related"><h2>其他指南</h2><ul>
+            <li><a href="/zh/hs-code-lookup/">商品HS编码怎么查？美国HTS、欧盟TARIC、英国商品编码查询方法</a></li>
+            <li><a href="/zh/shopee-lazada-listing-translation/">东南亚卖家怎么把 Shopee、Lazada、TikTok Shop 的商品标题翻译成当地语言，又不超字数限制？</a></li>
+        </ul></section>
+</article>
+</main>
+<footer class="site">
+    <p>作者 <a href="https://apify.com/messnomore">Wong Xian Qi</a> · 数据工具运行在 Apify 平台 · <a href="/llms.txt">llms.txt</a></p>
+</footer>
+</body>
+</html>

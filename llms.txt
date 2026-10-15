@@ -9,6 +9,7 @@ server (https://mcp.apify.com). Add `.md` to any Apify Store URL below for a Mar
 ## Guides
 
 - [Is there an airline baggage allowance API? Carry-on and checked bag limits by airline and fare, as JSON](https://wong13977-oss.github.io/airline-baggage-allowance-api/): Carry-on, personal item and checked bag rules per fare as JSON from official airline pages. Covers only Air Arabia, Malaysia, Thai and Vietnam Airlines.
+- [How do you turn a cooking video into a written recipe with amounts, steps and nutrition?](https://wong13977-oss.github.io/cooking-video-to-recipe/): Get the recipe out of a YouTube, TikTok or Reels cooking video: check the description first, or extract ingredients, steps and nutrition per serving by API.
 - [How do you check a JAKIM or BPJPH halal certificate, and verify many suppliers at once?](https://wong13977-oss.github.io/halal-certificate-check/): Check a halal certificate in the JAKIM (Malaysia) or BPJPH (Indonesia) registry by hand, or verify whole supplier lists with an API: status, expiry, number.
 - [How do you find the HS code for a product, and its US, EU and UK tariff codes?](https://wong13977-oss.github.io/hs-code-lookup/): Describe the product, apply the HS rules, then look up the US HTS, EU TARIC and UK commodity code. Free official tools, base-duty caveats and a bulk API.
 - [How do you translate Shopee, Lazada and TikTok Shop listings within the title limits?](https://wong13977-oss.github.io/marketplace-listing-translation/): Title limits: Lazada 255, TikTok Shop 25-255, Shopee 120 (unofficial). Translate listings to Malay or Thai by API and see what CPETTR 2024 requires.
@@ -21,12 +22,14 @@ server (https://mcp.apify.com). Add `.md` to any Apify Store URL below for a Mar
 
 ## Chinese guides (中文)
 
+- [做菜视频怎么转成带用量、步骤和营养的文字菜谱？](https://wong13977-oss.github.io/zh/cooking-video-to-recipe/): 把 YouTube、抖音、小红书的做菜视频整理成文字菜谱：先看简介和文案，批量处理时用 API 输出食材用量、步骤、每份营养和购物清单。
 - [商品HS编码怎么查？美国HTS、欧盟TARIC、英国商品编码查询方法](https://wong13977-oss.github.io/zh/hs-code-lookup/): 跨境卖家怎么查商品HS编码？介绍USITC HTS、欧盟TARIC、英国Trade Tariff三个官方入口、6位与10位编码的区别，以及可输出中文理由的批量查询工具。
 - [东南亚卖家怎么把 Shopee、Lazada、TikTok Shop 的商品标题翻译成当地语言，又不超字数限制？](https://wong13977-oss.github.io/zh/shopee-lazada-listing-translation/): Lazada 标题上限 255，TikTok Shop 25 到 255，Shopee 常用 120（非官方）。批量翻译成马来语、印尼语、泰语、越南语，保护品牌词，并检查马来西亚 CPETTR 2024 披露。
 
 ## APIs on Apify Store
 
 - [Airline Baggage Allowance API: Carry-on & Checked Bag Rules](https://apify.com/messnomore/airline-baggage-allowance)
+- [Video to Recipe API: YouTube Recipe Extractor & Nutrition](https://apify.com/messnomore/video-to-recipe)
 - [Halal Certificate Checker: JAKIM & BPJPH (Malaysia, Indonesia)](https://apify.com/messnomore/halal-certificate-checker)
 - [AI HS Code Classifier: HTS, TARIC & UK Tariff Codes](https://apify.com/messnomore/hs-code-classifier)
 - [Shopee, Lazada & TikTok Shop Listing Translator](https://apify.com/messnomore/sea-listing-localizer)

@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>How to Turn a Cooking Video into a Written Recipe</title>
+    <meta name="description" content="Get the recipe out of a YouTube, TikTok or Reels cooking video: check the description first, or extract ingredients, steps and nutrition per serving by API.">
+    <link rel="canonical" href="https://wong13977-oss.github.io/cooking-video-to-recipe/">
+    <link rel="alternate" hreflang="en" href="https://wong13977-oss.github.io/cooking-video-to-recipe/">
+    <link rel="alternate" hreflang="zh-CN" href="https://wong13977-oss.github.io/zh/cooking-video-to-recipe/">
+    <link rel="alternate" hreflang="x-default" href="https://wong13977-oss.github.io/cooking-video-to-recipe/">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="How to Turn a Cooking Video into a Written Recipe">
+    <meta property="og:description" content="Get the recipe out of a YouTube, TikTok or Reels cooking video: check the description first, or extract ingredients, steps and nutrition per serving by API.">
+    <meta property="og:url" content="https://wong13977-oss.github.io/cooking-video-to-recipe/">
+    <link rel="stylesheet" href="/styles.css">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"How do you turn a cooking video into a written recipe with amounts, steps and nutrition?","description":"Get the recipe out of a YouTube, TikTok or Reels cooking video: check the description first, or extract ingredients, steps and nutrition per serving by API.","inLanguage":"en","dateModified":"2026-10-15","mainEntityOfPage":"https://wong13977-oss.github.io/cooking-video-to-recipe/","author":{"@type":"Person","name":"Wong Xian Qi","url":"https://apify.com/messnomore"},"about":{"@type":"SoftwareApplication","name":"Video to Recipe API: YouTube Recipe Extractor & Nutrition","url":"https://apify.com/messnomore/video-to-recipe","applicationCategory":"DeveloperApplication","operatingSystem":"Web"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can I get the recipe from a YouTube video for free?","acceptedAnswer":{"@type":"Answer","text":"Yes, by hand: read the video description and the pinned comment, where creators often put the amounts, and pause the video to write down what is only said aloud. Video to Recipe API does this for $0.04 per recipe and needs your own free YouTube Data API key."}},{"@type":"Question","name":"Can I paste a TikTok or Instagram Reels link?","acceptedAnswer":{"@type":"Answer","text":"No. Paste the caption text instead, with the video link as sourceUrl if you want to keep it. The Actor does not open pages on TikTok, Instagram or other social platforms. When the amounts are only spoken, give a direct link to a video or audio file you have the right to process and the speech is transcribed."}},{"@type":"Question","name":"What happens when the video does not say how much of an ingredient to use?","acceptedAnswer":{"@type":"Answer","text":"The amount stays empty and missingInfo lists quantity:<ingredient>, so you know to check before cooking. The Actor does not guess amounts. Servings and times that the video never states are listed there too."}},{"@type":"Question","name":"How accurate is the nutrition per serving?","acceptedAnswer":{"@type":"Answer","text":"It is an estimate. Each ingredient is matched to a USDA FoodData Central food and weighed from its amount, and nutritionPerServing is null when fewer than half of the ingredients have both an amount and a match. Bone-in meat weights count the bones, so those recipes show more calories than you eat."}},{"@type":"Question","name":"Can it scale a recipe or convert grams to cups?","acceptedAnswer":{"@type":"Answer","text":"Yes. Set servings to the number you need and every amount is scaled. Set unitSystem to imperial for ounces, pounds, cups and spoons, or metric for grams and millilitres; amounts are rounded the way cooks measure, such as 1/2 cup."}},{"@type":"Question","name":"Is it legal to copy a recipe from a video?","acceptedAnswer":{"@type":"Answer","text":"A list of ingredients is generally not protected by copyright, but the creator's wording, photos and video are. Credit and link the original creator when you publish a recipe. Video to Recipe API is not affiliated with YouTube, Google, TikTok or Meta."}}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"MessNoMore Data Tools","item":"https://wong13977-oss.github.io/"},{"@type":"ListItem","position":2,"name":"How to Turn a Cooking Video into a Written Recipe","item":"https://wong13977-oss.github.io/cooking-video-to-recipe/"}]}</script>
+</head>
+<body>
+<header class="site">
+    <a class="brand" href="/">MessNoMore Data Tools</a>
+    <nav><a href="/zh/">中文</a> <a href="https://github.com/wong13977-oss/school-term-dates">Free data</a> <a href="https://apify.com/messnomore">Apify Store</a></nav>
+</header>
+<main>
+<article>
+    <p class="crumbs"><a href="/">MessNoMore Data Tools</a> › How to Turn a Cooking Video into a Written Recipe</p>
+    <h1>How do you turn a cooking video into a written recipe with amounts, steps and nutrition?</h1>
+    <p class="meta">Updated <time datetime="2026-10-15">2026-10-15</time> · By Wong Xian Qi</p>
+    <p>To get a written recipe out of a cooking video, look first where creators put it: the YouTube description, a pinned comment or the TikTok or Reels caption. Then pause the video and note the amounts that are only spoken. When you need many recipes, or structured data with grams, servings and nutrition, Video to Recipe API on Apify reads the description through the official YouTube Data API, transcribes the speech of a video file or parses a pasted caption, and returns one JSON recipe per video.</p>
+
+<h2>Where is the recipe in a cooking video?</h2>
+<p>Usually in more than one place, and rarely complete in any of them:</p>
+<ul>
+<li><strong>Description and pinned comment.</strong> On YouTube, many cooks list ingredients under the video, and some put the amounts in a pinned comment instead.</li>
+<li><strong>Caption.</strong> On TikTok, Instagram Reels and Xiaohongshu, the recipe is in the caption text, often mixed with hashtags and emoji.</li>
+<li><strong>Speech.</strong> Short videos often say the amounts aloud ("two tablespoons of soy sauce") and never write them down.</li>
+<li><strong>The creator's own site.</strong> Some videos link to a full written recipe. If there is one, use it: it is the creator's official version.</li>
+</ul>
+<p>For one recipe you want to cook tonight, this manual way is enough: copy the text, fill in the spoken amounts while you watch, and check servings before you shop.</p>
+
+<h2>Why is writing recipes down by hand slow?</h2>
+<ul>
+<li><strong>The parts are scattered.</strong> Half the amounts are in the description, the rest are spoken, and servings are rarely stated.</li>
+<li><strong>Units are mixed.</strong> One video says grams, the next says cups and "a handful". Scaling to your household size and converting units is arithmetic on every line.</li>
+<li><strong>Nutrition needs a lookup per ingredient.</strong> The free official source is <a href="https://fdc.nal.usda.gov/" target="_blank" rel="noopener">USDA FoodData Central</a>: you search each ingredient, pick the right form (raw or cooked, dry pasta or fresh) and weigh it from the amount.</li>
+<li><strong>Shopping lists need merging.</strong> Two recipes that both use garlic should give one line, not two.</li>
+</ul>
+<p>That is fine for a weekly dinner. It does not work for a meal planner, a grocery app or a food blog that turns hundreds of videos into recipe cards.</p>
+
+<h2>How to extract a recipe from a video with an API</h2>
+<p><a href="https://apify.com/messnomore/video-to-recipe" target="_blank" rel="noopener">Video to Recipe API</a> takes three kinds of input, and you can mix them in one run:</p>
+<ul>
+<li><strong>YouTube links</strong>, with your own YouTube Data API key. The key is free, and each video uses 1 of its 10,000 daily quota units. Only the public title and description are read; videos and captions are not downloaded.</li>
+<li><strong>Direct links to audio or video files</strong> you have the right to process. The speech is transcribed, then read like a caption.</li>
+<li><strong>Pasted captions</strong> from TikTok, Instagram Reels, Facebook or Xiaohongshu. The Actor does not open those platforms.</li>
+</ul>
+<p>An AI model turns the texts into a recipe and copies each ingredient line from the source, so you can check every value. Code then scales the amounts, converts units and matches each ingredient to a USDA food. This is part of a real result for a pasted TikTok caption (trimmed to two of its eleven ingredients):</p>
+<pre><code>{
+  "title": "Creamy Tuscan Chicken Pasta",
+  "cuisine": "italian",
+  "servings": 3,
+  "ingredients": [
+    {
+      "name": "penne",
+      "quantity": 250,
+      "unit": "g",
+      "groceryAisle": "grains_pasta_rice",
+      "nutritionMatch": { "fdcId": 169736, "description": "Pasta, dry, enriched", "dataType": "SR Legacy" },
+      "originalText": "250g penne"
+    },
+    {
+      "name": "chicken breasts",
+      "quantity": 2,
+      "unit": "piece",
+      "estimatedGrams": 340,
+      "nutritionMatch": { "fdcId": 2646170, "description": "Chicken, breast, boneless, skinless, raw", "dataType": "Foundation" },
+      "originalText": "2 chicken breasts sliced"
+    }
+  ],
+  "nutritionPerServing": { "kcal": 789, "protein_g": 43.7, "fat_g": 35.8, "carbs_g": 73.1, "matchedIngredients": 8, "totalIngredients": 9 },
+  "confidence": 0.96,
+  "missingInfo": ["prepMinutes", "cookMinutes", "nutrition:italian herbs"]
+}</code></pre>
+<p>The same record has eight numbered steps and a shopping list grouped by aisle, from produce to spices. Results can be written in 12 languages, including English, Chinese (always Simplified), Malay, Thai, Vietnamese, Japanese and Spanish. You can call it from your own code:</p>
+<pre><code>curl -X POST "https://api.apify.com/v2/acts/messnomore~video-to-recipe/run-sync-get-dataset-items" -H "Authorization: Bearer YOUR_APIFY_TOKEN" -H "Content-Type: application/json" -d '{"items": ["2 eggs, 2 tomatoes, 1 tsp sugar, salt. Fry the eggs, add the tomatoes and sugar, season."], "servings": 2, "unitSystem": "imperial"}'</code></pre>
+
+<h2>How much does it cost?</h2>
+<p>Pay per event: <strong>$0.04 per recipe</strong>, which includes up to 3 minutes of a media file, plus <strong>$0.015 per extra started minute</strong> of media and a $0.00005 start fee per run. There is no separate charge for compute. Ten recipes from captions or YouTube links cost $0.40; a 10-minute video file costs $0.04 + 7 × $0.015 = $0.145. Items that are not recipes, links that cannot be read and silent files are skipped and not charged. Apify Bronze, Silver and Gold subscribers get lower prices. On the Apify free plan, a run returns up to 3 recipes and accepts media files up to 5 minutes.</p>
+
+<h2>What it does not do</h2>
+<ul>
+<li>It does not guess. An amount the video never states stays empty and is listed in <code>missingInfo</code>.</li>
+<li>It does not download from YouTube, TikTok or Instagram. For YouTube it reads only the title and description; for other platforms you paste the caption.</li>
+<li>It does not read text shown only on screen. A recipe that appears only as on-screen text, with no description, caption or speech, cannot be extracted.</li>
+<li>Nutrition is an estimate, and it is left out (<code>null</code>) when fewer than half of the ingredients can be matched and weighed.</li>
+</ul>
+<p>When you publish a recipe you extracted, credit and link the original creator. The tool is not affiliated with YouTube, Google, TikTok or Meta.</p>
+    <aside class="cta">
+        <h2>Try it</h2>
+        <p><a class="button" href="https://apify.com/messnomore/video-to-recipe" target="_blank" rel="noopener">Video to Recipe API: YouTube Recipe Extractor &amp; Nutrition</a></p>
+        <p>Ready-made example runs:</p>
+        <ul>
+            <li><a href="https://apify.com/messnomore/video-to-recipe/examples/tiktok-recipe-caption-to-recipe" target="_blank" rel="noopener">Turn a TikTok recipe caption into a structured recipe</a></li>
+            <li><a href="https://apify.com/messnomore/video-to-recipe/examples/reels-recipe-shopping-list" target="_blank" rel="noopener">Make a grocery shopping list from Instagram Reels recipes</a></li>
+            <li><a href="https://apify.com/messnomore/video-to-recipe/examples/recipe-nutrition-calculator" target="_blank" rel="noopener">Calculate calories and macros per serving for a recipe</a></li>
+            <li><a href="https://apify.com/messnomore/video-to-recipe/examples/cooking-video-file-to-recipe" target="_blank" rel="noopener">Transcribe a cooking video file into a written recipe</a></li>
+            <li><a href="https://apify.com/messnomore/video-to-recipe/examples/scale-recipe-servings-cups" target="_blank" rel="noopener">Scale a recipe to more servings and convert to cups and ounces</a></li>
+        </ul>
+    </aside>
+    <section class="faq">
+        <h2>FAQ</h2>
+        <h3>Can I get the recipe from a YouTube video for free?</h3>
+        <p>Yes, by hand: read the video description and the pinned comment, where creators often put the amounts, and pause the video to write down what is only said aloud. Video to Recipe API does this for $0.04 per recipe and needs your own free YouTube Data API key.</p>
+        <h3>Can I paste a TikTok or Instagram Reels link?</h3>
+        <p>No. Paste the caption text instead, with the video link as sourceUrl if you want to keep it. The Actor does not open pages on TikTok, Instagram or other social platforms. When the amounts are only spoken, give a direct link to a video or audio file you have the right to process and the speech is transcribed.</p>
+        <h3>What happens when the video does not say how much of an ingredient to use?</h3>
+        <p>The amount stays empty and missingInfo lists quantity:&lt;ingredient&gt;, so you know to check before cooking. The Actor does not guess amounts. Servings and times that the video never states are listed there too.</p>
+        <h3>How accurate is the nutrition per serving?</h3>
+        <p>It is an estimate. Each ingredient is matched to a USDA FoodData Central food and weighed from its amount, and nutritionPerServing is null when fewer than half of the ingredients have both an amount and a match. Bone-in meat weights count the bones, so those recipes show more calories than you eat.</p>
+        <h3>Can it scale a recipe or convert grams to cups?</h3>
+        <p>Yes. Set servings to the number you need and every amount is scaled. Set unitSystem to imperial for ounces, pounds, cups and spoons, or metric for grams and millilitres; amounts are rounded the way cooks measure, such as 1/2 cup.</p>
+        <h3>Is it legal to copy a recipe from a video?</h3>
+        <p>A list of ingredients is generally not protected by copyright, but the creator's wording, photos and video are. Credit and link the original creator when you publish a recipe. Video to Recipe API is not affiliated with YouTube, Google, TikTok or Meta.</p>
+    </section>
+    <section class="related"><h2>More guides</h2><ul>
+            <li><a href="/airline-baggage-allowance-api/">Is there an airline baggage allowance API? Carry-on and checked bag limits by airline and fare, as JSON</a></li>
+            <li><a href="/halal-certificate-check/">How do you check a JAKIM or BPJPH halal certificate, and verify many suppliers at once?</a></li>
+            <li><a href="/hs-code-lookup/">How do you find the HS code for a product, and its US, EU and UK tariff codes?</a></li>
+            <li><a href="/marketplace-listing-translation/">How do you translate Shopee, Lazada and TikTok Shop listings within the title limits?</a></li>
+            <li><a href="/mcp-server/">Use visa sponsor, school holiday, halal certificate, HS code and other data tools in Claude, ChatGPT and Cursor (MCP)</a></li>
+            <li><a href="/mobile-plan-price-tracker/">How do you compare and track SIM-only and prepaid plan prices in Malaysia, Singapore and Australia?</a></li>
+            <li><a href="/school-term-dates-api/">Is there an API for school term dates and school holidays?</a></li>
+            <li><a href="/tech-conference-cfp-finder/">Where can I find tech conferences with an open call for papers, including CFPs that cover speaker travel?</a></li>
+            <li><a href="/visa-sponsor-check/">How do I check if a company sponsors work visas in the UK, US or Canada?</a></li>
+            <li><a href="/website-categorization-api/">How do I categorize a list of websites by IAB category, brand safety and parked status with an API?</a></li>
+        </ul></section>
+</article>
+</main>
+<footer class="site">
+    <p>By <a href="https://apify.com/messnomore">Wong Xian Qi</a> · Tools run on the Apify platform · <a href="/llms.txt">llms.txt</a></p>
+</footer>
+</body>
+</html>
