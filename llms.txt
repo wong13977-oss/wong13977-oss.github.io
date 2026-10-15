@@ -13,6 +13,7 @@ server (https://mcp.apify.com). Add `.md` to any Apify Store URL below for a Mar
 - [How do you find the HS code for a product, and its US, EU and UK tariff codes?](https://wong13977-oss.github.io/hs-code-lookup/): Describe the product, apply the HS rules, then look up the US HTS, EU TARIC and UK commodity code. Free official tools, base-duty caveats and a bulk API.
 - [How do you translate Shopee, Lazada and TikTok Shop listings within the title limits?](https://wong13977-oss.github.io/marketplace-listing-translation/): Title limits: Lazada 255, TikTok Shop 25-255, Shopee 120 (unofficial). Translate listings to Malay or Thai by API and see what CPETTR 2024 requires.
 - [Use visa sponsor, school holiday, halal certificate, HS code and other data tools in Claude, ChatGPT and Cursor (MCP)](https://wong13977-oss.github.io/mcp-server/): Connect Claude, ChatGPT or Cursor to 8 data tools over MCP: visa sponsors, school term dates, halal certificates, HS codes, baggage rules and more.
+- [How do you compare and track SIM-only and prepaid plan prices in Malaysia, Singapore and Australia?](https://wong13977-oss.github.io/mobile-plan-price-tracker/): Compare SIM-only, prepaid and postpaid plans from 12 carriers in Malaysia, Singapore and Australia in one table, per month and in USD, with weekly changes.
 - [Is there an API for school term dates and school holidays?](https://wong13977-oss.github.io/school-term-dates-api/): No single UK school term dates API exists. Get UK council, NSW, Victoria, Queensland and Malaysia school dates as JSON, each with a source link.
 - [Where can I find tech conferences with an open call for papers, including CFPs that cover speaker travel?](https://wong13977-oss.github.io/tech-conference-cfp-finder/): Find tech conferences with an open call for papers on Sessionize and confs.tech, or filter by deadline, region and travel support through an API. Sample rows.
 - [How do I check if a company sponsors work visas in the UK, US or Canada?](https://wong13977-oss.github.io/visa-sponsor-check/): Is a company a UK licensed sponsor, H-1B sponsor or Canada LMIA employer? Official lists, the manual way and an unofficial API from $0.002 per check.
@@ -29,6 +30,7 @@ server (https://mcp.apify.com). Add `.md` to any Apify Store URL below for a Mar
 - [Halal Certificate Checker: JAKIM & BPJPH (Malaysia, Indonesia)](https://apify.com/messnomore/halal-certificate-checker)
 - [AI HS Code Classifier: HTS, TARIC & UK Tariff Codes](https://apify.com/messnomore/hs-code-classifier)
 - [Shopee, Lazada & TikTok Shop Listing Translator](https://apify.com/messnomore/sea-listing-localizer)
+- [Mobile Plans Tracker: SIM-Only & Prepaid Plan Prices](https://apify.com/messnomore/mobile-plans-tracker)
 - [School Holidays & Term Dates API: UK, Australia, Malaysia](https://apify.com/messnomore/school-holidays-api)
 - [CFP Radar: Tech Conference Call for Papers Finder & AI Matcher](https://apify.com/messnomore/cfp-radar)
 - [Visa Sponsor Checker: UK, US H-1B, Canada LMIA (Unofficial)](https://apify.com/messnomore/visa-sponsor-checker)
