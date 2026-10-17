@@ -43,6 +43,7 @@ server (https://mcp.apify.com). Add `.md` to any Apify Store URL below for a Mar
 
 - Remote MCP URL (Streamable HTTP, OAuth with an Apify account): https://mcp.apify.com/?tools=messnomore/cfp-radar,messnomore/school-holidays-api,messnomore/visa-sponsor-checker,messnomore/halal-certificate-checker,messnomore/airline-baggage-allowance,messnomore/hs-code-classifier,messnomore/sea-listing-localizer,messnomore/website-categorization,messnomore/mobile-plans-tracker,messnomore/video-to-recipe,get-actor-run,get-dataset-items
 - [Setup guide](https://wong13977-oss.github.io/mcp-server/) and [repository](https://github.com/wong13977-oss/messnomore-mcp)
+- [Free agent skill on Agensi](https://www.agensi.io/skills/data-tools-pack-visa-sponsors-hs-codes-halal-holidays): a SKILL.md for Claude Code, Cursor, Codex and other agents that tells the agent which tool fits a question and caps each run. Single-tool skills: https://www.agensi.io/creators/wong
 
 ## Free data
 
